@@ -2,7 +2,7 @@
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 
-# createdb photos
+# The name of my db : createdb photos
 
 db = SQLAlchemy ()
 

@@ -1,5 +1,6 @@
 """Server for photo management app."""
 
+import os
 from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud
@@ -16,12 +17,23 @@ app = Flask(__name__)
 app.secret_key = "HKBuLa3wTL"
 app.jinja_env.undefined = StrictUndefined
 
+# set Cloudinary API configurations
+cloudinary.config(
+                  cloud_name = os.environ.get('CLOUD_NAME'), 
+                  api_key = os.environ.get('API_KEY'), 
+                  api_secret = os.environ.get('API_SECRET')
+                  )
+# cloudinary.config( 
+#                   cloud_name = "dv77rliti", 
+#                   api_key = "213853632381728", 
+#                   api_secret = "QV24_tQRUyGwSl5UoDt9jd01SYk")
+
 
 @app.route("/")
-def create_coverpage():
+def create_landingpage():
     """Return landing page with cover photo and login/sign up options"""
 
-    return render_template("coverpage.html")
+    return render_template("landingpage.html")
 
 @app.route("/user", methods=["POST"])
 def add_user():
@@ -57,20 +69,44 @@ def confirm_credentials():
         flash('Incorrect password! Try again')
         return redirect ("/")
 
-# @app.route('/session')
-# def set_session():
-#     """Set value for session['user_id']"""
+@app.route('/session')
+def set_session():
+    """Set value for session['user_id']"""
 
-#     user_id = get_user_by_email(email)
-#     session['user_id'] = user_id
+    email = request.args.get("login_email")
+    user = crud.get_user_by_email(email)
+    user_id = user.user_id
+
+    session['user_id'] = user_id
+    session['email'] = email
+
+    return redirect("/")
 
 
-# @app.route('/session/get'):
-# def get_session():
-#     """Get values out of session"""
+@app.route('/session/get')
+def get_session():
+    """Get values out of session"""
 
-#     user_id = session['user_id']
+    user_id = session['user_id']
+    email = session['email']
 
+
+@app.route("/library", methods=["POST"])
+def add_photo_to_library():
+
+    test_image = request.form.get("test_image")
+
+    return render_template("library.html", test_image=test_image)
+
+
+@app.route("/create_photo")
+def create_new_photo():
+
+    upload_file = upload(file,
+                             folder = f"user/{session['user_email']}",
+                             unique_filename = 1,
+                             # background_removal = "cloudinary_ai",
+                             )
 
 if __name__ == "__main__":
     connect_to_db(app)
