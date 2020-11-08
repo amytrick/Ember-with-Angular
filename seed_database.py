@@ -20,6 +20,7 @@ with open("data/fake_photos.json") as f:
 ## iterate through json data and add each photo as a new photo
 photos_in_db = []
 for photo in photo_data:
+    # user_id = photo["user_id"]
     date_uploaded = datetime.now()
     date_taken = datetime.strptime(photo["date_taken"], "%Y-%m-%d %H:%M")
     path = photo["path"]
@@ -29,7 +30,7 @@ for photo in photo_data:
 
 
 ## create 5 new users
-for num in range(5):
+for num in range(1, 6):
     fname = f"user{num}"
     lname = f"user{num}"
     email = f"user{num}@test.com"  # Voila! A unique email!

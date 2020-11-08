@@ -11,6 +11,7 @@ def create_user(fname, lname, email, password):
     db.session.commit()
 
     return user
+    
 
 def create_photo(date_uploaded, date_taken, path):
     """Create and return photo instance"""
@@ -22,7 +23,6 @@ def create_photo(date_uploaded, date_taken, path):
 
     return photo
 
-    # create_photo(null, null, null, null, null, null, null, null)
 
 def display_all_photos():
 
@@ -35,6 +35,7 @@ def get_user_by_email(email):
     """ Return user's profile"""
 
     return User.query.filter(User.email == email).first()
+    # user0@test.com --> {'email_1': 'user0@test.com', 'param_1': 1}
 
 
 def get_id_by_email(email):

@@ -69,6 +69,7 @@ def confirm_credentials():
     else:
         flash('Incorrect password! Try again')
         return redirect ("/")
+        
 
 @app.route('/session')
 def set_session():
