@@ -22,9 +22,9 @@ photos_in_db = []
 for photo in photo_data:
     date_uploaded = datetime.now()
     date_taken = datetime.strptime(photo["date_taken"], "%Y-%m-%d %H:%M")
+    path = photo["path"]
 
-
-    db_photo = crud.create_photo(date_uploaded, date_taken)
+    db_photo = crud.create_photo(date_uploaded, date_taken, path)
     photos_in_db.append(db_photo)
 
 

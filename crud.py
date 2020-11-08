@@ -12,10 +12,10 @@ def create_user(fname, lname, email, password):
 
     return user
 
-def create_photo(date_uploaded, date_taken):
+def create_photo(date_uploaded, date_taken, path):
     """Create and return photo instance"""
 
-    photo = Photo(date_uploaded=date_uploaded, date_taken=date_taken)
+    photo = Photo(date_uploaded=date_uploaded, date_taken=date_taken, path=path)
 
     db.session.add(photo)
     db.session.commit()
@@ -23,6 +23,12 @@ def create_photo(date_uploaded, date_taken):
     return photo
 
     # create_photo(null, null, null, null, null, null, null, null)
+
+def display_all_photos():
+
+    photos = Photo.query.all()
+
+    return photos
 
 
 def get_user_by_email(email):

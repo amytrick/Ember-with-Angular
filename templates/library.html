@@ -19,13 +19,16 @@ Library
   </div>
 </form>
 
-<a href="/session">Session</a>
+<!-- <a href="/session">Session</a>
 
 <p>My user id = {{session['user_id']}}</p>
-<p>My email is = {{session['email']}}</p>
+<p>My email is = {{session['email']}}</p> -->
 
-<div>
-  <!-- <img src={test_image} -->
-</div>
+{% for photo in photos %}
+  <div class="library">
+    <img class="library_img" src= {{ photo.path }}>
+  </div>
+{% endfor %}
+
 
 {% endblock %}

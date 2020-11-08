@@ -1,0 +1,8 @@
+.library_img {
+    height: 250px;
+    width: auto;
+}
+
+.library {
+    display: inline-block;
+}

@@ -64,7 +64,8 @@ def confirm_credentials():
 
     match_passwords = crud.check_password(email, password)
     if match_passwords == True:
-        return render_template("library.html")
+        photos = crud.display_all_photos() 
+        return render_template("library.html", photos=photos)
     else:
         flash('Incorrect password! Try again')
         return redirect ("/")
@@ -94,9 +95,16 @@ def get_session():
 @app.route("/library", methods=["POST"])
 def add_photo_to_library():
 
-    test_image = request.form.get("test_image")
+    photos = crud.display_all_photos()
 
-    return render_template("library.html", test_image=test_image)
+    return render_template("library.html", photos=photos)
+
+@app.route("/library")
+def display_library():
+
+    photos = crud.display_all_photos()
+
+    return render_template("library.html", photos=photos)
 
 
 @app.route("/create_photo")
