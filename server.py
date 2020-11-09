@@ -4,6 +4,7 @@ import os
 from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud
+from datetime import datetime
 
 import cloudinary
 import cloudinary.uploader
@@ -69,7 +70,7 @@ def confirm_credentials():
     else:
         flash('Incorrect password! Try again')
         return redirect ("/")
-        
+
 
 @app.route('/session')
 def set_session():
@@ -95,21 +96,26 @@ def get_session():
 
 @app.route("/library", methods=["POST"])
 def add_photo_to_library():
+    #? What is this?
 
     photos = crud.display_all_photos()
 
     return render_template("library.html", photos=photos)
+
 
 @app.route("/library")
 def display_library():
+    """Display all photos and list albums belonging to a user"""
 
     photos = crud.display_all_photos()
+    albums = crud.display_all_albums()
 
-    return render_template("library.html", photos=photos)
+    return render_template("library.html", photos=photos, albums=albums)
 
 
 @app.route("/create_photo")
 def create_new_photo():
+    """User selects new photo to upload"""
 
     upload_file = upload(file,
                              folder = f"user/{session['user_email']}",
@@ -117,6 +123,32 @@ def create_new_photo():
                              # background_removal = "cloudinary_ai",
                              )
 
+
+@app.route("/add_album")
+def create_new_album():
+    """Add new album, named by user"""
+    
+    name = request.args.get("new_album_name")
+    date_created = datetime.now()
+
+    album = crud.create_album(name, date_created)
+
+    return redirect("/library")
+
+
+@app.route("/library/<album_id>")
+def display_album(album_id):
+    """Display photos in a selected album"""
+
+    album = crud.get_album_by_id(album_id)
+    photos = crud.get_photos_by_album_id(album_id)
+    print(photos)
+
+    return render_template("album_details.html", album=album, photos=photos)
+
+
+
+
 if __name__ == "__main__":
     connect_to_db(app)
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True)

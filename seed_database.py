@@ -30,7 +30,7 @@ for photo in photo_data:
 
 
 ## create 5 new users
-for num in range(1, 6):
+for num in range(1, 5):
     fname = f"user{num}"
     lname = f"user{num}"
     email = f"user{num}@test.com"  # Voila! A unique email!

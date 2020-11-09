@@ -19,6 +19,25 @@ Library
   </div>
 </form>
 
+<form action="/add_album">
+  <div>
+    <label>Add new album</label>
+    <input type="text" name="new_album_name">
+      <button>Add album</button>
+  </div>
+</form>
+
+{% for album in albums %}
+  <div>
+    <ul>
+      <li>
+        <a href ="/library/{{ album.album_id }}"> {{album.name}} 
+        </a>
+      </li>
+    </ul>
+  </div>
+{% endfor %}
+
 <!-- <a href="/session">Session</a>
 
 <p>My user id = {{session['user_id']}}</p>

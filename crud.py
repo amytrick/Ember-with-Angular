@@ -52,6 +52,37 @@ def check_password(email, password):
     return user_info.password == password
 
 
+def create_album(name, date_created):
+
+    album = Album(name=name, date_created=date_created)
+
+    db.session.add(album)
+    db.session.commit()
+
+    return album
+
+
+def display_all_albums():
+
+    albums = Album.query.all()
+
+    return albums
+
+
+def get_album_by_id(album_id):
+    album = Album.query.get(album_id)
+    return album
+
+### for later
+# def rename_album(currentAlbumName)
+
+def get_photos_by_album_id(album_id):
+
+    photos = Photo.query.filter(Photo.album_id == album_id).all()
+
+    return photos
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
