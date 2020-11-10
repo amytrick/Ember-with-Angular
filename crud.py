@@ -83,6 +83,14 @@ def get_photos_by_album_id(album_id):
     return photos
 
 
+def get_photo_by_id(photo_id):
+
+    photo = Photo.query.filter(Photo.photo_id == photo_id).first()
+
+    return photo
+
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

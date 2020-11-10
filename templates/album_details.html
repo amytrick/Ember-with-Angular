@@ -12,7 +12,9 @@
 
 {% for photo in photos %}
   <div class="library">
-    <img class="library_img" src= {{ photo.path }}>
+    <a href="/{{photo.photo_id}}">
+      <img class="library-img" id="library-id" src= {{ photo.path }}>
+    </a>
   </div>
 {% endfor %}
 

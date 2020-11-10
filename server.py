@@ -148,6 +148,14 @@ def display_album(album_id):
     return render_template("album_details.html", album=album, photos=photos)
 
 
+@app.route("/<photo_id>")
+def display_photo(photo_id):
+    """Display selected photo"""
+
+    photo = crud.get_photo_by_id(photo_id)
+
+    return render_template("photo_details.html", photo=photo)
+
 
 
 if __name__ == "__main__":
