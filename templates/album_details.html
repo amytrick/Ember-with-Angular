@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ album.name }}
+{% endblock %}
+
+
+{% block body %}
+<h1>{{ album.name }}</h1>
+
+
+
+{% for photo in photos %}
+  <div class="library">
+    <img class="library_img" src= {{ photo.path }}>
+  </div>
+{% endfor %}
+
+
+{% endblock %}

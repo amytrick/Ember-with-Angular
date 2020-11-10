@@ -65,8 +65,9 @@ def confirm_credentials():
 
     match_passwords = crud.check_password(email, password)
     if match_passwords == True:
-        photos = crud.display_all_photos() 
-        return render_template("library.html", photos=photos)
+        # photos = crud.display_all_photos() 
+        return redirect("/library")
+        # render_template("library.html", photos=photos)
     else:
         flash('Incorrect password! Try again')
         return redirect ("/")
@@ -151,4 +152,4 @@ def display_album(album_id):
 
 if __name__ == "__main__":
     connect_to_db(app)
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(host="0.0.0.0", debug=True)

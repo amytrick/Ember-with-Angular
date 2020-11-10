@@ -13,10 +13,10 @@ def create_user(fname, lname, email, password):
     return user
     
 
-def create_photo(date_uploaded, date_taken, path):
+def create_photo(user_id, date_uploaded, date_taken, album_id, path):
     """Create and return photo instance"""
 
-    photo = Photo(date_uploaded=date_uploaded, date_taken=date_taken, path=path)
+    photo = Photo(user_id=user_id, date_uploaded=date_uploaded, date_taken=date_taken, album_id=album_id, path=path)
 
     db.session.add(photo)
     db.session.commit()
