@@ -97,8 +97,7 @@ def get_session():
 
 @app.route("/library", methods=["POST"])
 def add_photo_to_library():
-    #? What is this?
-
+    #? This is for the import photo button that currently doesn't do anything
     photos = crud.display_all_photos()
 
     return render_template("library.html", photos=photos)
@@ -143,21 +142,37 @@ def display_album(album_id):
 
     album = crud.get_album_by_id(album_id)
     photos = crud.get_photos_by_album_id(album_id)
-    print(photos)
 
     return render_template("album_details.html", album=album, photos=photos)
 
 
 @app.route("/<photo_id>")
 def display_photo(photo_id):
-    """Display selected photo"""
+    """Display selected photo enlarged"""
 
     photo = crud.get_photo_by_id(photo_id)
+    albums = crud.display_all_albums()
 
-    return render_template("photo_details.html", photo=photo)
+    return render_template("photo_details.html", photo=photo, albums=albums)
+
+
+@app.route("/<photo_id>", methods=["POST"])
+def assign_rating(photo_id):
+    """Assigns rating to selected photo"""
+
+    rating = int(request.form.get("rating"))
+
+    print(f'************photo id is {photo_id} and rating is {rating}')
+    crud.give_rating(photo_id, rating)
+
+    return display_photo(photo_id)
+
+    # return render_template("photo_details.html", photo=photo)
 
 
 
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
+
+    

@@ -106,6 +106,28 @@ class Album(db.Model):
         return f"<Album album_id = {self.album_id} name = {self.name}>"
 
 
+def example_data():
+    """Create some sample data."""
+
+    # In case this is run more than once, empty out existing data
+    User.query.delete()
+    Photo.query.delete()
+    Album.query.delete()
+
+    # Add sample users, photos, and albums
+    u1 = User(fname='User1', lname='User2', email='user1@user.com', password='123')
+    u2 = User(fname='User2', lname='User2', email='user2@user.com', password='123')
+
+    p1 = Photo(user_id=1, album_id=1, rating=1, path="/static/img/co1.jpg")
+    p2 = Photo(user_id=2, album_id=2, rating=2, path="/static/img/co2.jpg")
+
+    a1 = Album(name='Album1')
+    a2 = Album(name='Album2')
+
+    db.session.add_all([u1, u2, p1, p2, a1, a2])
+    db.session.commit()
+
+
 def connect_to_db(flask_app, db_uri="postgresql:///photos", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
@@ -128,4 +150,3 @@ if __name__ == "__main__":
 
 #   test_user = User(fname='Jane', lname='Tester', email='jtester@test.com', password='123')
 #   photo1 = Photo(user_id=1, date_uploaded=datetime.datetime.now())
-

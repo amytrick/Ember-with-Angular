@@ -2,6 +2,8 @@
 import datetime
 from model import db, User, Photo, Phototag, Tag, Photoalbum, Album, connect_to_db
 
+## CREATING NEW OBJECTS ##
+
 def create_user(fname, lname, email, password):
     """Create and return a new user"""
   
@@ -24,12 +26,64 @@ def create_photo(user_id, date_uploaded, date_taken, album_id, path):
     return photo
 
 
+def create_album(name, date_created):
+    """Create new album to be added to db"""
+
+    album = Album(name=name, date_created=date_created)
+
+    db.session.add(album)
+    db.session.commit()
+
+    return album
+
+
+## PHOTO RELATED QUERIES ##
+
 def display_all_photos():
 
     photos = Photo.query.all()
 
     return photos
 
+
+def get_photos_by_album_id(album_id):
+    """Return all photos that have a specific, selected album id"""
+
+    photos = Photo.query.filter(Photo.album_id == album_id).all()
+
+    return photos
+
+
+def get_photo_by_id(photo_id):
+    """Return photo by querying with photo id"""
+
+    photo = Photo.query.get(photo_id)
+
+    return photo
+
+
+## ALBUM RELATED QUERIES ##
+
+def display_all_albums():
+    """Display all albums in Album db"""
+
+    albums = Album.query.all()
+
+    return albums
+
+
+def get_album_by_id(album_id):
+    """Return album object by querying with album id"""
+
+    album = Album.query.get(album_id)
+    return album
+
+
+    ## TODO give ability for user to change album name
+    # def rename_album(currentAlbumName)
+
+
+## USER RELATED QUERIES ##
 
 def get_user_by_email(email):
     """ Return user's profile"""
@@ -52,42 +106,27 @@ def check_password(email, password):
     return user_info.password == password
 
 
-def create_album(name, date_created):
+## RATINGS ##
 
-    album = Album(name=name, date_created=date_created)
+def give_rating(photo_id, rating):
+    """Return photo with a newly added/updated rating"""
 
-    db.session.add(album)
+    photo = get_photo_by_id(photo_id)
+    photo.rating = rating
     db.session.commit()
 
-    return album
+### USING UPDATE -- CAN BE MORE HELPFUL WHEN CHANGING MULTIPLE THINGS AT ONCE ###
+        # admin = User.query.filter_by(username='admin').update(dict(email='my_new_email@example.com')))
+        # db.session.commit()
+     
+### SIMPLY CHANGING THE FIELD ENTITY -- USEFUL FOR CHANGING ONE THING AT A TIME ###
+        # admin = User.query.filter_by(username='admin').first()
+        # admin.email = 'my_new_email@example.com'
+        # db.session.commit()
 
-
-def display_all_albums():
-
-    albums = Album.query.all()
-
-    return albums
-
-
-def get_album_by_id(album_id):
-    album = Album.query.get(album_id)
-    return album
-
-### for later
-# def rename_album(currentAlbumName)
-
-def get_photos_by_album_id(album_id):
-
-    photos = Photo.query.filter(Photo.album_id == album_id).all()
-
-    return photos
-
-
-def get_photo_by_id(photo_id):
-
-    photo = Photo.query.filter(Photo.photo_id == photo_id).first()
-
-    return photo
+        # user = User.query.get(5)
+        # user.name = 'New Name'
+        # db.session.commit()
 
 
 

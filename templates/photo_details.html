@@ -8,8 +8,42 @@ Photo
 {% block body %}
 <h1>Photo</h1>
 
+<form action="/{{photo.photo_id}}" method="POST">
+    <p>
+        Rating:
+    </p>
+        <input type="radio" name="rating" value="1">
+        <label>1</label>
+        <input type="radio" name="rating" value="2">
+        <label>2</label>
+        <input type="radio" name="rating" value="3">
+        <label>3</label>
+        <input type="radio" name="rating" value="4">
+        <label>4</label>
+        <input type="radio" name="rating" value="5">
+        <label>5</label>
+        <input type="submit">
+</form>
 <div>
-    <img id='large-photo' src={{photo.path}}>
+    <p>Rating : {{photo.rating}} </p>
+</div>
+
+<div>
+    <form>
+        Add to album:
+        <select name="add-to-album">
+        {% for album in albums %}
+            <option value="{{ album.name }}"> {{ album.name }}</option>
+        {% endfor %}
+        </select>
+    </form>
+</div>
+<div>
+    <img id='large-photo' src={{ photo.path }}>
+</div>
+<div>
+    <button type="submit" id="previous">Previous photo</button>
+    <button type="submit" id="next">Next photo</button>
 </div>
 
 {% endblock %}
