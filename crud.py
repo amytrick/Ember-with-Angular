@@ -79,12 +79,34 @@ def get_album_by_id(album_id):
     return album
 
 
-def add_photo_to_album(photo_id, album_id):
-    """Add selected photo to an existing album"""
+# def add_photo_to_album(photo_id, album_id):
+#     """Add selected photo to an existing album"""
 
-    photo = get_photo_by_id(photo_id)
-    photo.album_id = album_id
+#     photo = get_photo_by_id(photo_id)
+#     photo.album_id = album_id
+#     db.session.commit()
+
+
+def add_to_photoalbum(photo_id, album_id):
+    """Add photo to photoalbum table"""
+
+    photoalbum = Photoalbum(photo_id=photo_id, album_id=album_id)
+
+    db.session.add(photoalbum)
     db.session.commit()
+
+    return photoalbum
+
+
+def display_photoalbum(album_id):
+    """Return all photos (from photoalbum db) that are associated with a specific album"""
+    photos = []
+    photoalbum = Photoalbum.query.filter(Photoalbum.album_id == album_id).all()
+    for item in photoalbum:
+        photo = get_photo_by_id(item.photo_id)
+        photos.append(photo)
+
+    return photos
 
 
 def get_album_by_name(name):

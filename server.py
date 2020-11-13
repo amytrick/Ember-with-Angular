@@ -143,9 +143,9 @@ def display_album(album_id):
     """Display photos in a selected album"""
 
     album = crud.get_album_by_id(album_id)
-    photos = crud.get_photos_by_album_id(album_id)
+    photoalbum = crud.display_photoalbum(album_id)
 
-    return render_template("album_details.html", album=album, photos=photos)
+    return render_template("album_details.html", album=album, photoalbum=photoalbum)
 
 
 @app.route("/<photo_id>")
@@ -165,7 +165,7 @@ def add_to_album(photo_id):
     album_name = request.form.get("add-to-album")
     album = crud.get_album_by_name(album_name)
     album_id = album.album_id
-    crud.add_photo_to_album(photo_id, album_id)
+    crud.add_to_photoalbum(photo_id, album_id)
     
     return display_photo(photo_id)
 

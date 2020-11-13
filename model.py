@@ -123,8 +123,11 @@ def example_data():
 
     a1 = Album(name='Album1')
     a2 = Album(name='Album2')
+    
+    pa1 = Photoalbum(photo_id=1, album_id=1)
+    pa2 = Photoalbum(photo_id=2, album_id=1)
 
-    db.session.add_all([u1, u2, p1, p2, a1, a2])
+    db.session.add_all([u1, u2, p1, p2, a1, a2, pa1, pa2])
     db.session.commit()
 
 
