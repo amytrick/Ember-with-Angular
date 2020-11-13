@@ -1,7 +1,7 @@
 """Server for photo management app."""
 
 import os
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db
 import crud
 from datetime import datetime
@@ -52,8 +52,6 @@ def add_user():
         flash("New account created successfully! Please log in")
     else:
         flash("Email is already associated with an account. Try again")
-
-
     return redirect ("/")
 
 @app.route("/login")
@@ -93,6 +91,9 @@ def get_session():
 
     user_id = session['user_id']
     email = session['email']
+
+        # current_user_id = session.get('current_user', None)
+
 
 
 @app.route("/library", methods=["POST"])
@@ -134,6 +135,7 @@ def create_new_album():
     album = crud.create_album(name, date_created)
 
     return redirect("/library")
+    # return jsonify({'album_id' : {{album.album_id}}, 'name': {{album.name}}})
 
 
 @app.route("/library/<album_id>")
@@ -154,6 +156,18 @@ def display_photo(photo_id):
     albums = crud.display_all_albums()
 
     return render_template("photo_details.html", photo=photo, albums=albums)
+
+
+@app.route("/<photo_id>/add-to-album", methods=["POST"])
+def add_to_album(photo_id):
+    """Add a photo to an existing album"""
+
+    album_name = request.form.get("add-to-album")
+    album = crud.get_album_by_name(album_name)
+    album_id = album.album_id
+    crud.add_photo_to_album(photo_id, album_id)
+    
+    return display_photo(photo_id)
 
 
 @app.route("/<photo_id>", methods=["POST"])

@@ -219,9 +219,20 @@ class CrudTester(unittest.TestCase):
         self.assertEqual(photo.rating , 7)
         crud.give_rating(photo_id,4)
         self.assertEqual(photo.rating, 4)
+        
+
+    def test_get_album_by_name(self):
+        name = 'Album1'
+        album = crud.get_album_by_name(name)
+        self.assertEqual(album.name, name)
 
 
-
+    def test_add_photo_to_album(self):
+        photo_id = 1
+        album_id = 1
+        photo = crud.get_photo_by_id(photo_id)
+        crud.add_photo_to_album(photo_id, album_id)
+        self.assertEqual(photo.album_id, album_id)
 
 # TODO when I have a working session
 # class FlaskTestsLoggedIn(TestCase):

@@ -29,13 +29,14 @@ Photo
 </div>
 
 <div>
-    <form>
+    <form action="{{photo.photo_id}}/add-to-album", method="POST">
         Add to album:
-        <select name="add-to-album">
-        {% for album in albums %}
-            <option value="{{ album.name }}"> {{ album.name }}</option>
-        {% endfor %}
-        </select>
+            <select name="add-to-album">
+                {% for album in albums %}
+                    <option value="{{ album.name }}"> {{ album.name }}</option>
+                {% endfor %}
+            </select>
+        <input type="submit">
     </form>
 </div>
 <div>

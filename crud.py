@@ -79,7 +79,22 @@ def get_album_by_id(album_id):
     return album
 
 
-    ## TODO give ability for user to change album name
+def add_photo_to_album(photo_id, album_id):
+    """Add selected photo to an existing album"""
+
+    photo = get_photo_by_id(photo_id)
+    photo.album_id = album_id
+    db.session.commit()
+
+
+def get_album_by_name(name):
+    """Return album object by querying with album name"""
+
+    album = Album.query.filter(Album.name == name).first()
+
+    return album
+
+## TODO give ability for user to change album name
     # def rename_album(currentAlbumName)
 
 

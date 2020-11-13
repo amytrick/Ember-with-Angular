@@ -23,7 +23,7 @@ Library
   <div>
     <label>Add new album</label>
     <input type="text" name="new_album_name">
-      <button>Add album</button>
+      <button id='add-album-button'>Add album</button>
   </div>
 </form>
 
@@ -38,10 +38,8 @@ Library
   </div>
 {% endfor %}
 
-<!-- <a href="/session">Session</a>
 
-<p>My user id = {{session['user_id']}}</p>
-<p>My email is = {{session['email']}}</p> -->
+
 
 {% for photo in photos %}
   <div class="library">
