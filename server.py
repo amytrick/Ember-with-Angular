@@ -24,10 +24,6 @@ cloudinary.config(
                   api_key = os.environ.get('API_KEY'), 
                   api_secret = os.environ.get('API_SECRET')
                   )
-# cloudinary.config( 
-#                   cloud_name = "dv77rliti", 
-#                   api_key = "213853632381728", 
-#                   api_secret = "QV24_tQRUyGwSl5UoDt9jd01SYk")
 
 
 @app.route("/")
@@ -63,20 +59,7 @@ def confirm_credentials():
     email = request.args.get("login_email")
     password = request.args.get("login_password")
 
-    # user = crud.get_user_by_email(email)
-
     match_passwords = crud.check_password(email, password)
-    # if match_passwords:
-    #     photos = crud.display_all_photos() 
-    #     session['current_user'] = user.user_id
-    #     # return redirect("/library")
-    #     render_template("library.html", photos=photos)
-    # else:
-    #     flash('Incorrect password! Try again')
-    #     return redirect ("/")
-
-
-
     user = crud.get_user_by_email(email)
 
     if not user:
@@ -88,6 +71,9 @@ def confirm_credentials():
             return redirect ("/")
         else:
             session['user_id'] = user.user_id
+            session['email'] = user.email
+            session['fname'] = user.fname
+            session['lname'] = user.lname
             flash('Login successful!')
             # current_user_id = session.get('current_user')
             return redirect("/library")
@@ -142,15 +128,21 @@ def display_library():
         return redirect("/")
 
 
-@app.route("/create_photo")
-def create_new_photo():
+@app.route("/upload_photo", methods=["POST"])
+def upload_new_photo():
     """User selects new photo to upload"""
+    image = request.files['test_image']
+    result = cloudinary.uploader.upload(image)
 
-    upload_file = upload(file,
-                             folder = f"user/{session['user_email']}",
-                             unique_filename = 1,
-                             # background_removal = "cloudinary_ai",
-                             )
+    user_id = session['user_id']
+    date_uploaded = datetime.now()
+    date_taken = datetime.now()
+        # TODO figure out how to extract date taken
+    album_id = None
+    path = result['url']
+    crud.create_photo(user_id, date_uploaded, date_taken, album_id, path)
+
+    return redirect("/library")
 
 
 @app.route("/add_album")
@@ -172,12 +164,12 @@ def display_album(album_id):
     """Display photos in a selected album"""
 
     album = crud.get_album_by_id(album_id)
-    # photoalbum = crud.display_photoalbum(album_id)
     photoalbum = album.photos
+
     return render_template("album_details.html", album=album, photoalbum=photoalbum)
 
 
-@app.route("/<photo_id>")
+@app.route("/photodetails/<photo_id>")
 def display_photo(photo_id):
     """Display selected photo enlarged"""
 
@@ -199,7 +191,7 @@ def add_to_album(photo_id):
     return display_photo(photo_id)
 
 
-@app.route("/<photo_id>", methods=["POST"])
+@app.route("/rating/<photo_id>", methods=["POST"])
 def assign_rating(photo_id):
     """Assigns rating to selected photo"""
 
@@ -216,7 +208,7 @@ def return_to_library():
 
 
 if __name__ == "__main__":
-    connect_to_db(app)
+    connect_to_db(app, echo=False)
     app.run(host="0.0.0.0", debug=True)
 
     
