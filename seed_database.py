@@ -11,7 +11,9 @@ os.system("dropdb photos")
 os.system("createdb photos")
 
 model.connect_to_db(server.app)
+model.db.drop_all()
 model.db.create_all()
+
 
 ## create 5 new users
 for num in range(1, 5):
@@ -24,8 +26,8 @@ for num in range(1, 5):
 
 ## create 2 albums
 
-album1 = crud.create_album(name='Colorado', date_created=datetime.now())
-album2 = crud.create_album(name='Utah', date_created=datetime.now())
+album1 = crud.create_album(name='Colorado', date_created=datetime.now(), user_id=1)
+album2 = crud.create_album(name='Utah', date_created=datetime.now(), user_id=1)
 
 ## load json data file
 with open("data/fake_photos.json") as f:
@@ -42,14 +44,3 @@ for photo in photo_data:
 
     db_photo = crud.create_photo(user_id, date_uploaded, date_taken, album_id, path)
     photos_in_db.append(db_photo)
-
-
-## create 5 new users
-for num in range(1, 5):
-    fname = f"user{num}"
-    lname = f"user{num}"
-    email = f"user{num}@test.com"  # Voila! A unique email!
-    password = "123"
-
- 
-    user = crud.create_user(fname, lname, email, password)

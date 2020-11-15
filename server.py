@@ -36,6 +36,7 @@ def create_landingpage():
 
     return render_template("landingpage.html")
 
+
 @app.route("/user", methods=["POST"])
 def add_user():
     """Add new user, redirect them to landing page to login"""
@@ -45,14 +46,15 @@ def add_user():
     email = request.form.get("email")
     password = request.form.get("password")
 
-    check_email = crud.get_user_by_email(email)
+    user = crud.get_user_by_email(email)
 
-    if check_email == None:
+    if not user:
         crud.create_user(fname, lname,email, password)
         flash("New account created successfully! Please log in")
     else:
         flash("Email is already associated with an account. Try again")
     return redirect ("/")
+
 
 @app.route("/login")
 def confirm_credentials():
@@ -61,15 +63,35 @@ def confirm_credentials():
     email = request.args.get("login_email")
     password = request.args.get("login_password")
 
-    match_passwords = crud.check_password(email, password)
-    if match_passwords == True:
-        # photos = crud.display_all_photos() 
-        return redirect("/library")
-        # render_template("library.html", photos=photos)
-    else:
-        flash('Incorrect password! Try again')
-        return redirect ("/")
+    # user = crud.get_user_by_email(email)
 
+    match_passwords = crud.check_password(email, password)
+    # if match_passwords:
+    #     photos = crud.display_all_photos() 
+    #     session['current_user'] = user.user_id
+    #     # return redirect("/library")
+    #     render_template("library.html", photos=photos)
+    # else:
+    #     flash('Incorrect password! Try again')
+    #     return redirect ("/")
+
+
+
+    user = crud.get_user_by_email(email)
+
+    if not user:
+        flash('This user does not have an account - please create one')
+        return redirect('/')
+    else:
+        if not match_passwords:
+            flash('Incorrect password! Try again')
+            return redirect ("/")
+        else:
+            session['user_id'] = user.user_id
+            flash('Login successful!')
+            # current_user_id = session.get('current_user')
+            return redirect("/library")
+    
 
 @app.route('/session')
 def set_session():
@@ -92,7 +114,6 @@ def get_session():
     user_id = session['user_id']
     email = session['email']
 
-        # current_user_id = session.get('current_user', None)
 
 
 
@@ -108,10 +129,17 @@ def add_photo_to_library():
 def display_library():
     """Display all photos and list albums belonging to a user"""
 
-    photos = crud.display_all_photos()
-    albums = crud.display_all_albums()
+    current_user_id = session.get('user_id', None)
+    print(current_user_id)
+    if current_user_id:
+        current_user = crud.get_user_by_user_id(current_user_id)
 
-    return render_template("library.html", photos=photos, albums=albums)
+        photos = crud.get_photos_by_user_id(current_user_id)
+        albums = crud.get_albums_by_user_id(current_user_id)
+
+        return render_template("library.html", photos=photos, albums=albums)
+    else:
+        return redirect("/")
 
 
 @app.route("/create_photo")
@@ -131,8 +159,9 @@ def create_new_album():
     
     name = request.args.get("new_album_name")
     date_created = datetime.now()
+    user_id = session.get('user_id')
 
-    album = crud.create_album(name, date_created)
+    album = crud.create_album(name, date_created, user_id)
 
     return redirect("/library")
     # return jsonify({'album_id' : {{album.album_id}}, 'name': {{album.name}}})
@@ -143,8 +172,8 @@ def display_album(album_id):
     """Display photos in a selected album"""
 
     album = crud.get_album_by_id(album_id)
-    photoalbum = crud.display_photoalbum(album_id)
-
+    # photoalbum = crud.display_photoalbum(album_id)
+    photoalbum = album.photos
     return render_template("album_details.html", album=album, photoalbum=photoalbum)
 
 
@@ -176,7 +205,6 @@ def assign_rating(photo_id):
 
     rating = int(request.form.get("rating"))
 
-    print(f'************photo id is {photo_id} and rating is {rating}')
     crud.give_rating(photo_id, rating)
 
     return display_photo(photo_id)

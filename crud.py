@@ -26,10 +26,10 @@ def create_photo(user_id, date_uploaded, date_taken, album_id, path):
     return photo
 
 
-def create_album(name, date_created):
+def create_album(name, date_created, user_id):
     """Create new album to be added to db"""
 
-    album = Album(name=name, date_created=date_created)
+    album = Album(name=name, date_created=date_created, user_id=user_id)
 
     db.session.add(album)
     db.session.commit()
@@ -60,6 +60,14 @@ def get_photo_by_id(photo_id):
     photo = Photo.query.get(photo_id)
 
     return photo
+
+
+def get_photos_by_user_id(user_id):
+    """Return only photos with specified user_id"""
+
+    photos = Photo.query.filter(Photo.user_id == user_id)
+
+    return photos
 
 
 ## ALBUM RELATED QUERIES ##
@@ -116,7 +124,14 @@ def get_album_by_name(name):
 
     return album
 
-## TODO give ability for user to change album name
+
+def get_albums_by_user_id(user_id):
+    """Display albums owned by a user, when querying by user id"""
+
+    albums = Album.query.filter(Album.user_id == user_id).all()
+    return albums
+
+## TODO 2.0 give ability for user to change album name
     # def rename_album(currentAlbumName)
 
 
@@ -141,6 +156,15 @@ def check_password(email, password):
 
     user_info = get_user_by_email(email)
     return user_info.password == password
+
+
+def get_user_by_user_id(user_id):
+    """Return user when querying by user id"""
+
+    user = User.query.get(user_id)
+
+    return user
+
 
 
 ## RATINGS ##

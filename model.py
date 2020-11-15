@@ -18,6 +18,7 @@ class User(db.Model):
     password = db.Column(db.String(20))
 
     photo = db.relationship('Photo')
+    album = db.relationship('Album')
 
     def __repr__(self):
         return f"<User user_id = {self.user_id} email = {self.email}>"
@@ -34,15 +35,19 @@ class Photo(db.Model):
     date_edited = db.Column(db.DateTime)
     album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"))
     tags = db.Column(db.Integer)
-    # ? Not sure how to link this
     path = db.Column(db.String)
     size = db.Column(db.Integer)
     rating = db.Column(db.Integer)
     # user_id, date_uploaded, date_taken, date_edited, album_id, tags, path, size, rating
 
     user = db.relationship('User')
-    phototag = db.relationship('Phototag')
-    photoalbum = db.relationship('Photoalbum')
+    # phototag = db.relationship('Phototag')
+    # photoalbum = db.relationship('Photoalbum')
+    # albums = db.relationship('Album')
+    # tags = db.relationship('Tag')
+    albums = db.relationship('Album', secondary='photoalbums')
+    tags = db.relationship('Tag', secondary='phototags')
+
 
     def __repr__(self):
         return f"<Photo photo_id = {self.photo_id}>"
@@ -74,7 +79,8 @@ class Tag(db.Model):
     def repr(self):
         return f"<Tag tag_id = {self.tag_id} tagword = {self.tagword}>"
 
-    phototag = db.relationship('Phototag')
+    # phototag = db.relationship('Phototag')
+    photos = db.relationship('Photo', secondary='phototags')
 
 class Photoalbum(db.Model):
     """A photoalbum - middle table between photos and albums"""
@@ -82,8 +88,8 @@ class Photoalbum(db.Model):
     __tablename__ = "photoalbums"
 
     photoalbum_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
-    album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"))
+    photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"), nullable=False)
+    album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"), nullable=False)
 
     photo = db.relationship('Photo')
     album = db.relationship('Album')
@@ -99,8 +105,14 @@ class Album(db.Model):
     album_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(20), unique=True)
     date_created = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    photoalbum = db.relationship('Photoalbum')
+    # #? should comment out photoalbum
+    # photoalbum = db.relationship('Photoalbum')
+    # photos = db.relationship('Photo')
+    photos = db.relationship('Photo', secondary='photoalbums')
+    users = db.relationship('User')
+
 
     def repr(self):
         return f"<Album album_id = {self.album_id} name = {self.name}>"
@@ -110,24 +122,34 @@ def example_data():
     """Create some sample data."""
 
     # In case this is run more than once, empty out existing data
-    User.query.delete()
+    Photoalbum.query.delete()
     Photo.query.delete()
     Album.query.delete()
+    User.query.delete()
 
     # Add sample users, photos, and albums
     u1 = User(fname='User1', lname='User2', email='user1@user.com', password='123')
     u2 = User(fname='User2', lname='User2', email='user2@user.com', password='123')
 
+    db.session.add_all([u1, u2])
+    db.session.commit()
+
+    a1 = Album(name='Album1', user_id=1)
+    a2 = Album(name='Album2', user_id=1)
+    
+    db.session.add_all([a1,a2])
+    db.session.commit()
+
     p1 = Photo(user_id=1, album_id=1, rating=1, path="/static/img/co1.jpg")
     p2 = Photo(user_id=2, album_id=2, rating=2, path="/static/img/co2.jpg")
-
-    a1 = Album(name='Album1')
-    a2 = Album(name='Album2')
     
+    db.session.add_all([p1, p2])
+    db.session.commit()
+
     pa1 = Photoalbum(photo_id=1, album_id=1)
     pa2 = Photoalbum(photo_id=2, album_id=1)
 
-    db.session.add_all([u1, u2, p1, p2, a1, a2, pa1, pa2])
+    db.session.add_all([pa1, pa2])
     db.session.commit()
 
 

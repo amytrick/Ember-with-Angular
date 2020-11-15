@@ -131,6 +131,7 @@ class CrudTester(unittest.TestCase):
         connect_to_db(app, "postgresql:///testdb", False)
 
         # Create tables and add sample data
+        db.drop_all()
         db.create_all()
         example_data()
 
@@ -165,10 +166,12 @@ class CrudTester(unittest.TestCase):
 
     def test_create_album(self):   
         date_created = datetime.now()
+        user_id = 1
         
-        album = crud.create_album('Album', date_created)
+        album = crud.create_album('Album', date_created, user_id)
         assert album.name == 'Album'
         self.assertEqual(album.date_created, date_created)
+        assert album.user_id == 1
 
 
     def test_get_photos_by_album_id(self):
@@ -232,7 +235,20 @@ class CrudTester(unittest.TestCase):
         photoalbum = crud.display_photoalbum(album_id)
         self.assertEqual(photoalbum[0].album_id, album_id)
 
-# TODO when I have a working session
+
+    def test_get_photos_by_user_id(self):
+        user_id = 1
+        photos = crud.get_photos_by_user_id(user_id)
+        self.assertEqual(photos[0].user_id, user_id)
+
+    
+    def test_get_albums_by_user_id(self):
+        user_id = 1
+        albums = crud.get_albums_by_user_id(user_id)
+        for album in albums:
+            self.assertEqual(album.user_id, user_id)
+
+# # TODO when I have a working session
 # class FlaskTestsLoggedIn(TestCase):
 #     """Flask tests with user logged in to session."""
 
@@ -245,13 +261,13 @@ class CrudTester(unittest.TestCase):
 
 #         with self.client as c:
 #             with c.session_transaction() as sess:
-#                 sess['user_id'] = 1
+#                 sess['current_user'] = 1
 
-#     def test_important_page(self):
-#         """Test important page."""
+    # def test_library_page(self):
+    #     """Test library page."""
 
-#         result = self.client.get("/important")
-#         self.assertIn(b"You are a valued user", result.data)
+    #     result = self.client.get("/library")
+    #     self.assertIn(b"Library", result.data)
 
 
 # class FlaskTestsLoggedOut(TestCase):
