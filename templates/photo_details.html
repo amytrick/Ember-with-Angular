@@ -8,6 +8,10 @@ Photo
 {% block body %}
 <h1>Photo</h1>
 
+<form action="/delete_photo/{{photo.photo_id}}", method="POST">
+    <button id="delete">Delete photo</button>
+</form>
+
 <form action="/rating/{{photo.photo_id}}" method="POST">
     <p>
         Rating:
@@ -29,7 +33,7 @@ Photo
 </div>
 
 <div>
-    <form action="{{photo.photo_id}}/add-to-album", method="POST">
+    <form action="/{{photo.photo_id}}/add-to-album", method="POST">
         Add to album:
             <select name="add-to-album">
                 {% for album in albums %}
@@ -39,6 +43,8 @@ Photo
         <input type="submit">
     </form>
 </div>
+
+
 <div>
     <img id='large-photo' src={{ photo.path }}>
 </div>

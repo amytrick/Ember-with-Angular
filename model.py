@@ -38,6 +38,7 @@ class Photo(db.Model):
     path = db.Column(db.String)
     size = db.Column(db.Integer)
     rating = db.Column(db.Integer)
+    public_id = db.Column(db.String(50))
     # user_id, date_uploaded, date_taken, date_edited, album_id, tags, path, size, rating
 
     user = db.relationship('User')

@@ -18,6 +18,9 @@ app = Flask(__name__)
 app.secret_key = "HKBuLa3wTL"
 app.jinja_env.undefined = StrictUndefined
 
+os.system('pwd')
+os.system('source secrets.sh')
+
 # set Cloudinary API configurations
 cloudinary.config(
                   cloud_name = os.environ.get('CLOUD_NAME'), 
@@ -101,32 +104,17 @@ def get_session():
     email = session['email']
 
 
-
-
-@app.route("/library", methods=["POST"])
-def add_photo_to_library():
-    #? This is for the import photo button that currently doesn't do anything
-    photos = crud.display_all_photos()
-
-    return render_template("library.html", photos=photos)
-
-
 @app.route("/library")
 def display_library():
     """Display all photos and list albums belonging to a user"""
 
     current_user_id = session.get('user_id', None)
-    print(current_user_id)
-    if current_user_id:
-        current_user = crud.get_user_by_user_id(current_user_id)
 
-        photos = crud.get_photos_by_user_id(current_user_id)
-        albums = crud.get_albums_by_user_id(current_user_id)
+    photos = crud.get_photos_by_user_id(current_user_id)
+    albums = crud.get_albums_by_user_id(current_user_id)
 
-        return render_template("library.html", photos=photos, albums=albums)
-    else:
-        return redirect("/")
-
+    return render_template("library.html", photos=photos, albums=albums)
+ 
 
 @app.route("/upload_photo", methods=["POST"])
 def upload_new_photo():
@@ -140,8 +128,21 @@ def upload_new_photo():
         # TODO figure out how to extract date taken
     album_id = None
     path = result['url']
-    crud.create_photo(user_id, date_uploaded, date_taken, album_id, path)
+    public_id = result['public_id']
+    crud.create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id)
 
+    return redirect("/library")
+
+
+@app.route("/delete_photo/<photo_id>", methods=["POST"])
+def delete_photo(photo_id):
+    photo = crud.get_photo_by_id(photo_id)
+
+    if photo.public_id != "":
+        destroy_result = cloudinary.uploader.destroy(photo.public_id)
+
+    crud.delete_photo_by_id(photo_id)
+        
     return redirect("/library")
 
 

@@ -15,10 +15,10 @@ def create_user(fname, lname, email, password):
     return user
     
 
-def create_photo(user_id, date_uploaded, date_taken, album_id, path):
+def create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id=''):
     """Create and return photo instance"""
 
-    photo = Photo(user_id=user_id, date_uploaded=date_uploaded, date_taken=date_taken, album_id=album_id, path=path)
+    photo = Photo(user_id=user_id, date_uploaded=date_uploaded, date_taken=date_taken, album_id=album_id, path=path, public_id=public_id)
 
     db.session.add(photo)
     db.session.commit()
@@ -68,6 +68,14 @@ def get_photos_by_user_id(user_id):
     photos = Photo.query.filter(Photo.user_id == user_id)
 
     return photos
+
+
+def delete_photo_by_id(photo_id):
+    """Query for photo by id and delete it from database"""
+
+    photo = Photo.query.get(photo_id)
+    db.session.delete(photo)
+    db.session.commit()
 
 
 ## ALBUM RELATED QUERIES ##
