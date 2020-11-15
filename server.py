@@ -209,8 +209,10 @@ def assign_rating(photo_id):
 
     return display_photo(photo_id)
 
-    # return render_template("photo_details.html", photo=photo)
 
+@app.route("/return_to_library")
+def return_to_library():
+    return redirect("/library")
 
 
 if __name__ == "__main__":
