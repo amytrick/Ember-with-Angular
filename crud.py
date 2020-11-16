@@ -1,6 +1,7 @@
 """ CRUD operations"""
 import datetime
 from model import db, User, Photo, Phototag, Tag, Photoalbum, Album, connect_to_db
+from sqlalchemy import desc
 
 ## CREATING NEW OBJECTS ##
 
@@ -39,11 +40,11 @@ def create_album(name, date_created, user_id):
 
 ## PHOTO RELATED QUERIES ##
 
-def display_all_photos():
+# def display_all_photos():
 
-    photos = Photo.query.all()
+#     photos = Photo.query.all()
 
-    return photos
+#     return photos
 
 
 def get_photos_by_album_id(album_id):
@@ -65,7 +66,7 @@ def get_photo_by_id(photo_id):
 def get_photos_by_user_id(user_id):
     """Return only photos with specified user_id"""
 
-    photos = Photo.query.filter(Photo.user_id == user_id)
+    photos = Photo.query.filter(Photo.user_id == user_id).order_by(desc(Photo.date_taken)).all()
 
     return photos
 

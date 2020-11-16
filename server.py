@@ -9,8 +9,11 @@ from datetime import datetime
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-
-
+import PIL
+import PIL.ExifTags
+import PIL.Image
+import copy
+from io import BytesIO
 
 from jinja2 import StrictUndefined
 
@@ -120,12 +123,11 @@ def display_library():
 def upload_new_photo():
     """User selects new photo to upload"""
     image = request.files['test_image']
-    result = cloudinary.uploader.upload(image)
+    result = cloudinary.uploader.upload(image, image_metadata=True)
 
     user_id = session['user_id']
     date_uploaded = datetime.now()
-    date_taken = datetime.now()
-        # TODO figure out how to extract date taken
+    date_taken = datetime.strptime(result['image_metadata']['DateTimeOriginal'], "%Y:%m:%d %H:%M:%S")
     album_id = None
     path = result['url']
     public_id = result['public_id']
