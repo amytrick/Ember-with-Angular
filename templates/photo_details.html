@@ -44,7 +44,6 @@ Photo
     </form>
 </div>
 
-
 <div>
     <form action="/tag/{{photo.photo_id}}", method="POST">
         <input type="text" name="tag-text">
@@ -53,7 +52,9 @@ Photo
 </div>
 
 <div>
-    Display tags here
+    {% for tag in tags %}
+        <p>{{tag.tagword}}</p>
+    {% endfor %}
 </div>
 
 <div>

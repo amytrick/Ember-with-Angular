@@ -178,8 +178,10 @@ def display_photo(photo_id):
 
     photo = crud.get_photo_by_id(photo_id)
     albums = crud.display_all_albums()
+    tags = crud.display_tags_by_photo_id(photo_id)
+    set_of_tags = set(tags)
 
-    return render_template("photo_details.html", photo=photo, albums=albums)
+    return render_template("photo_details.html", photo=photo, albums=albums, tags=set_of_tags)
 
 # TODO change route so photo id is always at end
 @app.route("/<photo_id>/add-to-album", methods=["POST"])
@@ -190,7 +192,7 @@ def add_to_album(photo_id):
     album = crud.get_album_by_name(album_name)
     album_id = album.album_id
     crud.add_to_photoalbum(photo_id, album_id)
-    
+
     return display_photo(photo_id)
 
 
@@ -214,10 +216,11 @@ def return_to_library():
 def assign_tag(photo_id):
     """Assigns tag (keyword) to specific photo"""
 
-    tagword = request.form.get("tag-text")
-    print(f'tagword = {tagword}')
-    tag = crud.create_tag(tagword)
-    print(photo_id)
+    tagword = (request.form.get("tag-text")).capitalize()
+    if crud.tag_exists(tagword):
+        tag = crud.get_tag_by_tagword(tagword)
+    else:
+        tag = crud.create_tag(tagword)
     crud.add_to_phototags(photo_id, tag.tag_id)
 
     return display_photo(photo_id)

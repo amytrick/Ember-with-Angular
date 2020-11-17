@@ -35,7 +35,7 @@ class Photo(db.Model):
     date_taken = db.Column(db.DateTime)
     date_edited = db.Column(db.DateTime)
     album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"))
-    tags = db.Column(db.Integer)
+    tags = db.Column(db.Boolean)
     path = db.Column(db.String)
     size = db.Column(db.Integer)
     rating = db.Column(db.Integer)

@@ -210,9 +210,9 @@ def add_to_phototags(photo_id, tag_id):
     """Add photo with tag to phototag table"""
 
     phototag = Phototag(photo_id=photo_id, tag_id=tag_id)
-    print(phototag)
-    print(phototag.photo_id)
-    print(phototag.tag_id)
+    photo = get_photo_by_id(photo_id)
+    # photo.tags = True
+    db.session.commit()
 
     db.session.add(phototag)
     db.session.commit()
@@ -227,22 +227,28 @@ def get_tag_by_id(tag_id):
     return tag
 
 
+def get_tag_by_tagword(tagword):
+    """Return tag when querying with tagword"""
+    tag = Tag.query.filter(Tag.tagword == tagword).first()
+
+    return tag
+
+
 def display_tags_by_photo_id(photo_id):
     """Display all tags assigned to a specific photo"""
 
     tags = []
-
     phototags = Phototag.query.filter(Phototag.photo_id == photo_id).all()
-    print("############################")
-    print(phototags)
     for item in phototags:
         tag = get_tag_by_id(item.tag_id)
-        print("############################")
-        print(tag)
-        print(tag.tagword)
         tags.append(tag)
-        return tags
+    return tags
 
+
+def tag_exists(tagword):
+    """Return boolean if tag already exists in tag db"""
+
+    return True if Tag.query.filter(Tag.tagword == tagword).first() else False
 
         ### USING UPDATE -- CAN BE MORE HELPFUL WHEN CHANGING MULTIPLE THINGS AT ONCE ###
                 # admin = User.query.filter_by(username='admin').update(dict(email='my_new_email@example.com')))
