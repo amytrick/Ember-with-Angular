@@ -1,20 +1,22 @@
 """ CRUD operations"""
-import datetime
 from model import db, User, Photo, Phototag, Tag, Photoalbum, Album, connect_to_db
 from sqlalchemy import desc
 
-## CREATING NEW OBJECTS ##
+#################################
+##    CREATING NEW OBJECTS     ##
+#################################
+
 
 def create_user(fname, lname, email, password):
     """Create and return a new user"""
-  
+
     user = User(fname=fname, lname=lname, email=email, password=password)
-   
+
     db.session.add(user)
     db.session.commit()
 
     return user
-    
+
 
 def create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id=''):
     """Create and return photo instance"""
@@ -38,13 +40,26 @@ def create_album(name, date_created, user_id):
     return album
 
 
-## PHOTO RELATED QUERIES ##
+def create_tag(tagword):
+    """Create new keyword"""
 
-# def display_all_photos():
+    tag = Tag(tagword=tagword)
 
-#     photos = Photo.query.all()
+    db.session.add(tag)
+    db.session.commit()
 
-#     return photos
+    return tag
+
+#################################
+##        PHOTO QUERIES        ##
+#################################
+
+
+def display_all_photos():
+
+    photos = Photo.query.all()
+
+    return photos
 
 
 def get_photos_by_album_id(album_id):
@@ -79,7 +94,9 @@ def delete_photo_by_id(photo_id):
     db.session.commit()
 
 
-## ALBUM RELATED QUERIES ##
+#################################
+##        ALBUM QUERIES        ##
+#################################
 
 def display_all_albums():
     """Display all albums in Album db"""
@@ -96,12 +113,12 @@ def get_album_by_id(album_id):
     return album
 
 
-# def add_photo_to_album(photo_id, album_id):
-#     """Add selected photo to an existing album"""
+def add_photo_to_album(photo_id, album_id):
+    """Add selected photo to an existing album"""
 
-#     photo = get_photo_by_id(photo_id)
-#     photo.album_id = album_id
-#     db.session.commit()
+    photo = get_photo_by_id(photo_id)
+    photo.album_id = album_id
+    db.session.commit()
 
 
 def add_to_photoalbum(photo_id, album_id):
@@ -114,7 +131,7 @@ def add_to_photoalbum(photo_id, album_id):
 
     return photoalbum
 
-
+# TODO I don't think I need this function anymore - double check before deleting
 def display_photoalbum(album_id):
     """Return all photos (from photoalbum db) that are associated with a specific album"""
     photos = []
@@ -144,7 +161,9 @@ def get_albums_by_user_id(user_id):
     # def rename_album(currentAlbumName)
 
 
-## USER RELATED QUERIES ##
+#################################
+##         USER QUERIES        ##
+#################################
 
 def get_user_by_email(email):
     """ Return user's profile"""
@@ -175,28 +194,68 @@ def get_user_by_user_id(user_id):
     return user
 
 
-
-## RATINGS ##
+#################################
+##      RATINGS, TAGGING       ##
+#################################
 
 def give_rating(photo_id, rating):
-    """Return photo with a newly added/updated rating"""
+    """Update photo with a newly added/updated rating"""
 
     photo = get_photo_by_id(photo_id)
     photo.rating = rating
     db.session.commit()
 
-### USING UPDATE -- CAN BE MORE HELPFUL WHEN CHANGING MULTIPLE THINGS AT ONCE ###
-        # admin = User.query.filter_by(username='admin').update(dict(email='my_new_email@example.com')))
-        # db.session.commit()
-     
-### SIMPLY CHANGING THE FIELD ENTITY -- USEFUL FOR CHANGING ONE THING AT A TIME ###
-        # admin = User.query.filter_by(username='admin').first()
-        # admin.email = 'my_new_email@example.com'
-        # db.session.commit()
 
-        # user = User.query.get(5)
-        # user.name = 'New Name'
-        # db.session.commit()
+def add_to_phototags(photo_id, tag_id):
+    """Add photo with tag to phototag table"""
+
+    phototag = Phototag(photo_id=photo_id, tag_id=tag_id)
+    print(phototag)
+    print(phototag.photo_id)
+    print(phototag.tag_id)
+
+    db.session.add(phototag)
+    db.session.commit()
+
+    return phototag
+
+
+def get_tag_by_id(tag_id):
+    """Return a tag when querying for its id"""
+    tag = Tag.query.get(tag_id)
+
+    return tag
+
+
+def display_tags_by_photo_id(photo_id):
+    """Display all tags assigned to a specific photo"""
+
+    tags = []
+
+    phototags = Phototag.query.filter(Phototag.photo_id == photo_id).all()
+    print("############################")
+    print(phototags)
+    for item in phototags:
+        tag = get_tag_by_id(item.tag_id)
+        print("############################")
+        print(tag)
+        print(tag.tagword)
+        tags.append(tag)
+        return tags
+
+
+        ### USING UPDATE -- CAN BE MORE HELPFUL WHEN CHANGING MULTIPLE THINGS AT ONCE ###
+                # admin = User.query.filter_by(username='admin').update(dict(email='my_new_email@example.com')))
+                # db.session.commit()
+            
+        ### SIMPLY CHANGING THE FIELD ENTITY -- USEFUL FOR CHANGING ONE THING AT A TIME ###
+                # admin = User.query.filter_by(username='admin').first()
+                # admin.email = 'my_new_email@example.com'
+                # db.session.commit()
+
+                # user = User.query.get(5)
+                # user.name = 'New Name'
+                # db.session.commit()
 
 
 

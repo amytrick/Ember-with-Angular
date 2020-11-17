@@ -26,9 +26,9 @@ os.system('source secrets.sh')
 
 # set Cloudinary API configurations
 cloudinary.config(
-                  cloud_name = os.environ.get('CLOUD_NAME'), 
-                  api_key = os.environ.get('API_KEY'), 
-                  api_secret = os.environ.get('API_SECRET')
+                  cloud_name=os.environ.get('CLOUD_NAME'),
+                  api_key=os.environ.get('API_KEY'),
+                  api_secret=os.environ.get('API_SECRET')
                   )
 
 
@@ -42,7 +42,7 @@ def create_landingpage():
 @app.route("/user", methods=["POST"])
 def add_user():
     """Add new user, redirect them to landing page to login"""
-    
+
     fname = request.form.get("fname")
     lname = request.form.get("lname")
     email = request.form.get("email")
@@ -51,11 +51,11 @@ def add_user():
     user = crud.get_user_by_email(email)
 
     if not user:
-        crud.create_user(fname, lname,email, password)
+        crud.create_user(fname, lname, email, password)
         flash("New account created successfully! Please log in")
     else:
         flash("Email is already associated with an account. Try again")
-    return redirect ("/")
+    return redirect("/")
 
 
 @app.route("/login")
@@ -74,7 +74,7 @@ def confirm_credentials():
     else:
         if not match_passwords:
             flash('Incorrect password! Try again')
-            return redirect ("/")
+            return redirect("/")
         else:
             session['user_id'] = user.user_id
             session['email'] = user.email
@@ -181,7 +181,7 @@ def display_photo(photo_id):
 
     return render_template("photo_details.html", photo=photo, albums=albums)
 
-
+# TODO change route so photo id is always at end
 @app.route("/<photo_id>/add-to-album", methods=["POST"])
 def add_to_album(photo_id):
     """Add a photo to an existing album"""
@@ -208,6 +208,20 @@ def assign_rating(photo_id):
 @app.route("/return_to_library")
 def return_to_library():
     return redirect("/library")
+
+
+@app.route("/tag/<photo_id>", methods=["POST"])
+def assign_tag(photo_id):
+    """Assigns tag (keyword) to specific photo"""
+
+    tagword = request.form.get("tag-text")
+    print(f'tagword = {tagword}')
+    tag = crud.create_tag(tagword)
+    print(photo_id)
+    crud.add_to_phototags(photo_id, tag.tag_id)
+
+    return display_photo(photo_id)
+
 
 
 if __name__ == "__main__":

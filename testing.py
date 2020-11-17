@@ -19,7 +19,7 @@
 
 #         # Create tables and add sample data
 #         db.create_all()
-        
+
 #     def tearDown(self):
 
 # # This was my first class before following Flask Testing notes
@@ -150,12 +150,11 @@ class CrudTester(unittest.TestCase):
         assert user.email == 'ttesterson@test.com'
         assert user.password == '123'
 
-
     def test_create_photo(self):
         date_taken = datetime.now()
         date_uploaded = datetime.now()
 
-        photo = crud.create_photo(1,date_uploaded, date_taken, 1, "/static/img/co1.jpg")
+        photo = crud.create_photo(1, date_uploaded, date_taken, 1, "/static/img/co1.jpg")
 
         assert photo.user_id == 1
         self.assertEqual(photo.date_uploaded, date_uploaded)
@@ -163,90 +162,89 @@ class CrudTester(unittest.TestCase):
         assert photo.album_id == 1
         assert photo.path == "/static/img/co1.jpg"
 
-
-    def test_create_album(self):   
+    def test_create_album(self):
         date_created = datetime.now()
         user_id = 1
-        
+
         album = crud.create_album('Album', date_created, user_id)
         assert album.name == 'Album'
         self.assertEqual(album.date_created, date_created)
         assert album.user_id == 1
 
-
     def test_get_photos_by_album_id(self):
         photos = crud.get_photos_by_album_id(1)
         assert photos[0].album_id == 1
-
 
     def test_get_photo_by_id(self):
         photo = crud.get_photo_by_id(1)
 
         assert photo.photo_id == 1
 
-    
     def test_get_album_by_id(self):
         album = crud.get_album_by_id(1)
 
         assert album.album_id == 1
 
-
     def test_get_user_by_email(self):
         email = 'user1@user.com'
         user = crud.get_user_by_email(email)
 
-        self.assertEqual (user.email, email)
+        self.assertEqual(user.email, email)
 
-    
     def test_get_id_by_email(self):
         email = 'user1@user.com'
         user_id = crud.get_id_by_email(email)
         user = crud.get_user_by_email(email)
 
         self.assertEqual(user_id, user.user_id)
-        
-    
+
     def test_check_password(self):
         email = 'user1@user.com'
         password = '123'
-        check = crud.check_password(email, password)
         user = crud.get_user_by_email(email)
 
         self.assertEqual(password, user.password)
 
-
     def test_give_rating(self):
         photo_id = 1
         photo = crud.get_photo_by_id(photo_id)
-        crud.give_rating(photo_id,7)
-        self.assertEqual(photo.rating , 7)
-        crud.give_rating(photo_id,4)
+        crud.give_rating(photo_id, 7)
+        self.assertEqual(photo.rating, 7)
+        crud.give_rating(photo_id, 4)
         self.assertEqual(photo.rating, 4)
-        
 
     def test_get_album_by_name(self):
         name = 'Album1'
         album = crud.get_album_by_name(name)
         self.assertEqual(album.name, name)
 
-    
     def test_display_photoalbum(self):
         album_id = 1
         photoalbum = crud.display_photoalbum(album_id)
         self.assertEqual(photoalbum[0].album_id, album_id)
-
 
     def test_get_photos_by_user_id(self):
         user_id = 1
         photos = crud.get_photos_by_user_id(user_id)
         self.assertEqual(photos[0].user_id, user_id)
 
-    
     def test_get_albums_by_user_id(self):
         user_id = 1
         albums = crud.get_albums_by_user_id(user_id)
         for album in albums:
             self.assertEqual(album.user_id, user_id)
+
+    def test_add_to_phototags(self):
+        photo_id = 1
+        tag_id = 1
+        phototag = crud.add_to_phototags(photo_id, tag_id)
+        self.assertEqual(phototag.photo_id, photo_id)
+        self.assertEqual(phototag.tag_id, tag_id)
+
+    def test_create_tag(self):
+        tagword = ('Tag3')
+        crud.create_tag(tagword)
+        self.assertEqual(tagword, tag.tagword)
 
 # # TODO when I have a working session
 # class FlaskTestsLoggedIn(TestCase):

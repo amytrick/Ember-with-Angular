@@ -1,10 +1,10 @@
 """Models for photo management app"""
-import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 # The name of my db : createdb photos
 
-db = SQLAlchemy ()
+db = SQLAlchemy()
+
 
 class User(db.Model):
     """A user"""
@@ -22,6 +22,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User user_id = {self.user_id} email = {self.email}>"
+
 
 class Photo(db.Model):
     """A photo image"""
@@ -49,10 +50,10 @@ class Photo(db.Model):
     albums = db.relationship('Album', secondary='photoalbums')
     tags = db.relationship('Tag', secondary='phototags')
 
-
     def __repr__(self):
         return f"<Photo photo_id = {self.photo_id}>"
         # ? Add more info to repr?
+
 
 class Phototag(db.Model):
     """A tag on a photo - middle table between photos and tags"""
@@ -69,6 +70,7 @@ class Phototag(db.Model):
     def repr(self):
         return f"<Phototag phototag_id = {self.phototag_id}>"
 
+
 class Tag(db.Model):
     """A keyword to describe a photo"""
 
@@ -82,6 +84,7 @@ class Tag(db.Model):
 
     # phototag = db.relationship('Phototag')
     photos = db.relationship('Photo', secondary='phototags')
+
 
 class Photoalbum(db.Model):
     """A photoalbum - middle table between photos and albums"""
@@ -97,6 +100,7 @@ class Photoalbum(db.Model):
 
     def repr(self):
         return f"<Photoalbum photoalbum_id = {self.photoalbum_id}>"
+
 
 class Album(db.Model):
     """An album"""
@@ -114,7 +118,6 @@ class Album(db.Model):
     photos = db.relationship('Photo', secondary='photoalbums')
     users = db.relationship('User')
 
-
     def repr(self):
         return f"<Album album_id = {self.album_id} name = {self.name}>"
 
@@ -124,7 +127,9 @@ def example_data():
 
     # In case this is run more than once, empty out existing data
     Photoalbum.query.delete()
+    Phototag.query.delete()
     Photo.query.delete()
+    Tag.query.delete()
     Album.query.delete()
     User.query.delete()
 
@@ -137,13 +142,13 @@ def example_data():
 
     a1 = Album(name='Album1', user_id=1)
     a2 = Album(name='Album2', user_id=1)
-    
+
     db.session.add_all([a1,a2])
     db.session.commit()
 
     p1 = Photo(user_id=1, album_id=1, rating=1, path="/static/img/co1.jpg")
     p2 = Photo(user_id=2, album_id=2, rating=2, path="/static/img/co2.jpg")
-    
+
     db.session.add_all([p1, p2])
     db.session.commit()
 
@@ -151,6 +156,18 @@ def example_data():
     pa2 = Photoalbum(photo_id=2, album_id=1)
 
     db.session.add_all([pa1, pa2])
+    db.session.commit()
+
+    t1 = Tag(tagword='Tag1')
+    t2 = Tag(tagword='Tag2')
+
+    db.session.add_all([t1, t2])
+    db.session.commit()
+
+    pt1 = Phototag(photo_id=1, tag_id=1)
+    pt2 = Phototag(photo_id=2, tag_id=2)
+
+    db.session.add_all([pt1, pt2])
     db.session.commit()
 
 

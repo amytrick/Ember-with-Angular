@@ -46,6 +46,17 @@ Photo
 
 
 <div>
+    <form action="/tag/{{photo.photo_id}}", method="POST">
+        <input type="text" name="tag-text">
+        <button id='add-tag'>Add a keyword</button>
+    </form>
+</div>
+
+<div>
+    Display tags here
+</div>
+
+<div>
     <img id='large-photo' src={{ photo.path }}>
 </div>
 <div>
