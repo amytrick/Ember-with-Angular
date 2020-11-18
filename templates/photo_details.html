@@ -33,7 +33,7 @@ Photo
 </div>
 
 <div>
-    <form action="/{{photo.photo_id}}/add-to-album", method="POST">
+    <form action="/add-to-album/{{photo.photo_id}}", method="POST">
         Add to album:
             <select name="add-to-album">
                 {% for album in albums %}

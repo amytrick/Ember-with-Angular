@@ -100,16 +100,22 @@ class FlaskTestsDatabase(TestCase):
         db.drop_all()
         db.engine.dispose()
 
-    # def test_library_page(self):
-    #     """Test library page"""
+    def test_create_landingpage(self):
+        """Test landing/login page"""
 
-    #     result = self.client.get("/library")
-    #     # self.assertIn(b"Library", result.data)
+        result = self.client.get("/")
+        self.assertIn(b"First name", result.data)
+
+    def test_library_page(self):
+        """Test library page"""
+
+        result = self.client.get("/library")
+        self.assertIn(b"Library", result.data)
 
     def test_photo_details(self):
         """Test photo detail page"""
 
-        result = self.client.get("/1")
+        result = self.client.get("/photodetails/1")
         self.assertIn(b"Rating", result.data)
 
     def test_album_details(self):
@@ -218,6 +224,13 @@ class CrudTester(unittest.TestCase):
         album = crud.get_album_by_name(name)
         self.assertEqual(album.name, name)
 
+    def test_add_to_photoalbum(self):
+        photo_id = 1
+        album_id = 1
+        photoalbum = crud.add_to_photoalbum(photo_id, album_id)
+        self.assertEqual(photoalbum.photo_id, photo_id)
+        self.assertEqual(photoalbum.album_id, album_id)
+
     def test_display_photoalbum(self):
         album_id = 1
         photoalbum = crud.display_photoalbum(album_id)
@@ -234,6 +247,11 @@ class CrudTester(unittest.TestCase):
         for album in albums:
             self.assertEqual(album.user_id, user_id)
 
+    def test_get_user_by_user_id(self):
+        user_id = 1
+        user = crud.get_user_by_user_id(user_id)
+        self.assertEqual(user.user_id, user_id)
+    
     def test_add_to_phototags(self):
         photo_id = 1
         tag_id = 1
@@ -241,51 +259,66 @@ class CrudTester(unittest.TestCase):
         self.assertEqual(phototag.photo_id, photo_id)
         self.assertEqual(phototag.tag_id, tag_id)
 
+    def test_get_tag_by_id(self):
+        tag_id = 1
+        tag = crud.get_tag_by_id(tag_id)
+        self.assertEqual(tag.tag_id, tag_id)
+
     def test_create_tag(self):
         tagword = ('Tag3')
-        crud.create_tag(tagword)
+        tag = crud.create_tag(tagword)
         self.assertEqual(tagword, tag.tagword)
 
-# # TODO when I have a working session
-# class FlaskTestsLoggedIn(TestCase):
-#     """Flask tests with user logged in to session."""
+    def test_get_tag_by_tagword(self):
+        tagword = 'Tag1'
+        tag = crud.get_tag_by_tagword(tagword)
+        self.assertEqual(tag.tagword, tagword)
 
-#     def setUp(self):
-#         """Stuff to do before every test."""
+    # def test_display_tags_by_photo_id(self):
+    #     photo_id = 1
+    #     tags = crud.display_tags_by_photo_id(photo_id)
+    #     self.assertEqual(tags[0].photo_id, 1)
+            # 'Tag' object has no attribute 'photo_id'
 
-#         app.config['TESTING'] = True
-#         app.config['SECRET_KEY'] = 'key'
-#         self.client = app.test_client()
-
-#         with self.client as c:
-#             with c.session_transaction() as sess:
-#                 sess['current_user'] = 1
-
-    # def test_library_page(self):
-    #     """Test library page."""
-
-    #     result = self.client.get("/library")
-    #     self.assertIn(b"Library", result.data)
+    def test_tag_exists(self):
+        tagword = 'Tag1'
+        self.assertTrue(crud.tag_exists(tagword))
 
 
-# class FlaskTestsLoggedOut(TestCase):
-#     """Flask tests with user logged in to session."""
+class FlaskTestsLoggedIn(TestCase):
+    """Flask tests with user logged in to session."""
 
-#     def setUp(self):
-#         """Stuff to do before every test."""
+    def setUp(self):
+        """Stuff to do before every test."""
 
-#         app.config['TESTING'] = True
-#         self.client = app.test_client()
-
-#     def test_important_page(self):
-#         """Test that user can't see important page when logged out."""
-
-#         result = self.client.get("/important", follow_redirects=True)
-#         self.assertNotIn(b"You are a valued user", result.data)
-#         self.assertIn(b"You must be logged in", result.data)
+        app.config['SECRET_KEY'] = 'key'
+        self.client = app.test_client()
+        app.config['TESTING'] = True
 
 
-# class FlaskTestsLogInLogOut(TestCase):  # Bonus example. Not in lecture.
+        with self.client as c:
+            with c.session_transaction() as sess:
+                sess['user_id'] = 1
+
+        connect_to_db(app, "postgresql:///testdb")
+
+        db.create_all()
+        example_data()
+
+    def tearDown(self):
+        """Do at end of every test."""
+
+        db.session.close()
+        db.drop_all()
+
+    def test_library_page(self):
+        """Test library page."""
+
+        result = self.client.get("/library")
+        self.assertIn(b"Library", result.data)
+
+
+# class FlaskTestsLogInLogOut(TestCase):
 #     """Test log in and log out."""
 
 #     def setUp(self):

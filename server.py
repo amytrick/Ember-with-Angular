@@ -9,16 +9,17 @@ from datetime import datetime
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import PIL
-import PIL.ExifTags
-import PIL.Image
-import copy
-from io import BytesIO
+# import PIL
+# import PIL.ExifTags
+# import PIL.Image
+# import copy
+# from io import BytesIO
 
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 app.secret_key = "HKBuLa3wTL"
+# app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 app.jinja_env.undefined = StrictUndefined
 
 os.system('pwd')
@@ -83,7 +84,7 @@ def confirm_credentials():
             flash('Login successful!')
             # current_user_id = session.get('current_user')
             return redirect("/library")
-    
+
 
 @app.route('/session')
 def set_session():
@@ -113,11 +114,14 @@ def display_library():
 
     current_user_id = session.get('user_id', None)
 
+    if current_user_id == None:
+        return redirect("/")
+
     photos = crud.get_photos_by_user_id(current_user_id)
     albums = crud.get_albums_by_user_id(current_user_id)
 
     return render_template("library.html", photos=photos, albums=albums)
- 
+
 
 @app.route("/upload_photo", methods=["POST"])
 def upload_new_photo():
@@ -136,6 +140,18 @@ def upload_new_photo():
     return redirect("/library")
 
 
+@app.route("/photodetails/<photo_id>")
+def display_photo(photo_id):
+    """Display selected photo enlarged"""
+
+    photo = crud.get_photo_by_id(photo_id)
+    albums = crud.display_all_albums()
+    tags = crud.display_tags_by_photo_id(photo_id)
+    set_of_tags = set(tags)
+
+    return render_template("photo_details.html", photo=photo, albums=albums, tags=set_of_tags)
+
+
 @app.route("/delete_photo/<photo_id>", methods=["POST"])
 def delete_photo(photo_id):
     photo = crud.get_photo_by_id(photo_id)
@@ -144,14 +160,14 @@ def delete_photo(photo_id):
         destroy_result = cloudinary.uploader.destroy(photo.public_id)
 
     crud.delete_photo_by_id(photo_id)
-        
+
     return redirect("/library")
 
 
 @app.route("/add_album")
 def create_new_album():
     """Add new album, named by user"""
-    
+
     name = request.args.get("new_album_name")
     date_created = datetime.now()
     user_id = session.get('user_id')
@@ -172,19 +188,7 @@ def display_album(album_id):
     return render_template("album_details.html", album=album, photoalbum=photoalbum)
 
 
-@app.route("/photodetails/<photo_id>")
-def display_photo(photo_id):
-    """Display selected photo enlarged"""
-
-    photo = crud.get_photo_by_id(photo_id)
-    albums = crud.display_all_albums()
-    tags = crud.display_tags_by_photo_id(photo_id)
-    set_of_tags = set(tags)
-
-    return render_template("photo_details.html", photo=photo, albums=albums, tags=set_of_tags)
-
-# TODO change route so photo id is always at end
-@app.route("/<photo_id>/add-to-album", methods=["POST"])
+@app.route("/add-to-album/<photo_id>", methods=["POST"])
 def add_to_album(photo_id):
     """Add a photo to an existing album"""
 
@@ -226,9 +230,7 @@ def assign_tag(photo_id):
     return display_photo(photo_id)
 
 
-
 if __name__ == "__main__":
     connect_to_db(app, echo=False)
     app.run(host="0.0.0.0", debug=True)
 
-    

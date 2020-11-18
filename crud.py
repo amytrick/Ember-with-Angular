@@ -98,6 +98,7 @@ def delete_photo_by_id(photo_id):
 ##        ALBUM QUERIES        ##
 #################################
 
+# TODO check if I use this
 def display_all_albums():
     """Display all albums in Album db"""
 
@@ -112,7 +113,7 @@ def get_album_by_id(album_id):
     album = Album.query.get(album_id)
     return album
 
-
+# TODO check if I actually use this function
 def add_photo_to_album(photo_id, album_id):
     """Add selected photo to an existing album"""
 
