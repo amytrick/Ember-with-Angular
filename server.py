@@ -86,6 +86,15 @@ def confirm_credentials():
             return redirect("/library")
 
 
+@app.route("/logout", methods=["POST"])
+def logout():
+    """Logs user out and sends them back to landing/login page"""
+
+    session['user_id'] = None
+
+    return create_landingpage()
+
+
 @app.route('/session')
 def set_session():
     """Set value for session['user_id']"""

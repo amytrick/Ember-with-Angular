@@ -19,6 +19,7 @@
     {% block head %}{% endblock %}
   </head>
   <body>
+
     <form action="/return_to_library">
       <button name="home">My library</button>
     </form>
@@ -27,10 +28,18 @@
       <form action="/search" method="POST">
         Search <input type="text" name="search">
         <button>Go!</button>
-
       </form>
     </div>
-    {% block body %}{% endblock %}
+
+    <div>
+      <form action="/logout" method="POST">
+        <button>Logout</button>
+      </form>
+    </div>
+    {% block body %}
+
+    
+    {% endblock %}
 
     {% block after_body %}{% endblock %}
     <script src="/static/JS/photos.js"></script>
