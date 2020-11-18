@@ -40,13 +40,8 @@ class Photo(db.Model):
     size = db.Column(db.Integer)
     rating = db.Column(db.Integer)
     public_id = db.Column(db.String(50))
-    # user_id, date_uploaded, date_taken, date_edited, album_id, tags, path, size, rating
 
     user = db.relationship('User')
-    # phototag = db.relationship('Phototag')
-    # photoalbum = db.relationship('Photoalbum')
-    # albums = db.relationship('Album')
-    # tags = db.relationship('Tag')
     albums = db.relationship('Album', secondary='photoalbums')
     tags = db.relationship('Tag', secondary='phototags')
 
@@ -79,11 +74,10 @@ class Tag(db.Model):
     tag_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tagword = db.Column(db.String(20), unique=True)
 
+    photos = db.relationship('Photo', secondary='phototags')
+
     def repr(self):
         return f"<Tag tag_id = {self.tag_id} tagword = {self.tagword}>"
-
-    # phototag = db.relationship('Phototag')
-    photos = db.relationship('Photo', secondary='phototags')
 
 
 class Photoalbum(db.Model):
@@ -112,9 +106,6 @@ class Album(db.Model):
     date_created = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    # #? should comment out photoalbum
-    # photoalbum = db.relationship('Photoalbum')
-    # photos = db.relationship('Photo')
     photos = db.relationship('Photo', secondary='photoalbums')
     users = db.relationship('User')
 
@@ -141,7 +132,7 @@ def example_data():
     db.session.commit()
 
     a1 = Album(name='Album1', user_id=1)
-    a2 = Album(name='Album2', user_id=1)
+    a2 = Album(name='Album2', user_id=2)
 
     db.session.add_all([a1,a2])
     db.session.commit()
@@ -153,7 +144,7 @@ def example_data():
     db.session.commit()
 
     pa1 = Photoalbum(photo_id=1, album_id=1)
-    pa2 = Photoalbum(photo_id=2, album_id=1)
+    pa2 = Photoalbum(photo_id=2, album_id=2)
 
     db.session.add_all([pa1, pa2])
     db.session.commit()

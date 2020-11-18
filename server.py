@@ -145,7 +145,7 @@ def display_photo(photo_id):
     """Display selected photo enlarged"""
 
     photo = crud.get_photo_by_id(photo_id)
-    albums = crud.display_all_albums()
+    albums = crud.get_albums_by_user_id(session.get('user_id'))
     tags = crud.display_tags_by_photo_id(photo_id)
     set_of_tags = set(tags)
 
@@ -228,6 +228,22 @@ def assign_tag(photo_id):
     crud.add_to_phototags(photo_id, tag.tag_id)
 
     return display_photo(photo_id)
+
+
+@app.route("/search", methods=["POST"])
+def search():
+    """Returns photos that match keyword search"""
+
+    tagword = (request.form.get("search")).capitalize()
+    user_id = session.get('user_id')
+    albums = crud.get_albums_by_user_id(user_id)
+    tag = crud.get_tag_by_tagword(tagword)
+    if tag:
+        photos = crud.get_photos_by_tag(tag, user_id)
+    else:
+        photos = []
+    return render_template("search-results.html", photos=photos, albums=albums)
+
 
 
 if __name__ == "__main__":

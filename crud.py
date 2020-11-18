@@ -251,6 +251,19 @@ def tag_exists(tagword):
 
     return True if Tag.query.filter(Tag.tagword == tagword).first() else False
 
+
+def get_photos_by_tag(tag, user_id):
+    """Return photos that have been tagged with tagword, for particular user"""
+
+    tagged_photos = tag.photos
+    photos = []
+    for photo in tagged_photos:
+        if photo.user_id == user_id:
+            photos.append(photo)
+
+    return photos
+
+
         ### USING UPDATE -- CAN BE MORE HELPFUL WHEN CHANGING MULTIPLE THINGS AT ONCE ###
                 # admin = User.query.filter_by(username='admin').update(dict(email='my_new_email@example.com')))
                 # db.session.commit()

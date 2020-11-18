@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search results
+{% endblock %}
+
+
+{% block body %}
+<h1>Search results</h1>
+
+<form action="/add_album">
+  <div>
+    <label>Add new album</label>
+    <input type="text" name="new_album_name">
+      <button id='add-album-button'>Add album</button>
+  </div>
+</form>
+
+
+{% for photo in photos %}
+  <div class="library">
+    <a href="/photodetails/{{photo.photo_id}}">
+      <img class="library-img" id="library-id" src= {{ photo.path }}>
+    </a>
+  </div>
+{% endfor %}
+
+{% endblock %}

@@ -22,6 +22,14 @@
     <form action="/return_to_library">
       <button name="home">My library</button>
     </form>
+
+    <div>
+      <form action="/search" method="POST">
+        Search <input type="text" name="search">
+        <button>Go!</button>
+
+      </form>
+    </div>
     {% block body %}{% endblock %}
 
     {% block after_body %}{% endblock %}

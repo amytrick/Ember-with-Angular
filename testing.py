@@ -284,6 +284,13 @@ class CrudTester(unittest.TestCase):
         tagword = 'Tag1'
         self.assertTrue(crud.tag_exists(tagword))
 
+    def test_get_photos_by_tag(self):
+        tag = crud.get_tag_by_id(1)
+        user_id = 1
+        photos = crud.get_photos_by_tag(tag, user_id)
+        # self.assertEqual(photos.tag.tag_id, tag.tag_id)
+        self.assertEqual(photos[0].user_id, user_id)
+
 
 class FlaskTestsLoggedIn(TestCase):
     """Flask tests with user logged in to session."""
