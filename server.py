@@ -220,6 +220,23 @@ def assign_rating(photo_id):
     return display_photo(photo_id)
 
 
+@app.route("/filterby/rating", methods=["POST"])
+def filter_by_rating():
+    """Filter photos by specified rating"""
+
+    rating = request.form.get("filter-rating")
+    equality_symbol = request.form.get("equality-symbol")
+
+    if equality_symbol == 'equals':
+        photos = crud.get_photos_by_exact_rating(rating)
+    elif equality_symbol == 'greater':
+        photos = crud.get_photos_with_greater_or_equal_rating(rating)
+    elif equality_symbol == 'less':
+        photos = crud.get_photos_with_less_or_equal_rating(rating)
+
+    return render_template("filter.html", photos=photos)
+
+
 @app.route("/return_to_library")
 def return_to_library():
     return redirect("/library")
@@ -240,7 +257,7 @@ def assign_tag(photo_id):
 
 
 @app.route("/search", methods=["POST"])
-def search():
+def searchpage():
     """Returns photos that match keyword search"""
 
     tagword = (request.form.get("search")).capitalize()

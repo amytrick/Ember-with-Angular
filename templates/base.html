@@ -20,6 +20,12 @@
   </head>
   <body>
 
+    <div>
+      <form action="/logout" method="POST">
+        <button>Logout</button>
+      </form>
+    </div>
+
     <form action="/return_to_library">
       <button name="home">My library</button>
     </form>
@@ -31,11 +37,6 @@
       </form>
     </div>
 
-    <div>
-      <form action="/logout" method="POST">
-        <button>Logout</button>
-      </form>
-    </div>
     {% block body %}
 
     

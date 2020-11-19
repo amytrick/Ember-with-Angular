@@ -196,7 +196,7 @@ def get_user_by_user_id(user_id):
 
 
 #################################
-##      RATINGS, TAGGING       ##
+##           RATINGS           ##
 #################################
 
 def give_rating(photo_id, rating):
@@ -205,6 +205,35 @@ def give_rating(photo_id, rating):
     photo = get_photo_by_id(photo_id)
     photo.rating = rating
     db.session.commit()
+
+
+def get_photos_by_exact_rating(rating):
+    """Return photos that have a specified rating"""
+
+    photos = Photo.query.filter(Photo.rating == rating).all()
+
+    return photos
+
+
+def get_photos_with_greater_or_equal_rating(rating):
+    """Return photos that have a rating greater to or equal to specified rating"""
+
+    photos = Photo.query.filter(Photo.rating >= rating).all()
+
+    return photos
+
+
+def get_photos_with_less_or_equal_rating(rating):
+    """Return photos that have a rating less to or equal to specified rating"""
+
+    photos = Photo.query.filter(Photo.rating <= rating).all()
+
+    return photos
+
+
+#################################
+##            TAGS             ##
+#################################
 
 
 def add_to_phototags(photo_id, tag_id):
@@ -264,10 +293,34 @@ def get_photos_by_tag(tag, user_id):
     return photos
 
 
+def get_phototag_record(photo_id, tag_id):
+    """Find phototag record when filtering with photo id and tag id"""
+
+    phototag = Phototag.query.filter(Phototag.photo_id == photo_id, Phototag.tag_id == tag_id).first()
+
+    return phototag
+
+
+def remove_tag(tagword, photo_id):
+    """Remove specific tag from specified photo by deleting photoalbum entry"""
+
+    tag = get_tag_by_tagword(tagword)
+    phototag = get_phototag_record(photo_id, tag.tag_id)
+
+    phototag.photo_id = None
+    db.session.commit()
+
+
+
+
+
+
+
+
         ### USING UPDATE -- CAN BE MORE HELPFUL WHEN CHANGING MULTIPLE THINGS AT ONCE ###
                 # admin = User.query.filter_by(username='admin').update(dict(email='my_new_email@example.com')))
                 # db.session.commit()
-            
+
         ### SIMPLY CHANGING THE FIELD ENTITY -- USEFUL FOR CHANGING ONE THING AT A TIME ###
                 # admin = User.query.filter_by(username='admin').first()
                 # admin.email = 'my_new_email@example.com'

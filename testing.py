@@ -291,6 +291,40 @@ class CrudTester(unittest.TestCase):
         # self.assertEqual(photos.tag.tag_id, tag.tag_id)
         self.assertEqual(photos[0].user_id, user_id)
 
+    def test_get_photos_by_exact_rating(self):
+        rating = 1
+        photos = crud.get_photos_by_exact_rating(rating)
+        self.assertEqual(photos[0].rating, rating)
+
+    def test_get_photos_with_greater_or_equal_rating(self):
+        rating = 1
+        greater_rating = 2
+        photos = crud.get_photos_with_greater_or_equal_rating(rating)
+        self.assertEqual(photos[1].rating, greater_rating)
+
+    def test_get_photos_with_less_or_equal_rating(self):
+        rating = 2
+        lesser_rating = 1
+        photos = crud.get_photos_with_less_or_equal_rating(rating)
+        self.assertEqual(photos[0].rating, lesser_rating)
+
+    def test_get_phototag_record(self):
+        photo_id = 1
+        tag_id = 1
+        phototag = crud.get_phototag_record(photo_id, tag_id)
+        self.assertEqual(phototag.photo_id, photo_id)
+        self.assertEqual(phototag.tag_id, tag_id)
+    
+    def test_remove_tag(self):
+        tagword = 'Tag1'
+        photo_id = 1
+        crud.remove_tag(tagword, photo_id)
+        tag = crud.get_tag_by_tagword(tagword)
+        user_id = 1
+        photos = crud.get_photos_by_tag(tag, user_id)
+        photo = crud.get_photo_by_id(photo_id)
+        self.assertNotIn(photo, photos)
+
 
 class FlaskTestsLoggedIn(TestCase):
     """Flask tests with user logged in to session."""

@@ -8,6 +8,30 @@ Library
 {% block body %}
 <h1>Library</h1>
 
+<div>
+  <form action="/filterby/rating" method="POST">
+      Filter by rating:
+      <input type="radio" name="equality-symbol" value="equals">
+      <label>=</label>
+      <input type="radio" name="equality-symbol" value="greater">
+      <label>≥</label>
+      <input type="radio" name="equality-symbol" value="less">
+      <label>≤</label>
+      <br>
+      <input type="radio" name="filter-rating" value="1">
+      <label>1</label>
+      <input type="radio" name="filter-rating" value="2">
+      <label>2</label>
+      <input type="radio" name="filter-rating" value="3">
+      <label>3</label>
+      <input type="radio" name="filter-rating" value="4">
+      <label>4</label>
+      <input type="radio" name="filter-rating" value="5">
+      <label>5</label>
+      <input type="submit">
+  </form>
+</div>
+
 <form action="/upload_photo" method="POST" enctype="multipart/form-data">
   <div>
     <label for="test_image">Choose file to upload</label>
