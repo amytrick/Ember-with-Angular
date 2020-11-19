@@ -177,9 +177,9 @@ class CrudTester(unittest.TestCase):
         self.assertEqual(album.date_created, date_created)
         assert album.user_id == 1
 
-    def test_get_photos_by_album_id(self):
-        photos = crud.get_photos_by_album_id(1)
-        assert photos[0].album_id == 1
+    # def test_get_photos_by_album_id(self):
+    #     photos = crud.get_photos_by_album_id(1)
+    #     assert photos[0].album_id == 1
 
     def test_get_photo_by_id(self):
         photo = crud.get_photo_by_id(1)
@@ -231,10 +231,10 @@ class CrudTester(unittest.TestCase):
         self.assertEqual(photoalbum.photo_id, photo_id)
         self.assertEqual(photoalbum.album_id, album_id)
 
-    def test_display_photoalbum(self):
-        album_id = 1
-        photoalbum = crud.display_photoalbum(album_id)
-        self.assertEqual(photoalbum[0].album_id, album_id)
+    # def test_display_photoalbum(self):
+    #     album_id = 1
+    #     photoalbum = crud.display_photoalbum(album_id)
+    #     self.assertEqual(photoalbum[0].album_id, album_id)
 
     def test_get_photos_by_user_id(self):
         user_id = 1
@@ -251,7 +251,7 @@ class CrudTester(unittest.TestCase):
         user_id = 1
         user = crud.get_user_by_user_id(user_id)
         self.assertEqual(user.user_id, user_id)
-    
+
     def test_add_to_phototags(self):
         photo_id = 1
         tag_id = 1
@@ -333,6 +333,12 @@ class CrudTester(unittest.TestCase):
         album = crud.get_album_by_id(album_id)
         photos = album.photos
         self.assertNotIn(photo, photos)
+
+    def test_rename_album(self):
+        album_id = 1
+        new_name = 'NewAlbum'
+        album = crud.rename_album(album_id, new_name)
+        self.assertEqual(album.name, new_name)
 
 class FlaskTestsLoggedIn(TestCase):
     """Flask tests with user logged in to session."""

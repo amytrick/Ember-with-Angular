@@ -197,6 +197,17 @@ def display_album(album_id):
     return render_template("album_details.html", album=album, photoalbum=photoalbum)
 
 
+@app.route("/rename-album/<album_id>", methods=["POST"])
+def rename_album(album_id):
+    """Rename existing album"""
+
+    new_name = request.form.get("rename-album")
+
+    crud.rename_album(album_id, new_name)
+
+    return display_album(album_id)
+
+
 @app.route("/add-to-album/<photo_id>", methods=["POST"])
 def add_to_album(photo_id):
     """Add a photo to an existing album"""

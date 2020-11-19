@@ -1,28 +1,20 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ album.name }}
+Search results
 {% endblock %}
 
 
 {% block body %}
-<h1>Album : {{ album.name }}</h1>
-
-<div>
-  <form action="/rename-album/{{ album.album_id }}" method="POST">
-    <input type="text" name="rename-album">
-    <button>Rename album</button>
-  </form>
-</div>
+<h1>Filter results</h1>
 
 
-{% for photo in photoalbum %}
+{% for photo in photos %}
   <div class="library">
     <a href="/photodetails/{{photo.photo_id}}">
       <img class="library-img" id="library-id" src= {{ photo.path }}>
     </a>
   </div>
 {% endfor %}
-
 
 {% endblock %}

@@ -55,11 +55,11 @@ def create_tag(tagword):
 #################################
 
 
-def display_all_photos():
+# def display_all_photos():
 
-    photos = Photo.query.all()
+#     photos = Photo.query.all()
 
-    return photos
+#     return photos
 
 
 # def get_photos_by_album_id(album_id):
@@ -158,8 +158,15 @@ def get_albums_by_user_id(user_id):
     albums = Album.query.filter(Album.user_id == user_id).all()
     return albums
 
-## TODO 2.0 give ability for user to change album name
-    # def rename_album(currentAlbumName)
+
+def rename_album(album_id, new_name):
+    """Allows user to rename an existing album"""
+
+    album = Album.query.get(album_id)
+    album.name = new_name
+    db.session.commit()
+
+    return album
 
 
 def remove_photo_from_album(photo_id, album_id):
@@ -167,8 +174,7 @@ def remove_photo_from_album(photo_id, album_id):
 
     photoalbum_record = Photoalbum.query.filter(Photoalbum.photo_id == photo_id,
                                                 Photoalbum.album_id == album_id).first()
-    # photoalbum_record.photo_id = None
-    # photoalbum_record.album_id = None
+
     db.session.delete(photoalbum_record)
     db.session.commit()
 
@@ -184,6 +190,7 @@ def remove_photo_from_album(photo_id, album_id):
 #################################
 ##         USER QUERIES        ##
 #################################
+
 
 def get_user_by_email(email):
     """ Return user's profile"""
@@ -259,7 +266,7 @@ def add_to_phototags(photo_id, tag_id):
     """Add photo with tag to phototag table"""
 
     phototag = Phototag(photo_id=photo_id, tag_id=tag_id)
-    photo = get_photo_by_id(photo_id)
+    # photo = get_photo_by_id(photo_id)
     # photo.tags = True
     db.session.commit()
 
