@@ -33,6 +33,16 @@ cloudinary.config(
                   )
 
 
+current_photo_list = []
+current_index_clicked = None
+
+
+def get_current_idx(photo_list , photo_id):
+    for idx, photo in enumerate(photo_list):
+        if photo.photo_id == int(photo_id):
+            return idx
+    return None
+
 @app.route("/")
 def create_landingpage():
     """Return landing page with cover photo and login/sign up options"""
@@ -128,7 +138,8 @@ def display_library():
 
     photos = crud.get_photos_by_user_id(current_user_id)
     albums = crud.get_albums_by_user_id(current_user_id)
-
+    global current_photo_list
+    current_photo_list = photos
     return render_template("library.html", photos=photos, albums=albums)
 
 
@@ -157,7 +168,8 @@ def display_photo(photo_id):
     albums = crud.get_albums_by_user_id(session.get('user_id'))
     tags = crud.display_tags_by_photo_id(photo_id)
     set_of_tags = set(tags)
-
+    global current_index_clicked
+    current_index_clicked = get_current_idx(current_photo_list, photo_id)
     return render_template("photo_details.html", photo=photo, albums=albums, tags=set_of_tags)
 
 
@@ -194,6 +206,8 @@ def display_album(album_id):
     album = crud.get_album_by_id(album_id)
     photoalbum = album.photos
 
+    global current_photo_list
+    current_photo_list = photoalbum
     return render_template("album_details.html", album=album, photoalbum=photoalbum)
 
 
@@ -245,6 +259,9 @@ def filter_by_rating():
     elif equality_symbol == 'less':
         photos = crud.get_photos_with_less_or_equal_rating(rating)
 
+    global current_photo_list
+    current_photo_list = photos
+
     return render_template("filter.html", photos=photos)
 
 
@@ -279,8 +296,27 @@ def searchpage():
         photos = crud.get_photos_by_tag(tag, user_id)
     else:
         photos = []
+    
+    global current_photo_list
+    current_photo_list = photos
     return render_template("search-results.html", photos=photos, albums=albums)
 
+
+@app.route("/next")
+def next_photo():
+    next_idx = current_index_clicked + 1
+    # the overflow case
+    if next_idx == len(current_photo_list):
+        next_idx = 0
+    next_photo = current_photo_list[next_idx]
+    return redirect(f"/photodetails/{next_photo.photo_id}")
+
+
+@app.route("/previous")
+def previous_photo():
+    prev_idx = current_index_clicked - 1
+    prev_photo = current_photo_list[prev_idx]
+    return redirect(f"/photodetails/{prev_photo.photo_id}")
 
 
 if __name__ == "__main__":

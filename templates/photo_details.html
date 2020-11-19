@@ -62,8 +62,12 @@ Photo
     <img id='large-photo' src={{ photo.path }}>
 </div>
 <div>
-    <button type="submit" id="previous">Previous photo</button>
-    <button type="submit" id="next">Next photo</button>
+    <form action="/previous">
+        <button type="submit" id="previous">Previous photo</button>
+    </form>
+    <form action="/next">
+        <button type="submit" id="next">Next photo</button>
+    </form>
 </div>
 
 {% endblock %}

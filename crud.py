@@ -178,14 +178,6 @@ def remove_photo_from_album(photo_id, album_id):
     db.session.delete(photoalbum_record)
     db.session.commit()
 
-# def remove_tag(tagword, photo_id):
-#     """Remove specific tag from specified photo by deleting photoalbum entry"""
-
-#     tag = get_tag_by_tagword(tagword)
-#     phototag = get_phototag_record(photo_id, tag.tag_id)
-
-#     phototag.photo_id = None
-#     db.session.commit()
 
 #################################
 ##         USER QUERIES        ##
