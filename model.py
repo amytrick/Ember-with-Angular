@@ -125,7 +125,7 @@ def example_data():
     User.query.delete()
 
     # Add sample users, photos, and albums
-    u1 = User(fname='User1', lname='User2', email='user1@user.com', password='123')
+    u1 = User(fname='User1', lname='User1', email='user1@user.com', password='123')
     u2 = User(fname='User2', lname='User2', email='user2@user.com', password='123')
 
     db.session.add_all([u1, u2])
@@ -134,7 +134,7 @@ def example_data():
     a1 = Album(name='Album1', user_id=1)
     a2 = Album(name='Album2', user_id=2)
 
-    db.session.add_all([a1,a2])
+    db.session.add_all([a1, a2])
     db.session.commit()
 
     p1 = Photo(user_id=1, album_id=1, rating=1, path="/static/img/co1.jpg")

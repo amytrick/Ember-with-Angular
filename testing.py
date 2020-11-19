@@ -314,7 +314,7 @@ class CrudTester(unittest.TestCase):
         phototag = crud.get_phototag_record(photo_id, tag_id)
         self.assertEqual(phototag.photo_id, photo_id)
         self.assertEqual(phototag.tag_id, tag_id)
-    
+
     def test_remove_tag(self):
         tagword = 'Tag1'
         photo_id = 1
@@ -325,6 +325,14 @@ class CrudTester(unittest.TestCase):
         photo = crud.get_photo_by_id(photo_id)
         self.assertNotIn(photo, photos)
 
+    def test_remove_photo_from_album(self):
+        photo_id = 1
+        album_id = 1
+        crud.remove_photo_from_album(photo_id, album_id)
+        photo = crud.get_photo_by_id(photo_id)
+        album = crud.get_album_by_id(album_id)
+        photos = album.photos
+        self.assertNotIn(photo, photos)
 
 class FlaskTestsLoggedIn(TestCase):
     """Flask tests with user logged in to session."""

@@ -62,12 +62,12 @@ def display_all_photos():
     return photos
 
 
-def get_photos_by_album_id(album_id):
-    """Return all photos that have a specific, selected album id"""
+# def get_photos_by_album_id(album_id):
+#     """Return all photos that have a specific, selected album id"""
 
-    photos = Photo.query.filter(Photo.album_id == album_id).all()
+#     photos = Photo.query.filter(Photo.album_id == album_id).all()
 
-    return photos
+#     return photos
 
 
 def get_photo_by_id(photo_id):
@@ -98,13 +98,13 @@ def delete_photo_by_id(photo_id):
 ##        ALBUM QUERIES        ##
 #################################
 
-# TODO check if I use this
-def display_all_albums():
-    """Display all albums in Album db"""
+# # TODO check if I use this
+# def display_all_albums():
+#     """Display all albums in Album db"""
 
-    albums = Album.query.all()
+#     albums = Album.query.all()
 
-    return albums
+#     return albums
 
 
 def get_album_by_id(album_id):
@@ -113,13 +113,13 @@ def get_album_by_id(album_id):
     album = Album.query.get(album_id)
     return album
 
-# TODO check if I actually use this function
-def add_photo_to_album(photo_id, album_id):
-    """Add selected photo to an existing album"""
+# # TODO check if I actually use this function
+# def add_photo_to_album(photo_id, album_id):
+#     """Add selected photo to an existing album"""
 
-    photo = get_photo_by_id(photo_id)
-    photo.album_id = album_id
-    db.session.commit()
+#     photo = get_photo_by_id(photo_id)
+#     photo.album_id = album_id
+#     db.session.commit()
 
 
 def add_to_photoalbum(photo_id, album_id):
@@ -132,16 +132,16 @@ def add_to_photoalbum(photo_id, album_id):
 
     return photoalbum
 
-# TODO I don't think I need this function anymore - double check before deleting
-def display_photoalbum(album_id):
-    """Return all photos (from photoalbum db) that are associated with a specific album"""
-    photos = []
-    photoalbum = Photoalbum.query.filter(Photoalbum.album_id == album_id).all()
-    for item in photoalbum:
-        photo = get_photo_by_id(item.photo_id)
-        photos.append(photo)
+# # TODO I don't think I need this function anymore - double check before deleting
+# def display_photoalbum(album_id):
+#     """Return all photos (from photoalbum db) that are associated with a specific album"""
+#     photos = []
+#     photoalbum = Photoalbum.query.filter(Photoalbum.album_id == album_id).all()
+#     for item in photoalbum:
+#         photo = get_photo_by_id(item.photo_id)
+#         photos.append(photo)
 
-    return photos
+#     return photos
 
 
 def get_album_by_name(name):
@@ -161,6 +161,25 @@ def get_albums_by_user_id(user_id):
 ## TODO 2.0 give ability for user to change album name
     # def rename_album(currentAlbumName)
 
+
+def remove_photo_from_album(photo_id, album_id):
+    """Remove a photo from an album by deleting record in photoalbum db"""
+
+    photoalbum_record = Photoalbum.query.filter(Photoalbum.photo_id == photo_id,
+                                                Photoalbum.album_id == album_id).first()
+    # photoalbum_record.photo_id = None
+    # photoalbum_record.album_id = None
+    db.session.delete(photoalbum_record)
+    db.session.commit()
+
+# def remove_tag(tagword, photo_id):
+#     """Remove specific tag from specified photo by deleting photoalbum entry"""
+
+#     tag = get_tag_by_tagword(tagword)
+#     phototag = get_phototag_record(photo_id, tag.tag_id)
+
+#     phototag.photo_id = None
+#     db.session.commit()
 
 #################################
 ##         USER QUERIES        ##
@@ -307,7 +326,7 @@ def remove_tag(tagword, photo_id):
     tag = get_tag_by_tagword(tagword)
     phototag = get_phototag_record(photo_id, tag.tag_id)
 
-    phototag.photo_id = None
+    db.session.delete(phototag)
     db.session.commit()
 
 
