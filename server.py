@@ -133,7 +133,7 @@ def display_library():
 
     current_user_id = session.get('user_id', None)
 
-    if current_user_id == None:
+    if current_user_id is None:
         return redirect("/")
 
     photos = crud.get_photos_by_user_id(current_user_id)
