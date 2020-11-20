@@ -234,6 +234,15 @@ def add_to_album(photo_id):
     return display_photo(photo_id)
 
 
+@app.route("/delete-photo-from-album/<album_id>/<photo_id>")
+def delete_photo_from_album(album_id, photo_id):
+    """Delete selected photo from selected album"""
+
+    crud.remove_photo_from_album(photo_id, album_id)
+
+    return display_album(album_id)
+
+
 @app.route("/rating/<photo_id>", methods=["POST"])
 def assign_rating(photo_id):
     """Assigns rating to selected photo"""
@@ -284,6 +293,14 @@ def assign_tag(photo_id):
     return display_photo(photo_id)
 
 
+@app.route("/delete-tag/<photo_id>/<tag_id>")
+def delete_tag(photo_id, tag_id):
+
+    crud.remove_tag(tag_id, photo_id)
+
+    return display_photo(photo_id)
+
+
 @app.route("/search", methods=["POST"])
 def searchpage():
     """Returns photos that match keyword search"""
@@ -296,7 +313,7 @@ def searchpage():
         photos = crud.get_photos_by_tag(tag, user_id)
     else:
         photos = []
-    
+
     global current_photo_list
     current_photo_list = photos
     return render_template("search-results.html", photos=photos, albums=albums)

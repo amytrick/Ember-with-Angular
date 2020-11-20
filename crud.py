@@ -1,6 +1,8 @@
 """ CRUD operations"""
 from model import db, User, Photo, Phototag, Tag, Photoalbum, Album, connect_to_db
 from sqlalchemy import desc
+from datetime import datetime
+import time
 
 #################################
 ##    CREATING NEW OBJECTS     ##
@@ -319,16 +321,24 @@ def get_phototag_record(photo_id, tag_id):
     return phototag
 
 
-def remove_tag(tagword, photo_id):
+def remove_tag(tag_id, photo_id):
     """Remove specific tag from specified photo by deleting photoalbum entry"""
 
-    tag = get_tag_by_tagword(tagword)
-    phototag = get_phototag_record(photo_id, tag.tag_id)
+    # tag = get_tag_by_id(tag_id)
+    phototag = get_phototag_record(photo_id, tag_id)
 
     db.session.delete(phototag)
     db.session.commit()
 
 
+def print_date(photo_id):
+    """Use a photo's date_taken to print out a nicely formatted date"""
+
+    photo = get_photo_by_id(photo_id)
+    date_taken = photo.date_taken
+
+    date = time.strftime("%Y-%b-%w")
+    print(date)
 
 
 

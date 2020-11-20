@@ -52,10 +52,13 @@ Photo
     </form>
 </div>
 
-<div>
-    {% for tag in tags %}
-        <p>{{tag.tagword}}</p>
-    {% endfor %}
+<div id="existing-tags">
+        {% for tag in tags %}
+        <form action="/delete-tag/{{photo.photo_id}}/{{tag.tag_id}}">
+            <p>{{tag.tagword}} <button>x</button>
+            </p>
+        {% endfor %}
+    </form>
 </div>
 
 <div>

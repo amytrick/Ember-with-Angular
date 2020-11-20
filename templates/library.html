@@ -66,7 +66,11 @@ Library
 
 
 {% for photo in photos %}
+
   <div class="library">
+    <div>
+      {{photo.date_taken}}
+    </div>
     <a href="/photodetails/{{photo.photo_id}}">
       <img class="library-img" id="library-id" src= {{ photo.path }}>
     </a>
