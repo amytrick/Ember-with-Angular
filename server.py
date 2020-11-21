@@ -138,9 +138,22 @@ def display_library():
 
     photos = crud.get_photos_by_user_id(current_user_id)
     albums = crud.get_albums_by_user_id(current_user_id)
+
+    for photo in photos:
+        photo.print_date = crud.print_date(photo.photo_id)
+
     global current_photo_list
     current_photo_list = photos
     return render_template("library.html", photos=photos, albums=albums)
+
+
+@app.route("/print-date")
+def print_date(photo_id):
+    """Give formatted date for specific photo"""
+    for photo in current_photo_list:
+        date = crud.print_date(photo_id)
+
+    return date
 
 
 @app.route("/upload_photo", methods=["POST"])
@@ -168,9 +181,11 @@ def display_photo(photo_id):
     albums = crud.get_albums_by_user_id(session.get('user_id'))
     tags = crud.display_tags_by_photo_id(photo_id)
     set_of_tags = set(tags)
+    date = crud.print_date(photo_id)
+
     global current_index_clicked
     current_index_clicked = get_current_idx(current_photo_list, photo_id)
-    return render_template("photo_details.html", photo=photo, albums=albums, tags=set_of_tags)
+    return render_template("photo_details.html", photo=photo, albums=albums, tags=set_of_tags, date=date)
 
 
 @app.route("/delete_photo/<photo_id>", methods=["POST"])
