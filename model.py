@@ -1,7 +1,6 @@
 """Models for photo management app"""
 from flask_sqlalchemy import SQLAlchemy
 
-# The name of my db : createdb photos
 
 db = SQLAlchemy()
 
@@ -35,9 +34,12 @@ class Photo(db.Model):
     date_taken = db.Column(db.DateTime)
     date_edited = db.Column(db.DateTime)
     album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"))
+        #currently not used
     tags = db.Column(db.Boolean)
+        #currently not used
     path = db.Column(db.String)
     size = db.Column(db.Integer)
+        #currently not used
     rating = db.Column(db.Integer)
     public_id = db.Column(db.String(50))
 
@@ -47,7 +49,6 @@ class Photo(db.Model):
 
     def __repr__(self):
         return f"<Photo photo_id = {self.photo_id}>"
-        # ? Add more info to repr?
 
 
 class Phototag(db.Model):
@@ -104,6 +105,7 @@ class Album(db.Model):
     album_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(20), unique=True)
     date_created = db.Column(db.DateTime)
+        #currently not used
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     photos = db.relationship('Photo', secondary='photoalbums')
@@ -181,6 +183,3 @@ if __name__ == "__main__":
     # query it executes.
 
     connect_to_db(app)
-
-#   test_user = User(fname='Jane', lname='Tester', email='jtester@test.com', password='123')
-#   photo1 = Photo(user_id=1, date_uploaded=datetime.datetime.now())

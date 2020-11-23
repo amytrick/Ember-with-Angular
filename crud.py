@@ -57,21 +57,6 @@ def create_tag(tagword):
 #################################
 
 
-# def display_all_photos():
-
-#     photos = Photo.query.all()
-
-#     return photos
-
-
-# def get_photos_by_album_id(album_id):
-#     """Return all photos that have a specific, selected album id"""
-
-#     photos = Photo.query.filter(Photo.album_id == album_id).all()
-
-#     return photos
-
-
 def get_photo_by_id(photo_id):
     """Return photo by querying with photo id"""
 
@@ -96,17 +81,21 @@ def delete_photo_by_id(photo_id):
     db.session.commit()
 
 
+def print_date(photo_id):
+    """Use a photo's date_taken to print out a nicely formatted date"""
+
+    photo = get_photo_by_id(photo_id)
+    date_taken = photo.date_taken
+    # This is what date_taken looks like --> 2020-03-13 08:09:50
+
+    date = (date_taken.strftime('%b %d, %Y'))
+    return date
+    # will return like this --> 'Mar 13, 2020'
+
+
 #################################
 ##        ALBUM QUERIES        ##
 #################################
-
-# # TODO check if I use this
-# def display_all_albums():
-#     """Display all albums in Album db"""
-
-#     albums = Album.query.all()
-
-#     return albums
 
 
 def get_album_by_id(album_id):
@@ -114,14 +103,6 @@ def get_album_by_id(album_id):
 
     album = Album.query.get(album_id)
     return album
-
-# # TODO check if I actually use this function
-# def add_photo_to_album(photo_id, album_id):
-#     """Add selected photo to an existing album"""
-
-#     photo = get_photo_by_id(photo_id)
-#     photo.album_id = album_id
-#     db.session.commit()
 
 
 def add_to_photoalbum(photo_id, album_id):
@@ -133,17 +114,6 @@ def add_to_photoalbum(photo_id, album_id):
     db.session.commit()
 
     return photoalbum
-
-# # TODO I don't think I need this function anymore - double check before deleting
-# def display_photoalbum(album_id):
-#     """Return all photos (from photoalbum db) that are associated with a specific album"""
-#     photos = []
-#     photoalbum = Photoalbum.query.filter(Photoalbum.album_id == album_id).all()
-#     for item in photoalbum:
-#         photo = get_photo_by_id(item.photo_id)
-#         photos.append(photo)
-
-#     return photos
 
 
 def get_album_by_name(name):
@@ -190,7 +160,6 @@ def get_user_by_email(email):
     """ Return user's profile"""
 
     return User.query.filter(User.email == email).first()
-    # user0@test.com --> {'email_1': 'user0@test.com', 'param_1': 1}
 
 
 def get_id_by_email(email):
@@ -227,26 +196,29 @@ def give_rating(photo_id, rating):
     db.session.commit()
 
 
-def get_photos_by_exact_rating(rating):
+def get_photos_by_exact_rating(rating, user_id):
     """Return photos that have a specified rating"""
 
-    photos = Photo.query.filter(Photo.rating == rating).all()
+    photos = Photo.query.filter(Photo.rating == rating,
+                                Photo.user_id == user_id).all()
 
     return photos
 
 
-def get_photos_with_greater_or_equal_rating(rating):
+def get_photos_with_greater_or_equal_rating(rating, user_id):
     """Return photos that have a rating greater to or equal to specified rating"""
 
-    photos = Photo.query.filter(Photo.rating >= rating).all()
+    photos = Photo.query.filter(Photo.rating >= rating,
+                                Photo.user_id == user_id).all()
 
     return photos
 
 
-def get_photos_with_less_or_equal_rating(rating):
+def get_photos_with_less_or_equal_rating(rating, user_id):
     """Return photos that have a rating less to or equal to specified rating"""
 
-    photos = Photo.query.filter(Photo.rating <= rating).all()
+    photos = Photo.query.filter(Photo.rating <= rating,
+                                Photo.user_id == user_id).all()
 
     return photos
 
@@ -260,9 +232,6 @@ def add_to_phototags(photo_id, tag_id):
     """Add photo with tag to phototag table"""
 
     phototag = Phototag(photo_id=photo_id, tag_id=tag_id)
-    # photo = get_photo_by_id(photo_id)
-    # photo.tags = True
-    db.session.commit()
 
     db.session.add(phototag)
     db.session.commit()
@@ -324,23 +293,11 @@ def get_phototag_record(photo_id, tag_id):
 def remove_tag(tag_id, photo_id):
     """Remove specific tag from specified photo by deleting photoalbum entry"""
 
-    # tag = get_tag_by_id(tag_id)
     phototag = get_phototag_record(photo_id, tag_id)
 
     db.session.delete(phototag)
     db.session.commit()
 
-
-def print_date(photo_id):
-    """Use a photo's date_taken to print out a nicely formatted date"""
-
-    photo = get_photo_by_id(photo_id)
-    date_taken = photo.date_taken
-    # This is what date_taken looks like --> 2020-03-13 08:09:50
-
-    date = (date_taken.strftime('%b %d, %Y'))
-    return date
-    # will return like this --> 'Mar 13, 2020'
 
 
 

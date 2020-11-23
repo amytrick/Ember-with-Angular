@@ -9,11 +9,7 @@ from datetime import datetime
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-# import PIL
-# import PIL.ExifTags
-# import PIL.Image
-# import copy
-# from io import BytesIO
+
 
 from jinja2 import StrictUndefined
 
@@ -42,6 +38,10 @@ def get_current_idx(photo_list , photo_id):
         if photo.photo_id == int(photo_id):
             return idx
     return None
+
+#################################
+##         HOME/LOGIN          ##
+#################################
 
 @app.route("/")
 def create_landingpage():
@@ -104,27 +104,32 @@ def logout():
 
     return create_landingpage()
 
+#TODO check if these get used
+# @app.route('/session')
+# def set_session():
+#     """Set value for session['user_id']"""
 
-@app.route('/session')
-def set_session():
-    """Set value for session['user_id']"""
+#     email = request.args.get("login_email")
+#     user = crud.get_user_by_email("email")
+#     user_id = user.user_id
 
-    email = request.args.get("login_email")
-    user = crud.get_user_by_email(email)
-    user_id = user.user_id
+#     session['user_id'] = user_id
+#     session['email'] = email
 
-    session['user_id'] = user_id
-    session['email'] = email
-
-    return redirect("/")
+#     return redirect("/")
 
 
-@app.route('/session/get')
-def get_session():
-    """Get values out of session"""
+# @app.route('/session/get')
+# def get_session():
+#     """Get values out of session"""
 
-    user_id = session['user_id']
-    email = session['email']
+#     user_id = session['user_id']
+#     email = session['email']
+
+
+#################################
+##       LIBRARY ROUTES        ##
+#################################
 
 
 @app.route("/library")
@@ -173,6 +178,30 @@ def upload_new_photo():
     return redirect("/library")
 
 
+@app.route("/add_album")
+def create_new_album():
+    """Add new album, named by user"""
+
+    name = request.args.get("new_album_name")
+    date_created = datetime.now()
+    user_id = session.get('user_id')
+
+    album = crud.create_album(name, date_created, user_id)
+
+    return redirect("/library")
+    # return jsonify({'album_id' : {{album.album_id}}, 'name': {{album.name}}})
+
+
+@app.route("/return_to_library")
+def return_to_library():
+    return redirect("/library")
+
+
+#################################
+##     PHOTO DETAIL ROUTES     ##
+#################################
+
+
 @app.route("/photodetails/<photo_id>")
 def display_photo(photo_id):
     """Display selected photo enlarged"""
@@ -200,18 +229,71 @@ def delete_photo(photo_id):
     return redirect("/library")
 
 
-@app.route("/add_album")
-def create_new_album():
-    """Add new album, named by user"""
+@app.route("/add-to-album/<photo_id>", methods=["POST"])
+def add_to_album(photo_id):
+    """Add a photo to an existing album"""
 
-    name = request.args.get("new_album_name")
-    date_created = datetime.now()
-    user_id = session.get('user_id')
+    album_name = request.form.get("add-to-album")
+    album = crud.get_album_by_name(album_name)
+    album_id = album.album_id
+    crud.add_to_photoalbum(photo_id, album_id)
 
-    album = crud.create_album(name, date_created, user_id)
+    return display_photo(photo_id)
 
-    return redirect("/library")
-    # return jsonify({'album_id' : {{album.album_id}}, 'name': {{album.name}}})
+
+@app.route("/rating/<photo_id>", methods=["POST"])
+def assign_rating(photo_id):
+    """Assigns rating to selected photo"""
+
+    rating = int(request.form.get("rating"))
+
+    crud.give_rating(photo_id, rating)
+
+    return display_photo(photo_id)
+
+
+@app.route("/tag/<photo_id>", methods=["POST"])
+def assign_tag(photo_id):
+    """Assigns tag (keyword) to specific photo"""
+
+    tagword = (request.form.get("tag-text")).capitalize()
+    if crud.tag_exists(tagword):
+        tag = crud.get_tag_by_tagword(tagword)
+    else:
+        tag = crud.create_tag(tagword)
+    crud.add_to_phototags(photo_id, tag.tag_id)
+
+    return display_photo(photo_id)
+
+
+@app.route("/delete-tag/<photo_id>/<tag_id>")
+def delete_tag(photo_id, tag_id):
+
+    crud.remove_tag(tag_id, photo_id)
+
+    return display_photo(photo_id)
+
+
+@app.route("/next")
+def next_photo():
+    next_idx = current_index_clicked + 1
+    # the overflow case
+    if next_idx == len(current_photo_list):
+        next_idx = 0
+    next_photo = current_photo_list[next_idx]
+    return redirect(f"/photodetails/{next_photo.photo_id}")
+
+
+@app.route("/previous")
+def previous_photo():
+    prev_idx = current_index_clicked - 1
+    prev_photo = current_photo_list[prev_idx]
+    return redirect(f"/photodetails/{prev_photo.photo_id}")
+
+
+#################################
+##         ALBUM ROUTES        ##
+#################################
 
 
 @app.route("/library/<album_id>")
@@ -237,18 +319,6 @@ def rename_album(album_id):
     return display_album(album_id)
 
 
-@app.route("/add-to-album/<photo_id>", methods=["POST"])
-def add_to_album(photo_id):
-    """Add a photo to an existing album"""
-
-    album_name = request.form.get("add-to-album")
-    album = crud.get_album_by_name(album_name)
-    album_id = album.album_id
-    crud.add_to_photoalbum(photo_id, album_id)
-
-    return display_photo(photo_id)
-
-
 @app.route("/delete-photo-from-album/<album_id>/<photo_id>")
 def delete_photo_from_album(album_id, photo_id):
     """Delete selected photo from selected album"""
@@ -258,15 +328,9 @@ def delete_photo_from_album(album_id, photo_id):
     return display_album(album_id)
 
 
-@app.route("/rating/<photo_id>", methods=["POST"])
-def assign_rating(photo_id):
-    """Assigns rating to selected photo"""
-
-    rating = int(request.form.get("rating"))
-
-    crud.give_rating(photo_id, rating)
-
-    return display_photo(photo_id)
+#################################
+##     SEARCH/FILTER ROUTES    ##
+#################################
 
 
 @app.route("/filterby/rating", methods=["POST"])
@@ -275,13 +339,14 @@ def filter_by_rating():
 
     rating = request.form.get("filter-rating")
     equality_symbol = request.form.get("equality-symbol")
+    user_id = session.get('user_id')
 
     if equality_symbol == 'equals':
-        photos = crud.get_photos_by_exact_rating(rating)
+        photos = crud.get_photos_by_exact_rating(rating, user_id)
     elif equality_symbol == 'greater':
-        photos = crud.get_photos_with_greater_or_equal_rating(rating)
+        photos = crud.get_photos_with_greater_or_equal_rating(rating, user_id)
     elif equality_symbol == 'less':
-        photos = crud.get_photos_with_less_or_equal_rating(rating)
+        photos = crud.get_photos_with_less_or_equal_rating(rating, user_id)
 
     global current_photo_list
     current_photo_list = photos
@@ -289,36 +354,10 @@ def filter_by_rating():
     return render_template("filter.html", photos=photos)
 
 
-@app.route("/return_to_library")
-def return_to_library():
-    return redirect("/library")
-
-
-@app.route("/tag/<photo_id>", methods=["POST"])
-def assign_tag(photo_id):
-    """Assigns tag (keyword) to specific photo"""
-
-    tagword = (request.form.get("tag-text")).capitalize()
-    if crud.tag_exists(tagword):
-        tag = crud.get_tag_by_tagword(tagword)
-    else:
-        tag = crud.create_tag(tagword)
-    crud.add_to_phototags(photo_id, tag.tag_id)
-
-    return display_photo(photo_id)
-
-
-@app.route("/delete-tag/<photo_id>/<tag_id>")
-def delete_tag(photo_id, tag_id):
-
-    crud.remove_tag(tag_id, photo_id)
-
-    return display_photo(photo_id)
-
-
 @app.route("/search", methods=["POST"])
 def searchpage():
     """Returns photos that match keyword search"""
+    # filtered by user id
 
     tagword = (request.form.get("search")).capitalize()
     user_id = session.get('user_id')
@@ -333,22 +372,6 @@ def searchpage():
     current_photo_list = photos
     return render_template("search-results.html", photos=photos, albums=albums)
 
-
-@app.route("/next")
-def next_photo():
-    next_idx = current_index_clicked + 1
-    # the overflow case
-    if next_idx == len(current_photo_list):
-        next_idx = 0
-    next_photo = current_photo_list[next_idx]
-    return redirect(f"/photodetails/{next_photo.photo_id}")
-
-
-@app.route("/previous")
-def previous_photo():
-    prev_idx = current_index_clicked - 1
-    prev_photo = current_photo_list[prev_idx]
-    return redirect(f"/photodetails/{prev_photo.photo_id}")
 
 
 if __name__ == "__main__":
