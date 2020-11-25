@@ -1,0 +1,30 @@
+.library-img {
+    height: 250px;
+    width: auto;
+}
+
+.library {
+    display: inline-block;
+}
+
+#large-photo {
+    height:800px;
+    width:auto;
+}
+
+body {
+    background-color: rgb(46, 46, 46);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    text-align: auto;
+}
+
+.navbar {
+    background-color: rgb(29, 29, 29);
+    padding: 2rem 2rem;
+}

@@ -43,6 +43,7 @@ def get_current_idx(photo_list , photo_id):
 ##         HOME/LOGIN          ##
 #################################
 
+
 @app.route("/")
 def create_landingpage():
     """Return landing page with cover photo and login/sign up options"""
@@ -67,6 +68,7 @@ def add_user():
     else:
         flash("Email is already associated with an account. Try again")
     return redirect("/")
+    # return json.dumps({'status':'OK','user':user,'pass':password});
 
 
 @app.route("/login")
