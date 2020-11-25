@@ -1,10 +1,11 @@
 """Server for photo management app."""
 
 import os
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect, json, jsonify
 from model import connect_to_db
 import crud
 from datetime import datetime
+
 
 import cloudinary
 import cloudinary.uploader
@@ -68,7 +69,7 @@ def add_user():
     else:
         flash("Email is already associated with an account. Try again")
     return redirect("/")
-    # return json.dumps({'status':'OK','user':user,'pass':password});
+    # return json.dumps({'status':'OK','user':fname,'pass':password});
 
 
 @app.route("/login")
@@ -96,6 +97,8 @@ def confirm_credentials():
             flash('Login successful!')
             # current_user_id = session.get('current_user')
             return redirect("/library")
+            # return json.dumps({'status':'OK','email':email,'pass':password});
+
 
 
 @app.route("/logout", methods=["POST"])
@@ -303,11 +306,12 @@ def display_album(album_id):
     """Display photos in a selected album"""
 
     album = crud.get_album_by_id(album_id)
+    albums = crud.get_albums_by_user_id(session.get('user_id'))
     photoalbum = album.photos
 
     global current_photo_list
     current_photo_list = photoalbum
-    return render_template("album_details.html", album=album, photoalbum=photoalbum)
+    return render_template("album_details.html", album=album, albums=albums, photoalbum=photoalbum)
 
 
 @app.route("/rename-album/<album_id>", methods=["POST"])

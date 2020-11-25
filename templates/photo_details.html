@@ -5,12 +5,8 @@ Photo
 {% endblock %}
 
 
-{% block body %}
+{% block sidebar %}
 <h1>Photo</h1>
-
-<form action="/delete_photo/{{photo.photo_id}}", method="POST">
-    <button id="delete">Delete photo</button>
-</form>
 
 <form action="/rating/{{photo.photo_id}}" method="POST">
     <p>
@@ -60,6 +56,14 @@ Photo
         {% endfor %}
     </form>
 </div>
+
+{% endblock %}
+
+
+{% block body %}
+<form action="/delete_photo/{{photo.photo_id}}", method="POST">
+    <button id="delete">Delete photo</button>
+</form>
 
 <div>
     <div>
