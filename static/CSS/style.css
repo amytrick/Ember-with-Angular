@@ -8,8 +8,8 @@
 }
 
 #large-photo {
-    height:800px;
-    width:auto;
+    /* height:800px;
+    width:auto; */
 }
 
 body {
@@ -27,4 +27,23 @@ h1 {
 .navbar {
     background-color: rgb(29, 29, 29);
     padding: 2rem 2rem;
+}
+
+#album-link {
+    color: white;
+  }
+
+  button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.img-fluid {
+    max-height: 700px;
+    max-width: 100%;
+    height: auto;
 }

@@ -10,22 +10,27 @@ Photo
 
 <form action="/rating/{{photo.photo_id}}" method="POST">
     <p>
-        Rating:
+        RATING:
     </p>
         <input type="radio" name="rating" value="1">
         <label>1</label>
+        <i class="fa fa-star"></i>
         <input type="radio" name="rating" value="2">
         <label>2</label>
+        <i class="fa fa-star"></i>
         <input type="radio" name="rating" value="3">
         <label>3</label>
+        <i class="fa fa-star"></i>
         <input type="radio" name="rating" value="4">
         <label>4</label>
+        <i class="fa fa-star"></i>
         <input type="radio" name="rating" value="5">
         <label>5</label>
+        <i class="fa fa-star"></i>
         <input type="submit">
 </form>
 <div>
-    <p>Rating : {{photo.rating}} </p>
+    <p>RATING : {{photo.rating}} </p>
 </div>
 
 
@@ -44,14 +49,22 @@ Photo
 <div>
     <form action="/tag/{{photo.photo_id}}", method="POST">
         <input type="text" name="tag-text">
-        <button id='add-tag'>Add a keyword</button>
+        <button id='add-tag'>ADD KEYWORD</button>
+        <i class="fa fa-tag fa-2x"></i>
     </form>
 </div>
 
 <div id="existing-tags">
         {% for tag in tags %}
         <form action="/delete-tag/{{photo.photo_id}}/{{tag.tag_id}}">
-            <p>{{tag.tagword}} <button>x</button>
+            <p>{{tag.tagword}} <button>
+                <div class="fa-lg">
+                    <span class="fa-layers fa-fw" style="background:transparent">
+                      <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
+                      <i class="fa fas fa-times" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
+                    </span>
+                  </div>
+                </button>
             </p>
         {% endfor %}
     </form>
@@ -61,23 +74,38 @@ Photo
 
 
 {% block body %}
-<form action="/delete_photo/{{photo.photo_id}}", method="POST">
-    <button id="delete">Delete photo</button>
-</form>
+    <div class="row" id="header for delete">
+        <form action="/delete_photo/{{photo.photo_id}}", method="POST">
+            <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white"></i></button>
+        </form>
+    </div>
 
-<div>
-    <div>
-        {{date}}
-      </div>
-    <img id='large-photo' src={{ photo.path }}>
-</div>
-<div>
-    <form action="/previous">
-        <button type="submit" id="previous">Previous photo</button>
-    </form>
-    <form action="/next">
-        <button type="submit" id="next">Next photo</button>
-    </form>
-</div>
+    <div class="row" id="photo body">
+
+
+        <div class="col-1" id="previous column">
+            <div>
+                <form action="/previous">
+                    <button type="submit" id="previous"><i class="fa fa-angle-double-left fa-3x" style="color:white"></i></button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-10" id="photo holder column">
+            <div>
+                <img class="img-fluid" id='large-photo' src={{ photo.path }}>
+            </div>
+        </div>
+
+        
+        <div class="col-1" id="next column">
+            <div>
+                <form action="/next">
+                    <button type="submit" id="next"><i class="fa fa-angle-double-right fa-3x" style="color:white"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

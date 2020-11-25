@@ -88,7 +88,7 @@ def print_date(photo_id):
     date_taken = photo.date_taken
     # This is what date_taken looks like --> 2020-03-13 08:09:50
 
-    date = (date_taken.strftime('%b %d, %Y'))
+    date = (date_taken.strftime('%b %d, %Y')).upper()
     return date
     # will return like this --> 'Mar 13, 2020'
 
