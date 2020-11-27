@@ -250,7 +250,7 @@ def add_to_album(photo_id):
 def assign_rating(photo_id):
     """Assigns rating to selected photo"""
 
-    rating = int(request.form.get("rating"))
+    rating = int(request.form.get("star-radios"))
 
     crud.give_rating(photo_id, rating)
 
