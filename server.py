@@ -278,14 +278,18 @@ def delete_tag(photo_id, tag_id):
     return display_photo(photo_id)
 
 
-@app.route("/next")
+@app.route("/next.json")
 def next_photo():
-    next_idx = current_index_clicked + 1
+    global current_index_clicked
+    print("Inside previous photo")
+    current_index_clicked += 1
+    # next_idx = current_index_clicked + 1
     # the overflow case
-    if next_idx == len(current_photo_list):
-        next_idx = 0
-    next_photo = current_photo_list[next_idx]
-    return redirect(f"/photodetails/{next_photo.photo_id}")
+    # if current_index_clicked == len(current_photo_list):
+    #     next_idx = 0
+    next_photo = current_photo_list[current_index_clicked]
+    return jsonify(photo_path=next_photo.path)
+    # return redirect(f"/photodetails/{next_photo.photo_id}")
 
 
 @app.route("/previous.json")

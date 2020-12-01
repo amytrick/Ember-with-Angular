@@ -59,13 +59,14 @@
 
 
 $('#previous').on('click', () => {
-    console.log("clicked")
    $.get('/previous.json', function(data){
-        console.log("inside function")
-        console.log(data)
         $('#large-photo').attr("src",data.photo_path)
     });
 });
 
-
+$('#next').on('click', () => {
+   $.get('/next.json', function(data){
+        $('#large-photo').attr("src",data.photo_path)
+    });
+});
 
