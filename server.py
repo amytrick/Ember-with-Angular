@@ -34,7 +34,7 @@ current_photo_list = []
 current_index_clicked = None
 
 
-def get_current_idx(photo_list , photo_id):
+def get_current_idx(photo_list, photo_id):
     for idx, photo in enumerate(photo_list):
         if photo.photo_id == int(photo_id):
             return idx
@@ -98,7 +98,6 @@ def confirm_credentials():
             # current_user_id = session.get('current_user')
             return redirect("/library")
             # return json.dumps({'status':'OK','email':email,'pass':password});
-
 
 
 @app.route("/logout", methods=["POST"])
@@ -289,11 +288,16 @@ def next_photo():
     return redirect(f"/photodetails/{next_photo.photo_id}")
 
 
-@app.route("/previous")
+@app.route("/previous.json")
 def previous_photo():
-    prev_idx = current_index_clicked - 1
-    prev_photo = current_photo_list[prev_idx]
-    return redirect(f"/photodetails/{prev_photo.photo_id}")
+    global current_index_clicked
+    print("Inside previous photo")
+    current_index_clicked -= 1
+    print(current_index_clicked)
+    prev_photo = current_photo_list[current_index_clicked]
+    print(prev_photo.path)
+    return jsonify(photo_path=prev_photo.path)
+    # return redirect(f"/photodetails/{prev_photo.photo_id}")
 
 
 #################################

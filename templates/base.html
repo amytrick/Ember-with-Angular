@@ -17,10 +17,12 @@
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">    -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=League+Script&display=swap" rel="stylesheet"> 
   </title>
   </head>
     {% for message in get_flashed_messages() %}
@@ -29,16 +31,19 @@
     {% block head %}{% endblock %}
   </head>
   <body>
-
+    <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <button>
-          <a class="navbar-brand" href="/return_to_library"><i class="fa fa-home fa-2x"></i></a>
+          <a class="navbar-brand" id="logo" href="/return_to_library">ember</a>
           
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
               <!-- <span class="navbar-toggler-icon"></span> -->
             </button>
             <ul class=navbar-nav ml-auto>
               <div>
+                <button>
+                  <a class="btn btn-light my-2 my-sm-0" href="/return_to_library"><i class="fa fa-home fa-2x"></i></a>
+                </button>
                 <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                   <button class="btn btn-light my-2 my-sm-0" type="submit">SEARCH</button>

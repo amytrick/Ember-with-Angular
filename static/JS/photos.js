@@ -54,29 +54,18 @@
 // $('.library').on( "load", printDate)
 
 
-$('#myModal').modal(options) 
+// $('#myModal').modal(options) 
 // calling a pop up modal
 
 
-// $(function(){
-// 	$('#create-account-button').click(function(){
-// 		var fname = $('#fname-field').val();
-//         var lname = $('#lname-field').val();
-//         var email = $('#email-field').val();
-//         var password = $('#password-field').val();
-// 		$.ajax({
-// 			url: '/user',
-// 			data: $('form').serialize(),
-// 			type: 'POST',
-// 			success: function(response){
-// 				console.log(response);
-// 			},
-// 			error: function(error){
-// 				console.log(error);
-// 			}
-// 		});
-// 	});
-// });
+$('#previous').on('click', () => {
+    console.log("clicked")
+   $.get('/previous.json', function(data){
+        console.log("inside function")
+        console.log(data)
+        $('#large-photo').attr("src",data.photo_path)
+    });
+});
 
 
 
