@@ -269,6 +269,15 @@ def tag_exists(tagword):
 
     return True if Tag.query.filter(Tag.tagword == tagword).first() else False
 
+    
+def add_tag_to_photo(photo_id, tagword):
+    tagword = tagword.capitalize()
+    if tag_exists(tagword):
+        tag = get_tag_by_tagword(tagword)
+    else:
+        tag = create_tag(tagword)
+    add_to_phototags(photo_id, tag.tag_id)
+
 
 def get_photos_by_tag(tag, user_id):
     """Return photos that have been tagged with tagword, for particular user"""

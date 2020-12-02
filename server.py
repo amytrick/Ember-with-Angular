@@ -169,16 +169,19 @@ def print_date(photo_id):
 def upload_new_photo():
     """User selects new photo to upload"""
     image = request.files['test_image']
+    #result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "google_tagging", auto_tagging = 0.6)
+    #result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "aws_rek_tagging", auto_tagging = 0.6)
     result = cloudinary.uploader.upload(image, image_metadata=True)
-
+    #result["tags"] = ['forest','adventure']
     user_id = session['user_id']
     date_uploaded = datetime.now()
     date_taken = datetime.strptime(result['image_metadata']['DateTimeOriginal'], "%Y:%m:%d %H:%M:%S")
     album_id = None
     path = result['url']
     public_id = result['public_id']
-    crud.create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id)
-
+    photo = crud.create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id)
+    for tagword in result["tags"]:
+        crud.add_tag_to_photo(photo.photo_id, tagword)
     return redirect("/library")
 
 
@@ -260,12 +263,9 @@ def assign_rating(photo_id):
 def assign_tag(photo_id):
     """Assigns tag (keyword) to specific photo"""
 
-    tagword = (request.form.get("tag-text")).capitalize()
-    if crud.tag_exists(tagword):
-        tag = crud.get_tag_by_tagword(tagword)
-    else:
-        tag = crud.create_tag(tagword)
-    crud.add_to_phototags(photo_id, tag.tag_id)
+    tagword = (request.form.get("tag-text"))
+
+    crud.add_tag_to_photo(photo_id, tagword)
 
     return display_photo(photo_id)
 
