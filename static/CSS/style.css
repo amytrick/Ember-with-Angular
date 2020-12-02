@@ -7,15 +7,9 @@
     display: inline-block;
 }
 
-/* #large-photo {
-    /* height:800px;
-    width:auto;
-} */
-
 body {
     background-color: rgb(46, 46, 46);
     color: white;
-    /* font-family: 'Montserrat', sans-serif; */
     font-family: 'Comfortaa', cursive;
 }
 
@@ -58,90 +52,85 @@ button {
     height: auto;
 }
 
-/* input[type="radio"] {
-    -webkit-appearance:none;
-} */
 
-/* input[type="radio"]:before {
-    color: white
-} */
-
-/* #star {
-    height: 25px;
-    width: 25px;
-    border:none;
-    color: white;
+#review-form .star-rating {
+  display: inline-flex;
+  flex-direction: row-reverse;
 }
 
-.radio-buttons:checked + label{
-    color: tomato;
-    } */
+#review-form input,
+#review-form textarea {
+  background: none repeat scroll 0 0 #333333;
+  border: 0 none;
+  color: #fff;
+  margin: 0;
+  max-width: 100%;
+  padding: 7px 4px;
+}
+#review-form .radio {
+  display: inline-block;
+}
+#review-form input[type=radio] {
+  display: none;
+} /* renders radio buttons invisible */
 
-/* .radio-star{
-    content: '';
-    background: #fff;
-    border: 2px solid #ddd;
-    display: inline-block;
-    vertical-align: middle;
-    width: 60px;
-    height: 20px;
-    padding: 2px;
-    margin-right: 10px;
-    text-align: center;
-    content: "\f005";
-    font-family: 'FontAwesome';
-} */
+#review-form input[type=radio] + label {
+  display: block;
+}
 
-/* .radio-star:checked{
-    content: "\f005";
-    font-family: 'FontAwesome';
-    color: rgb(223, 12, 12);
-} */
+#review-form input[type='radio'] + .label_star:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-right: 8px;
+  width: 23px;
+}
 
+#review-form input[type=radio] + .label_star::before {
+  content: "\f006";
+} /* Radio Unchecked */
 
-  #review-form .star-rating {
-    display: inline-flex;
-    flex-direction: row-reverse;
-  }
+#review-form input[type=radio]:checked ~ .label_star::before {
+  content: "\f005";
+} /* Radio Checked */
 
-  #review-form input,
-  #review-form textarea {
-    background: none repeat scroll 0 0 #333333;
-    border: 0 none;
-    color: #fff;
-    margin: 0;
-    max-width: 100%;
-    padding: 7px 4px;
-  }
-  #review-form .radio {
-    display: inline-block;
-  }
-  #review-form input[type=radio] {
-    display: none;
-  } /* renders radio buttons invisible */
+.modal-header {
+  background-color: rgb(101, 143, 125);
+}
 
-  #review-form input[type=radio] + label {
-    display: block;
-  }
+.modal-body {
+  background-color: rgb(46, 46, 46);
+}
 
-  #review-form input[type='radio'] + .label_star:before {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding-right: 8px;
-    width: 23px;
-  }
+#side-nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 
-  #review-form input[type=radio] + .label_star::before {
-    content: "\f006";
-  } /* Radio Unchecked */
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
-  #review-form input[type=radio]:checked ~ .label_star::before {
-    content: "\f005";
-  } /* Radio Checked */
+.navbar {
+  width: 100%;
+}
 
+#logo-div {
 
+}
+#search-div{
+  display: flex;
+  align-self: center;
+
+}
+#logout-div {
+  display: flex;
+  align-self: flex-end;
+}

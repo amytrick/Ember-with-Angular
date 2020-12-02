@@ -108,28 +108,6 @@ def logout():
 
     return create_landingpage()
 
-#TODO check if these get used
-# @app.route('/session')
-# def set_session():
-#     """Set value for session['user_id']"""
-
-#     email = request.args.get("login_email")
-#     user = crud.get_user_by_email("email")
-#     user_id = user.user_id
-
-#     session['user_id'] = user_id
-#     session['email'] = email
-
-#     return redirect("/")
-
-
-# @app.route('/session/get')
-# def get_session():
-#     """Get values out of session"""
-
-#     user_id = session['user_id']
-#     email = session['email']
-
 
 #################################
 ##       LIBRARY ROUTES        ##
@@ -352,6 +330,7 @@ def filter_by_rating():
     rating = request.form.get("filter-rating")
     equality_symbol = request.form.get("equality-symbol")
     user_id = session.get('user_id')
+    albums = crud.get_albums_by_user_id(user_id)
 
     if equality_symbol == 'equals':
         photos = crud.get_photos_by_exact_rating(rating, user_id)
@@ -363,7 +342,7 @@ def filter_by_rating():
     global current_photo_list
     current_photo_list = photos
 
-    return render_template("filter.html", photos=photos)
+    return render_template("filter.html", photos=photos, albums=albums)
 
 
 @app.route("/search", methods=["POST"])
