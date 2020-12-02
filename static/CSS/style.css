@@ -30,7 +30,7 @@ a {
 
 .navbar {
     background-color: rgb(29, 29, 29);
-    padding: 2rem 2rem;
+    padding: 0rem 2rem;
 }
 
 #album-link {
@@ -106,31 +106,84 @@ button {
   background-color: rgb(46, 46, 46);
 }
 
-#side-nav {
+#side-nav { /* NOT WORKING */
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
 
-.flex-container {
+
+.flex-container-navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.navbar {
-  width: 100%;
-}
-
-#logo-div {
-
-}
-#search-div{
+.flex-container-sidebar {
+  height: 100%;
   display: flex;
-  align-self: center;
-
+  flex-direction: column;
+  /* justify-content: space-evenly; */
 }
-#logout-div {
+
+#add-photo-div {
   display: flex;
-  align-self: flex-end;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid gray;
+  color: gray;
+  margin: 10px;
+}
+
+#add-photo-button {
+  padding: 1em;
+}
+
+#add-album-div {
+  display: flex;
+  padding-bottom: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  color: gray;
+}
+
+#album-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid gray;
+  margin: 10px;
+  font-size: 15px;
+}
+
+#rating-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid gray;
+  margin: 10px;
+}
+
+#add-to-album-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid gray;
+  margin: 10px;
+}
+
+#add-tag-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid gray;
+  margin: 10px;
+}
+
+#filter-rating-div {
+  padding: 10px 0px;
 }

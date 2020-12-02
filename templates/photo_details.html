@@ -6,49 +6,35 @@ Photo
 
 
 {% block sidebar %}
-<h1>Photo</h1>
+<div id="rating-div">
+    <form action="/rating/{{photo.photo_id}}" method="POST">
 
-<form action="/rating/{{photo.photo_id}}" method="POST">
-    <!-- <p>
-        RATING:
-    </p> -->
-    <!-- <div >
-        <input class="radio-star" id="one-star" type="radio" name="rating" value="1" checked>
-             <label for="one-star" id="star"><i class="fa fa-star"></i></label>
-         <input class="radio-star" id="two-star" type="radio" name="rating" value="2">
-        <input class="radio-star" id="three-star" type="radio" name="rating" value="3">
-        <input class="radio-star" id="four-star" type="radio" name="rating" value="4">
-        <input class="radio-star" id="five-star" type="radio" name="rating" value="5">
-        <input type="submit">
-    </div> -->
+        <div class="form-group" id="review-form">
+            <label id="rating" for="rating"></label>
+            <span class="star-rating star-5">
+                <input type="radio" id="option5" name="star-radios" value="5">
+                    <label class="label_star" id="option5_label" for="option5"></label>
+                <input type="radio" id="option4" name="star-radios" value="4">
+                    <label class="label_star" id="option4_label" for="option4"></label>
+                <input type="radio" id="option3" name="star-radios" value="3">
+                    <label class="label_star" id="option3_label" for="option3"></label>
+                <input type="radio" id="option2" name="star-radios" value="2">
+                    <label class="label_star" id="option2_label" for="option2"></label>
+                <input type="radio" id="option1" name="star-radios" value="1">
+                    <label class="label_star" id="option1_label" for="option1"></label>
+            </span>
+            <input type="submit">
+        </div>
+    </form>
+    
+    <div>
+        <p>RATING : {{photo.rating}} </p>
+    </div>
 
-
-    <div class="form-group" id="review-form">
-        <label id="rating" for="rating">RATING</label>
-        <span class="star-rating star-5">
-            <input type="radio" id="option5" name="star-radios" value="5">
-                <label class="label_star" id="option5_label" for="option5"></label>
-            <input type="radio" id="option4" name="star-radios" value="4">
-                <label class="label_star" id="option4_label" for="option4"></label>
-            <input type="radio" id="option3" name="star-radios" value="3">
-                <label class="label_star" id="option3_label" for="option3"></label>
-            <input type="radio" id="option2" name="star-radios" value="2">
-                <label class="label_star" id="option2_label" for="option2"></label>
-            <input type="radio" id="option1" name="star-radios" value="1">
-                <label class="label_star" id="option1_label" for="option1"></label>
-            <br><input type="submit">
-      </span>
-      </div>
-
-
-
-</form>
-<div>
-    <p>RATING : {{photo.rating}} </p>
 </div>
 
 
-<div>
+<div id="add-to-album-div">
     <form action="/add-to-album/{{photo.photo_id}}", method="POST">
         Add to album:
             <select name="add-to-album">
@@ -60,28 +46,30 @@ Photo
     </form>
 </div>
 
-<div>
-    <form action="/tag/{{photo.photo_id}}", method="POST">
-        <input type="text" name="tag-text">
-        <button id='add-tag'>ADD KEYWORD</button>
-        <i class="fa fa-tag fa-2x"></i>
-    </form>
-</div>
+<div id="tags-div">
+    <div id="add-tag-div">
+        <form action="/tag/{{photo.photo_id}}", method="POST">
+            <input type="text" name="tag-text">
+            <button id='add-tag'>ADD KEYWORD</button>
+            <i class="fa fa-tag fa-2x"></i>
+        </form>
+    </div>
 
-<div id="existing-tags">
-        {% for tag in tags %}
-        <form action="/delete-tag/{{photo.photo_id}}/{{tag.tag_id}}">
-            <p>{{tag.tagword}} <button>
-                <div class="fa-lg">
-                    <span class="fa-layers fa-fw" style="background:transparent">
-                      <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
-                      <i class="fa fas fa-times" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
-                    </span>
-                  </div>
-                </button>
-            </p>
-        {% endfor %}
-    </form>
+    <div id="existing-tags">
+            {% for tag in tags %}
+            <form action="/delete-tag/{{photo.photo_id}}/{{tag.tag_id}}">
+                <p>{{tag.tagword}} <button>
+                    <div class="fa-lg">
+                        <span class="fa-layers fa-fw" style="background:transparent">
+                        <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
+                        <i class="fa fas fa-times" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
+                        </span>
+                    </div>
+                    </button>
+                </p>
+            {% endfor %}
+        </form>
+    </div>
 </div>
 
 {% endblock %}

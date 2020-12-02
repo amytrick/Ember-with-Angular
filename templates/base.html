@@ -32,7 +32,7 @@
   </head>
   <body>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-container-navbar">
           
           <div id="logo-div">
             <button>
@@ -60,28 +60,16 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-2" id="side-nav">
-            <form action="/upload_photo" method="POST" enctype="multipart/form-data">
-              <div>
-                <input type="file" id="test_image" name="test_image"
-                      accept=".jpg, .jpeg, .png">
-              </div>
-              <div>
-                <button>
-                  <div class="fa-lg">
-                    <span class="fa-layers fa-fw" style="background:transparent">
-                      <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
-                      <i class="fa fas fa-plus" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
-                    </span>
-                  </div>
-                </button>
-              </div>
-            </form>
-
-            <!-- <form action="/add_album">
-              <div>
-                <label>ADD NEW ALBUM</label>
-                <input type="text" name="new_album_name">
-                  <button id='add-album-button'>
+          <div class="flex-container-sidebar">
+            
+            <div id="add-photo-div">
+              <form action="/upload_photo" method="POST" enctype="multipart/form-data">
+                <div>
+                  <input type="file" id="test_image" name="test_image"
+                        accept=".jpg, .jpeg, .png">
+                </div>
+                <div>
+                  <button id="add-photo-button">
                     <div class="fa-lg">
                       <span class="fa-layers fa-fw" style="background:transparent">
                         <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
@@ -89,16 +77,38 @@
                       </span>
                     </div>
                   </button>
-              </div>
-            </form> -->
+                </div>
+              <!-- </form>
+                    <div class="fa-lg">
+                      <span class="fa-layers fa-fw" style="background:transparent">
+                        <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
+                        <i class="fa fas fa-plus" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
+                      </span>
+                    </div>
+                  </button>
+                </div>
+              </form> -->
+            </div>
 
-            <div id="add-album">
-          
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#addAlbum">
-                  Add new album
+            
+
+            <div id="album-div">
+
+              <div id="add-album-div"> 
+                <!-- Button to trigger modal -->
+                <!-- <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#addAlbum">
+                  ADD ALBUM
+                </button> -->
+                ALBUMS
+                <button id="add-album-button" type="button" data-toggle="modal" data-target="#addAlbum">
+                  <div class="fa-lg">
+                    <span class="fa-layers fa-fw" style="background:transparent">
+                      <!-- <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i> -->
+                      <i class="fa fas fa-plus" style="color: white" data-fa-transform="shrink-6"></i>
+                    </span>
+                  </div>
                 </button>
-          
+
                 <!-- Modal -->
                 <div class="modal fade" id="addAlbum" tabindex="-1" role="dialog" aria-labelledby="addAlbum" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -127,21 +137,24 @@
                 </div>
               </div>
 
-            {% for album in albums %}
-              <div>
-                <ul>
-                  <li>
-                    <a href ="/library/{{ album.album_id }}"> {{album.name}} 
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            {% endfor %}
+              {% for album in albums %}
+                <div class="individual-album-div">
+                  <!-- <ul> -->
+                    <!-- <li> -->
+                      <a href ="/library/{{ album.album_id }}"> {{album.name}} 
+                      </a>
+                    <!-- </li> -->
+                  <!-- </ul> -->
+                </div>
+              {% endfor %}
+            </div>
 
           {% block sidebar %}
 
           {% endblock %}
+          </div>
         </div>
+      
         <div class="col-10">
           {% block body %}
     
