@@ -247,6 +247,8 @@ button {
   opacity: 1;
   box-shadow: 0px 8px 15px black;
   border-radius: 50%;
+  background-color:rgba(0,0,0,.15);
+
 }
 
 #delete {
