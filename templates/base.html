@@ -42,7 +42,7 @@
           
           <div id="search-div">
             <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+              <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search">
               <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search fa-lg"  style="color:rgb(255, 255, 255)"></i></button>
             </form>
           </div>
@@ -100,41 +100,13 @@
                   ADD ALBUM
                 </button> -->
                 ALBUMS
-                <button id="add-album-button" type="button" data-toggle="modal" data-target="#addAlbum">
-                  <div class="fa-lg">
-                    <span class="fa-layers fa-fw" style="background:transparent">
-                      <!-- <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i> -->
-                      <i class="fa fas fa-plus" style="color: white" data-fa-transform="shrink-6"></i>
-                    </span>
+                <button type="button" id="add-album-button" data-toggle="modal" data-target="#add-album">
+                  <div>
+                      <i class="fa fas fa-plus fa-sm" style="color: white"></i>
                   </div>
                 </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="addAlbum" tabindex="-1" role="dialog" aria-labelledby="addAlbum" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title w-100 font-weight-bold py-2">Add album</h4>
-          
-                        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Add new album</h5> -->
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <!-- New account form -->
-                        <form action="/add_album">
-                          <p><input type="text" name="new_album_name" id="add-album-button"><br>First name</p>
-                          <p><input type="submit"></p>
-                        </form>
-                      </div>
-                      <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Login</button>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
+
               </div>
 
               {% for album in albums %}
@@ -176,7 +148,32 @@
       </form>
     </div> -->
 
+    <!-- Add album modal -->
+    <div class="modal fade" id="add-album" tabindex="-1" role="dialog" aria-labelledby="add-album" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100 font-weight-bold py-2">Add album</h4>
 
+            <!-- <h5 class="modal-title" id="exampleModalLongTitle">Add new album</h5> -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- New account form -->
+            <form action="/add_album">
+              <p><input type="text" name="new_album_name" id="add-album-button"><br>New Album</p>
+              <p><input type="submit"></p>
+            </form>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Login</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
 
     {% block after_body %}{% endblock %}
     <script src="/static/JS/photos.js"></script>

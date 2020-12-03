@@ -99,18 +99,22 @@ button {
 } /* Radio Checked */
 
 .modal-header {
-  background-color: rgb(101, 143, 125);
+  background-color: rgb(135, 139, 138);
 }
 
 .modal-body {
   background-color: rgb(46, 46, 46);
 }
+ .modal-fade{
+  z-index: 100;
+}
 
-#side-nav { /* NOT WORKING */
+#side-nav {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
+/* NOT WORKING */
 
 
 .flex-container-navbar {
@@ -145,9 +149,9 @@ button {
   flex-direction: row;
   justify-content: space-between;
   color: gray;
-}
+ }
 
-#album-div {
+ #album-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -175,15 +179,34 @@ button {
   margin: 10px;
 }
 
-#add-tag-div {
+#tags-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  /* border: 1px solid gray; */
+  margin: 10px;
+}
+
+#filter-rating-div {
+  padding: 10px 0px;
+}
+
+.card {
+  background-color: rgb(46, 46, 46);
+}
+
+#tags-plus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#rename-album-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 20px;
   border: 1px solid gray;
   margin: 10px;
-}
-
-#filter-rating-div {
-  padding: 10px 0px;
 }

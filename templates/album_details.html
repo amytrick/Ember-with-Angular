@@ -6,30 +6,21 @@
 
 
 {% block sidebar %}
-  <h1>Album : {{ album.name }}</h1>
 
-  <div>
+  <div id="rename-album-div">
     <form action="/rename-album/{{ album.album_id }}" method="POST">
-      <input type="text" name="rename-album">
-      <button>Rename album</button>
+      <input type="text" placeholder="RENAME ALBUM" name="rename-album">
+      <button></button>
     </form>
   </div>
-
-  {% for album in albums %}
-  <div>
-    <ul>
-      <li>
-        <a href ="/library/{{ album.album_id }}"> {{album.name}} 
-        </a>
-      </li>
-    </ul>
-  </div>
-{% endfor %}
 
 {% endblock %}
 
 
 {% block body %}
+<div id="album-name-div">
+  <h1>{{ album.name }}</h1>
+</div>
 
   {% for photo in photoalbum %}
     <div class="library">

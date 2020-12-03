@@ -47,28 +47,52 @@ Photo
 </div>
 
 <div id="tags-div">
-    <div id="add-tag-div">
-        <form action="/tag/{{photo.photo_id}}", method="POST">
-            <input type="text" name="tag-text">
-            <button id='add-tag'>ADD KEYWORD</button>
-            <i class="fa fa-tag fa-2x"></i>
-        </form>
-    </div>
+
 
     <div id="existing-tags">
-            {% for tag in tags %}
-            <form action="/delete-tag/{{photo.photo_id}}/{{tag.tag_id}}">
-                <p>{{tag.tagword}} <button>
-                    <div class="fa-lg">
-                        <span class="fa-layers fa-fw" style="background:transparent">
-                        <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
-                        <i class="fa fas fa-times" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
-                        </span>
+        <button type="button" data-toggle="collapse" data-target="#collapse-tags" aria-expanded="false" aria-controls="collapse-tags">
+            <i class="fa fa-tag fa-2x" style=color:white></i>
+        </button>
+        <div class="collapse" id="collapse-tags">
+            <div class="card card-body">
+                <div id="add-tag-div">
+                    <span id="tags-plus">
+                        TAGS
+                        <button type="button" data-toggle="collapse" data-target="#collapse-add-tag" aria-expanded="false" aria-controls="collapse-add-tag">
+                            <i class="fa fas fa-plus fa-sm" style="color: white"></i>
+                        </button>
+                    </span>
+                    <div class="collapse" id="collapse-add-tag">
+                        <div class="card card-body">
+                            <div id="add-tag-div">
+                                <form action="/tag/{{photo.photo_id}}", method="POST">
+                                    <input type="text" placeholder="ADD TAG" name="tag-text">
+                                    <button id='add-tag'></button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    </button>
-                </p>
-            {% endfor %}
-        </form>
+                </div>
+
+                <div id="individual-tag-div">
+                    {% for tag in tags %}
+                    <form action="/delete-tag/{{photo.photo_id}}/{{tag.tag_id}}">
+                        <p> 
+                            <button>
+                                <div class="fa-lg">
+                                    <span class="fa-layers fa-fw" style="background:transparent">
+                                        <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
+                                        <i class="fa fas fa-times" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
+                                    </span>
+                                </div>
+                            </button>
+                            {{tag.tagword}}
+                        </p>
+                    </form>  
+                    {% endfor %} 
+                </div> 
+            </div>
+        </div>
     </div>
 </div>
 
