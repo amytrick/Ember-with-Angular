@@ -6,11 +6,9 @@ Search Results
 
 
 {% block body %}
-<h1>Filter results</h1>
-
 
 {% for photo in photos %}
-  <div class="library">
+  <div class="library" id="filtered-library">
     <a href="/photodetails/{{photo.photo_id}}">
       <img class="library-img" id="library-id" src= {{ photo.path }}>
     </a>

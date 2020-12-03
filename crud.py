@@ -23,7 +23,7 @@ def create_user(fname, lname, email, password):
 def create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id=''):
     """Create and return photo instance"""
 
-    photo = Photo(user_id=user_id, date_uploaded=date_uploaded, date_taken=date_taken, album_id=album_id, path=path, public_id=public_id)
+    photo = Photo(user_id=user_id, date_uploaded=date_uploaded, date_taken=date_taken, album_id=album_id, path=path, public_id=public_id, rating=0)
 
     db.session.add(photo)
     db.session.commit()

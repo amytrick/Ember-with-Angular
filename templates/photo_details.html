@@ -31,11 +31,9 @@ Photo
             });
          </script>
     </form>
-    
-    <div>
+    <!-- <div>
         <p>RATING : {{photo.rating}} </p>
-    </div>
-
+    </div> -->
 </div>
 
 
@@ -124,8 +122,13 @@ Photo
 
 
         <div class="col-10" id="photo holder column">
-            <div>
+            <div id="selected-photo-div">
                 <img class="img-fluid" id='large-photo' src={{ photo.path }}>
+            </div>
+            <div id="delete-photo-button-div">
+                <form action="/delete_photo/{{photo.photo_id}}", method="POST">
+                    <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white"></i></button>
+                </form>
             </div>
         </div>
 

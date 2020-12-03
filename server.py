@@ -146,7 +146,7 @@ def print_date(photo_id):
 @app.route("/upload_photo", methods=["POST"])
 def upload_new_photo():
     """User selects new photo to upload"""
-    image = request.files['test_image']
+    image = request.files['photo-upload']
     #result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "google_tagging", auto_tagging = 0.6)
     #result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "aws_rek_tagging", auto_tagging = 0.6)
     result = cloudinary.uploader.upload(image, image_metadata=True)

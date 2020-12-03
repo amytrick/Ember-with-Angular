@@ -11,35 +11,49 @@ Library
 
 {% block body %}
             
+<div id="filter-rating-div">
+  <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
+    <i class="fas fa-filter fa-2x" style=color:white></i>
+  </button>
 
-  <div id="filter-rating-div">
-    <form action="/filterby/rating" method="POST">
-        FILTER BY RATING:
-        <input type="radio" name="equality-symbol" value="equals">
-        <label>=</label>
-        <input type="radio" name="equality-symbol" value="greater">
-        <label>≥</label>
-        <input type="radio" name="equality-symbol" value="less">
-        <label>≤</label>
+  <div class="collapse" id="collapse-filter">
+    <div class="card card-body">
+        <div id="rating-filter-div">
 
-        <div class="form-group" id="review-form">
-          <label id="rating" for="rating"></label>
-          <span class="star-rating star-5">
-              <input type="radio" id="option5" name="filter-rating" value="5">
-                  <label class="label_star" id="option5_label" for="option5"></label>
-              <input type="radio" id="option4" name="filter-rating" value="4">
-                  <label class="label_star" id="option4_label" for="option4"></label>
-              <input type="radio" id="option3" name="filter-rating" value="3">
-                  <label class="label_star" id="option3_label" for="option3"></label>
-              <input type="radio" id="option2" name="filter-rating" value="2">
-                  <label class="label_star" id="option2_label" for="option2"></label>
-              <input type="radio" id="option1" name="filter-rating" value="1">
-                  <label class="label_star" id="option1_label" for="option1"></label>
-          </span>
-          <input type="submit">
+
+        <div id="filter-buttons-div">
+          <form action="/filterby/rating" method="POST">
+              FILTER BY RATING:
+              <input type="radio" name="equality-symbol" value="equals">
+              <label>=</label>
+              <input type="radio" name="equality-symbol" value="greater">
+              <label>≥</label>
+              <input type="radio" name="equality-symbol" value="less">
+              <label>≤</label>
+
+              <div class="form-group" id="review-form">
+                <label id="rating" for="rating"></label>
+                <span class="star-rating star-5">
+                    <input type="radio" id="option5" name="filter-rating" value="5">
+                        <label class="label_star" id="option5_label" for="option5"></label>
+                    <input type="radio" id="option4" name="filter-rating" value="4">
+                        <label class="label_star" id="option4_label" for="option4"></label>
+                    <input type="radio" id="option3" name="filter-rating" value="3">
+                        <label class="label_star" id="option3_label" for="option3"></label>
+                    <input type="radio" id="option2" name="filter-rating" value="2">
+                        <label class="label_star" id="option2_label" for="option2"></label>
+                    <input type="radio" id="option1" name="filter-rating" value="1">
+                        <label class="label_star" id="option1_label" for="option1"></label>
+                </span>
+                <input type="submit">
+            </div>
+          </form>
+        </div>
+
       </div>
-    </form>
+    </div>
   </div>
+</div>
 
   {% for photo in photos %}
     <div class="library">

@@ -63,19 +63,24 @@
           <div class="flex-container-sidebar">
             
             <div id="add-photo-div">
+              
               <form action="/upload_photo" method="POST" enctype="multipart/form-data">
-                <div>
-                  <input type="file" id="test_image" name="test_image"
+                <div id="upload-photo-button-div">
+                  <div>UPLOAD PHOTO</div>
+                  <div><i class="fa fas fa-plus fa-sm" style="color: white"></i></div>
+                  <input type="file" id="photo-upload-button" name="photo-upload"
                         accept=".jpg, .jpeg, .png">
                 </div>
-                <div>
+                <div id="upload-button">
                   <button id="add-photo-button">
-                    <div class="fa-lg">
-                      <span class="fa-layers fa-fw" style="background:transparent">
+                    <!-- <div> -->
+                    <!-- <div class="fa-lg"> -->
+                      UPLOAD
+                      <!-- <span class="fa-layers fa-fw" style="background:transparent">
                         <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
                         <i class="fa fas fa-plus" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
-                      </span>
-                    </div>
+                      </span> -->
+                    <!-- </div> -->
                   </button>
                 </div>
               </form>
