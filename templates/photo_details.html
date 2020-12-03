@@ -109,10 +109,10 @@ Photo
         </form>
     </div>
 
-    <div class="row" id="photo body">
+    <div class="row" id="photo-body">
 
 
-        <div class="col-1" id="previous column">
+        <div class="col-1" id="previous-column">
             <div>
                 <!-- <form action="/previous.json"> -->
                     <button type="submit" id="previous"><i class="fa fa-angle-double-left fa-3x" style="color:white"></i></button>
@@ -121,7 +121,7 @@ Photo
         </div>
 
 
-        <div class="col-10" id="photo holder column">
+        <div class="col-10" id="photo-column">
             <div id="selected-photo-div">
                 <img class="img-fluid" id='large-photo' src={{ photo.path }}>
             </div>
@@ -129,11 +129,17 @@ Photo
                 <form action="/delete_photo/{{photo.photo_id}}", method="POST">
                     <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white"></i></button>
                 </form>
+
+                    <!-- <span class="fa-layers fa-fw fa-2x" id="delete">
+                      <i class="far fa-trash-alt" style="color:white"></i>
+                      <i class="far fa-trash-alt style="color: white" data-fa-transform="shrink-3"></i>
+                    </span> -->
+                </form>
             </div>
         </div>
 
         
-        <div class="col-1" id="next column">
+        <div class="col-1" id="next-column">
             <div>
                 <!-- <form action="/next"> -->
                     <button type="submit" id="next"><i class="fa fa-angle-double-right fa-3x" style="color:white"></i></button>
