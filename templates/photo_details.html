@@ -8,7 +8,6 @@ Photo
 {% block sidebar %}
 <div id="rating-div">
     <form action="/rating/{{photo.photo_id}}" method="POST">
-
         <div class="form-group" id="review-form">
             <label id="rating" for="rating"></label>
             <span class="star-rating star-5">
@@ -25,6 +24,12 @@ Photo
             </span>
             <input type="submit">
         </div>
+        <script type="text/javascript">
+            var preSelectRating = {{photo.rating}};
+            $(function(){
+                $('input[name=star-radios][value=' + preSelectRating + ']').prop('checked',true)
+            });
+         </script>
     </form>
     
     <div>

@@ -265,7 +265,7 @@ def next_photo():
     if current_index_clicked == len(current_photo_list):
         current_index_clicked = 0
     next_photo = current_photo_list[current_index_clicked]
-    return jsonify(photo_path=next_photo.path)
+    return jsonify(photo_path=next_photo.path, photo_rating=next_photo.rating)
     # return redirect(f"/photodetails/{next_photo.photo_id}")
 
 
@@ -276,7 +276,7 @@ def previous_photo():
     prev_photo = current_photo_list[current_index_clicked]
     if current_index_clicked == 0:
         current_index_clicked = len(current_photo_list)
-    return jsonify(photo_path=prev_photo.path)
+    return jsonify(photo_path=prev_photo.path, photo_rating=prev_photo.rating)
     # return redirect(f"/photodetails/{prev_photo.photo_id}")
 
 

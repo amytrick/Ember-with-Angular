@@ -60,13 +60,18 @@
 
 $('#previous').on('click', () => {
    $.get('/previous.json', function(data){
-        $('#large-photo').attr("src",data.photo_path)
+        $('#large-photo').attr("src",data.photo_path);
+        $('input[name=star-radios][value=' + data.photo_rating + ']').prop('checked',true);
     });
 });
 
 $('#next').on('click', () => {
    $.get('/next.json', function(data){
         $('#large-photo').attr("src",data.photo_path)
+        $('input[name=star-radios][value=' + data.photo_rating + ']').prop('checked',true);
     });
 });
+
+
+
 
