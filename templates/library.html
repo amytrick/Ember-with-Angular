@@ -22,17 +22,22 @@ Library
         <input type="radio" name="equality-symbol" value="less">
         <label>≤</label>
 
-        <input type="radio" name="filter-rating" value="1">
-        <label>1</label>
-        <input type="radio" name="filter-rating" value="2">
-        <label>2</label>
-        <input type="radio" name="filter-rating" value="3">
-        <label>3</label>
-        <input type="radio" name="filter-rating" value="4">
-        <label>4</label>
-        <input type="radio" name="filter-rating" value="5">
-        <label>5</label>
-        <input type="submit">
+        <div class="form-group" id="review-form">
+          <label id="rating" for="rating"></label>
+          <span class="star-rating star-5">
+              <input type="radio" id="option5" name="filter-rating" value="5">
+                  <label class="label_star" id="option5_label" for="option5"></label>
+              <input type="radio" id="option4" name="filter-rating" value="4">
+                  <label class="label_star" id="option4_label" for="option4"></label>
+              <input type="radio" id="option3" name="filter-rating" value="3">
+                  <label class="label_star" id="option3_label" for="option3"></label>
+              <input type="radio" id="option2" name="filter-rating" value="2">
+                  <label class="label_star" id="option2_label" for="option2"></label>
+              <input type="radio" id="option1" name="filter-rating" value="1">
+                  <label class="label_star" id="option1_label" for="option1"></label>
+          </span>
+          <input type="submit">
+      </div>
     </form>
   </div>
 
