@@ -68,6 +68,21 @@ button {
   padding: 20px 0px;
 }
 
+#filter-search-rating-div {
+  display: flex;
+  display: row;
+  /* justify-content: space-between; */
+}
+
+#filter-button {
+  display: flex;
+  align-self: flex-start;
+}
+
+#search-results-title {
+  padding: 0px 500px;
+}
+
 
 /* ****** NAV BAR ****** */
 
