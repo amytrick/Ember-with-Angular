@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-container-navbar">
           
           <div id="logo-div">
-            <button>
+            <button data-toggle="tooltip" data-placement="bottom" title="Home">
               <a class="navbar-brand" id="logo" href="/return_to_library">ember</a>
             </button>
           </div>
@@ -43,7 +43,7 @@
           <div id="search-div">
             <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
               <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search">
-              <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search fa-lg"  style="color:rgb(255, 255, 255)"></i></button>
+              <button class="btn my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="bottom" title="Search by keyword"><i class="fas fa-search fa-lg"  style="color:rgb(255, 255, 255)"></i></button>
             </form>
           </div>
 
@@ -67,7 +67,9 @@
               <form action="/upload_photo" method="POST" enctype="multipart/form-data">
                 <div id="upload-photo-button-div">
                   <div>UPLOAD PHOTO</div>
-                  <div><i class="fa fas fa-plus fa-sm" style="color: white"></i></div>
+                  <div data-toggle="tooltip" data-placement="bottom" title="Choose file">
+                    <i class="fa fas fa-plus fa-sm" style="color: white"></i>
+                  </div>
                   <input type="file" id="photo-upload-button" name="photo-upload"
                         accept=".jpg, .jpeg, .png">
                 </div>
@@ -105,11 +107,13 @@
                   ADD ALBUM
                 </button> -->
                 ALBUMS
-                <button type="button" id="add-album-button" data-toggle="modal" data-target="#add-album">
-                  <div>
-                      <i class="fa fas fa-plus fa-sm" style="color: white"></i>
-                  </div>
-                </button>
+                <span data-toggle="tooltip" data-placement="bottom" title="Add new album">
+                  <button type="button" id="add-album-button" data-toggle="modal" data-target="#add-album" >
+                    <div>
+                        <i class="fa fas fa-plus fa-sm" style="color: white"></i>
+                    </div>
+                  </button>
+                </span>
 
 
               </div>

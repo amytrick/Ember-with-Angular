@@ -74,11 +74,9 @@ $('#next').on('click', () => {
     });
 });
 
-// $(document).ready(function(){
-//     $("#login-button").click(function(){
-//         $("#myModal2").modal({backdrop: false});
-//     });
-// });
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
 
 

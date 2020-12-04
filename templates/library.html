@@ -12,9 +12,11 @@ Library
 {% block body %}
             
 <div id="filter-rating-div">
-  <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
-    <i class="fas fa-filter fa-2x" style=color:white></i>
-  </button>
+  <span data-toggle="tooltip" data-placement="bottom" title="Filter">
+    <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
+      <i class="fas fa-filter fa-2x" style=color:white></i>
+    </button>
+  </span>
 
   <div class="collapse" id="collapse-filter">
     <div class="card card-body">
