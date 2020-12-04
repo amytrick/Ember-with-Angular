@@ -60,6 +60,7 @@
 
 $('#previous').on('click', () => {
    $.get('/previous.json', function(data){
+        console.log("click")
         $('#large-photo').attr("src",data.photo_path);
         $('input[name=star-radios][value=' + data.photo_rating + ']').prop('checked',true);
     });
@@ -67,6 +68,7 @@ $('#previous').on('click', () => {
 
 $('#next').on('click', () => {
    $.get('/next.json', function(data){
+        console.log("click")
         $('#large-photo').attr("src",data.photo_path)
         $('input[name=star-radios][value=' + data.photo_rating + ']').prop('checked',true);
     });
