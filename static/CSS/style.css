@@ -75,7 +75,8 @@ button {
 
 
 #search-results-title {
-  padding: 0px 500px;
+  padding-left: 500px;
+  color: gray;
 }
 
 

@@ -361,7 +361,7 @@ def searchpage():
 
     global current_photo_list
     current_photo_list = photos
-    return render_template("search-results.html", photos=photos, albums=albums)
+    return render_template("search-results.html", photos=photos, albums=albums, tagword=tagword)
 
 
 
