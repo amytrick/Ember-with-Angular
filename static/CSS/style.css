@@ -28,6 +28,24 @@ button {
 }
 
 
+/* ****** LOGIN PAGE ****** */
+
+
+#logo-cover {
+  position: relative;
+  font-family: 'League Script', cursive;
+  font-size: 80pt;
+  margin: 0px;
+  /* top: 40px; */
+}
+
+#login-page {
+  position: relative;
+  text-align: center;
+  top: 100px;
+}
+
+
 /* ****** LIBRARY PAGE ****** */
 
 .library-img {
@@ -51,19 +69,16 @@ button {
 }
 
 
-/* ****** LOGIN PAGE ****** */
-
-#logo {
-  font-family: 'League Script', cursive;
-  font-size: 40pt;
-}
-
-
 /* ****** NAV BAR ****** */
 
 .navbar {
     background-color: rgb(29, 29, 29);
     padding: 0rem 2rem;
+}
+
+#logo {
+  font-family: 'League Script', cursive;
+  font-size: 40pt;
 }
 
 
@@ -308,12 +323,33 @@ button {
 /* ****** MODALS ****** */
 
 .modal-header {
-  background-color: rgb(135, 139, 138);
+  background-color: rgba(255, 255, 255, 0.192);
+  text-align: center;
+}
+
+#modal-header-library {
+  background-color: rgb(46, 46, 46);
 }
 
 .modal-body {
-  background-color: rgb(46, 46, 46);
+  background-color: rgba(255, 255, 255, 0.192);
+  text-align: center;
 }
+
+#modal-body-library {
+  background-color:  rgb(46, 46, 46);
+}
+
  .modal-fade{
   z-index: 100;
 }
+
+.modal .title {
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.loginpage-modal {
+  background-color: rgba(255, 255, 255, 0.192);
+}
+

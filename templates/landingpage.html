@@ -32,19 +32,7 @@
         color: black
       }
 
-      #logo-cover {
-        position: relative;
-        font-family: 'League Script', cursive;
-        font-size: 80pt;
-        margin: 0px;
-        /* top: 40px; */
-      }
 
-      #login-page {
-        position: relative;
-        text-align: center;
-        top: 100px;
-      }
 
       /* .modal {
       } */
@@ -61,15 +49,15 @@
     <p id="logo-cover">ember</p>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#createNewAccount">
+      <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#create-new-account">
         Create an account
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="createNewAccount" tabindex="-1" role="dialog" aria-labelledby="createNewAccount" aria-hidden="true">
+      <div class="modal fade loginpage-modal" id="create-new-account" tabindex="-1" role="dialog" aria-labelledby="create-new-account" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <!-- Modal content -->
-          <div class="modal-content">
+          <div class="modal-content loginpage-modal rounded-0">
             <div class="modal-header">
               <h4 class="modal-title white-text w-100 font-weight-bold py-2">Create an account</h4>
 
@@ -96,7 +84,7 @@
       </div>
 
                 <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#login">
+      <button type="button" class="btn btn-outline-dark" id="login-button" data-toggle="modal" data-target="#login">
         Login
       </button>
 
@@ -104,9 +92,9 @@
       <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <!-- Modal content -->
-          <div class="modal-content">
+          <div class="modal-content loginpage-modal rounded-0">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+              <h4 class="modal-title white-text w-100 font-weight-bold py-2">Login</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
