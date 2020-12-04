@@ -62,22 +62,17 @@
         <div class="col-2" id="side-nav">
           <div class="flex-container-sidebar">
             
-            <div id="add-photo-div">
+            <div id="add-photo-div" class="plus-button">
               
               <form id="upload-photo-form" action="/upload_photo" method="POST" enctype="multipart/form-data">
                 <div id="upload-photo-button-div">
                   <div>UPLOAD PHOTO</div>
-                  <div data-toggle="tooltip" data-placement="bottom" title="Choose file">
+                  <div  data-toggle="tooltip" data-placement="bottom" title="Choose file">
                     <i class="fa fas fa-plus fa-sm" style="color: white"></i>
                   </div>
                   <input type="file" id="photo-upload-button" name="photo-upload"
                         accept=".jpg, .jpeg, .png">
                 </div>
-                <!-- <div id="upload-button">
-                  <button id="add-photo-button">
-                      UPLOAD
-                  </button>
-                </div> -->
               </form>
             </div>
 
@@ -87,7 +82,7 @@
               <div id="add-album-div"> 
                 ALBUMS
                 <span data-toggle="tooltip" data-placement="bottom" title="Add new album">
-                  <button type="button" id="add-album-button" data-toggle="modal" data-target="#add-album" >
+                  <button class="plus-button" type="button" id="add-album-button" data-toggle="modal" data-target="#add-album" >
                     <div>
                         <i class="fa fas fa-plus fa-sm" style="color: white"></i>
                     </div>

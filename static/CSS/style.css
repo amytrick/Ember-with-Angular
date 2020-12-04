@@ -240,10 +240,17 @@ button {
   margin: 10px;
 }
 
+
   #upload-photo-button-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .plus-button:hover {
+    border: 1px solid white;
+    outline: 1px solid white;
+    border-radius: 2px;
   }
 
     #photo-upload-button{
