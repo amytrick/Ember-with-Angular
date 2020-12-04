@@ -64,7 +64,7 @@
             
             <div id="add-photo-div">
               
-              <form action="/upload_photo" method="POST" enctype="multipart/form-data">
+              <form id="upload-photo-form" action="/upload_photo" method="POST" enctype="multipart/form-data">
                 <div id="upload-photo-button-div">
                   <div>UPLOAD PHOTO</div>
                   <div data-toggle="tooltip" data-placement="bottom" title="Choose file">
@@ -73,39 +73,18 @@
                   <input type="file" id="photo-upload-button" name="photo-upload"
                         accept=".jpg, .jpeg, .png">
                 </div>
-                <div id="upload-button">
+                <!-- <div id="upload-button">
                   <button id="add-photo-button">
-                    <!-- <div> -->
-                    <!-- <div class="fa-lg"> -->
                       UPLOAD
-                      <!-- <span class="fa-layers fa-fw" style="background:transparent">
-                        <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
-                        <i class="fa fas fa-plus" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
-                      </span> -->
-                    <!-- </div> -->
                   </button>
-                </div>
+                </div> -->
               </form>
-              <!--      <div class="fa-lg">
-                      <span class="fa-layers fa-fw" style="background:transparent">
-                        <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
-                        <i class="fa fas fa-plus" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
-                      </span>
-                    </div>
-                  </button>
-                </div>
-              </form> -->
             </div>
 
             
 
             <div id="album-div">
-
               <div id="add-album-div"> 
-                <!-- Button to trigger modal -->
-                <!-- <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#addAlbum">
-                  ADD ALBUM
-                </button> -->
                 ALBUMS
                 <span data-toggle="tooltip" data-placement="bottom" title="Add new album">
                   <button type="button" id="add-album-button" data-toggle="modal" data-target="#add-album" >
@@ -114,18 +93,12 @@
                     </div>
                   </button>
                 </span>
-
-
               </div>
 
               {% for album in albums %}
                 <div class="individual-album-div">
-                  <!-- <ul> -->
-                    <!-- <li> -->
                       <a href ="/library/{{ album.album_id }}"> {{album.name}} 
                       </a>
-                    <!-- </li> -->
-                  <!-- </ul> -->
                 </div>
               {% endfor %}
             </div>
@@ -145,19 +118,7 @@
       </div>
     </div>
 
-
-
-    <!-- <form action="/return_to_library">
-      <button name="home">My library</button>
-    </form>
-
-    <div>
-      <form action="/search" method="POST">
-        Search <input type="text" name="search2">
-        <button>Go!</button>
-      </form>
-    </div> -->
-
+    
     <!-- Add album modal -->
     <div class="modal fade" id="add-album" tabindex="-1" role="dialog" aria-labelledby="add-album" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -165,8 +126,6 @@
         <div class="modal-content rounded-0">
           <div class="modal-header" id="modal-header-library">
             <h4 class="modal-title w-100 font-weight-bold py-2">Add album</h4>
-
-            <!-- <h5 class="modal-title" id="exampleModalLongTitle">Add new album</h5> -->
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -178,9 +137,6 @@
               <p><input type="submit"></p>
             </form>
           </div>
-          <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Login</button>
-          </div> -->
         </div>
       </div>
     </div>

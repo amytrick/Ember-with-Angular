@@ -78,5 +78,8 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
 
+document.getElementById("photo-upload-button").onchange = function() {
+    document.getElementById("upload-photo-form").submit();
+}
 
 
