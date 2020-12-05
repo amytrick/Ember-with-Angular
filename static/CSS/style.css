@@ -83,8 +83,9 @@ button {
 /* ****** NAV BAR ****** */
 
 .navbar {
-    background-color: rgb(29, 29, 29);
+    background-color: rgb(46, 46, 46);
     padding: 0rem 2rem;
+    border: rgb(30, 30, 30)
 }
 
 #logo {
@@ -98,23 +99,28 @@ button {
 #photo-column {
   display: flex;
   justify-content: center;
+}
+
+#selected-photo-div {
+  display: flex;
+  justify-content: center;
   margin: 0px;
   background-color: honeydew;
 }
 
-#photo-column:hover #delete {
+#selected-photo-div:hover #delete {
   opacity: 1;
-  box-shadow: 0px 8px 15px black;
+  /* box-shadow: 0px 8px 15px black;
   border-radius: 50%;
-  background-color:rgba(0,0,0,.15);
+  background-color:rgba(0,0,0,.15); */
 }
 
 #delete {
   position: absolute;
   width: 60px;
   height: 60px;
-  left:50px;
-  top: 50px;
+  left:30px;
+  top: 30px;
   text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
@@ -126,12 +132,14 @@ button {
   height: auto;
 }
 
-
 #previous-column {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   width: 100px;
-  height: 1100px;
-  left:0px;
+  height: 100%;
+  left:14px;
   text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
@@ -142,15 +150,23 @@ button {
   background-color:rgba(0,0,0,.15);
 }
 
-#previous-button-div #next-button-div {
-  height: 500px;
+#previous-button-div, #next-button-div {
+  display: flex;
+  align-item: center;
+}
+
+#previous, #next {
+  outline: none;
 }
 
 #next-column {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   width: 100px;
-  height: 1100px;
-  left: 100%;
+  height: 100%;
+  left:93%;
   text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
@@ -371,3 +387,62 @@ button {
   background-color: rgba(255, 255, 255, 0.192);
 }
 
+
+
+
+/* #review-form .filter-rating {
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+#review-form input,
+#review-form textarea {
+  background: none repeat scroll 0 0 #333333;
+  border: 0 none;
+  color: #fff;
+  margin: 0;
+  max-width: 100%;
+  padding: 7px 4px;
+}
+
+#review-form .radio {
+  display: inline-block;
+}
+
+#review-form input[type=radio] {
+  display: none;
+} /* renders radio buttons invisible */
+
+/* #review-form input[type=radio] + label {
+  display: block;
+}
+
+#review-form input[type='radio'] + .label_star:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-right: 8px;
+  width: 23px;
+} */
+
+/* #review-form input[type=radio] + .equals::before {
+  content: "\f52c";
+} /* Radio Unchecked */
+
+/* #review-form input[type=radio] + .greater::before {
+  content: "\f006";
+}
+
+#review-form input[type=radio] + .less::before {
+  content: "\f532";
+} */
+
+/* #review-form input[type=radio]:checked ~ .label_star::before {
+  border-radius: 50%; 
+ 
+  border: 1px solid black;
+} Radio Checked */ */

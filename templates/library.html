@@ -26,14 +26,41 @@ Library
         <div id="filter-buttons-div">
           <form action="/filterby/rating" method="POST">
               FILTER BY RATING:
+              <!-- ORIGINAL WITH RADIO BUTTONS VISIBLE
               <input type="radio" name="equality-symbol" value="equals">
               <label>=</label>
               <input type="radio" name="equality-symbol" value="greater">
               <label>≥</label>
               <input type="radio" name="equality-symbol" value="less">
-              <label>≤</label>
+              <label>≤</label> -->
 
-              <div class="form-group" id="review-form">
+<!--  FROM CODEPEN
+                <div class="filter-ratings-form" id="review-form">
+                          <label id="rating" for="rating"></label>
+                          <span class="filter-rating star-5">
+                              <input type="radio" id="equals" name="equality-symbol" value="3">
+                                  <label class="equals" id="option3_label" for="equals">=</label>
+                              
+                              <input type="radio" id="greater" name="equality-symbol" value="2">
+                                  <label class="greater" id="option2_label" for="less">≥</label>
+                              
+                              <input type="radio" id="less" name="equality-symbol" value="1">
+                                  <label class="less" id="option1_label" for="greater">≤</label>
+                          </span>
+                      </div>
+              
+                  </form> -->
+<!-- FROM FIDDLE -->
+                <div class="filters">
+                    <input type="radio" id="equals" name="equality-symbol" value="equals" style="display: none;" />
+                        <label for="equals">=</label>
+                    <input type="radio" id="greater" name="equality-symbol" value="greater" style="display: none;" />
+                        <label for="greater">≥</label>
+                    <input type="radio" id="less" name="equality-symbol" value="less" style="display: none;" />
+                        <label for="less">≤</label>
+                </div>
+
+              <div class="filter-ratings-form" id="review-form">
                 <label id="rating" for="rating"></label>
                 <span class="star-rating star-5">
                     <input type="radio" id="option5" name="filter-rating" value="5">

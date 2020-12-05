@@ -82,4 +82,15 @@ document.getElementById("photo-upload-button").onchange = function() {
     document.getElementById("upload-photo-form").submit();
 }
 
+$(function(){
+    $('.stars label').click(function() {
+          updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
+    });
+    $('.filters label').click(function() {
+          updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
+    });
+});
 
+function updateSettings(clicked,value){
+    alert('clicked : ' +clicked+' ,Value:- '+value);
+}

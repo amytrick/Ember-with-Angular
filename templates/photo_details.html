@@ -31,9 +31,6 @@ Photo
             });
          </script>
     </form>
-    <!-- <div>
-        <p>RATING : {{photo.rating}} </p>
-    </div> -->
 </div>
 
 
@@ -107,40 +104,35 @@ Photo
 
 
 {% block body %}
-    <div class="row" id="header for delete">
-        <form action="/delete_photo/{{photo.photo_id}}", method="POST">
-            <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white"></i></button>
-        </form>
-    </div>
-
-    <div class="row" id="photo-body">
-
-
-       
 
 
         <div id="photo-column">
-            <div id="previous-column">
-                <div id="previous-button-div">
-                    <button type="submit" id="previous"><i class="fa fa-angle-double-left fa-3x" style="color:white"></i></button>
-                </div>
-                <div id="next-column">
-                    <div id="next-button-div">
-                        <button type="submit" id="next"><i class="fa fa-angle-double-right fa-3x" style="color:white"></i></button>
+           
+            
+            <div id="selected-photo-div">
+
+                <div id="previous-column">
+                    <div id="previous-button-div">
+                        <button type="submit" id="previous" ><i class="fa fa-angle-double-left fa-3x" style="color:white" data-toggle="tooltip" data-placement="bottom" title="Previous photo"></i></button>
                     </div>
                 </div>
-            </div>
-            <div id="selected-photo-div">
+
+                <div id="next-column">
+                    <div id="next-button-div">
+                        <button type="submit" id="next" ><i class="fa fa-angle-double-right fa-3x" style="color:white" data-toggle="tooltip" data-placement="bottom" title="Next photo"></i></button>
+                    </div>
+                </div>
+
                 <img id='large-photo' src={{ photo.path }}>
-            </div>
+
+                <!-- absolute position -->
                 <form action="/delete_photo/{{photo.photo_id}}", method="POST">
-                    <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white"></i></button>
+                    <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white" data-toggle="tooltip" data-placement="bottom" title="Delete"></i></button>
                 </form>
+
+            </div>
+                
             
         </div>
-
-        
-        
-    </div>
 
 {% endblock %}
