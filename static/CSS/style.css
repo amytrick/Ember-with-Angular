@@ -85,7 +85,7 @@ button {
 .navbar {
     background-color: rgb(46, 46, 46);
     padding: 0rem 2rem;
-    border: rgb(30, 30, 30)
+    border-bottom: 1px solid gray;
 }
 
 #logo {
