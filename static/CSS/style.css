@@ -58,7 +58,7 @@ button {
 }
 
 
-/* ****** FILTER ****** */
+/* ****** FILTER/SEARCH ****** */
 
 #filtered-library {
   margin: 5px 3px;
@@ -68,15 +68,23 @@ button {
   padding: 20px 0px;
 }
 
-#filter-search-rating-div {
+#filter-search-rating-div, #filter-buttons-div, #filter-buttons-div {
   display: flex;
-  display: row;
+  flex-direction: row;
 }
 
+#filter-title, #filters, #review-form {
+  padding: 0px 20px;
+}
 
 #search-results-title {
   padding-left: 500px;
   color: gray;
+}
+
+#filter-results-title {
+  color: gray;
+  padding-left: 500px;
 }
 
 
@@ -110,9 +118,6 @@ button {
 
 #selected-photo-div:hover #delete {
   opacity: 1;
-  /* box-shadow: 0px 8px 15px black;
-  border-radius: 50%;
-  background-color:rgba(0,0,0,.15); */
 }
 
 #delete {
@@ -152,7 +157,7 @@ button {
 
 #previous-button-div, #next-button-div {
   display: flex;
-  align-item: center;
+  align-self: center;
 }
 
 #previous, #next {

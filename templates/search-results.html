@@ -12,7 +12,7 @@ Search results
   <div id="filter-rating-div">
     <div>
       <span data-toggle="tooltip" data-placement="bottom" title="Filter" id="filter-search-rating-div">
-        <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
+        <button type="button" id="filter-icon" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
           <i class="fas fa-filter fa-2x" style=color:white></i>
         </button>
         <div id="search-results-title"><h3><em>Search results for: {{tagword}}</em></h3></div>
@@ -25,30 +25,29 @@ Search results
         <div id="rating-filter-div">
 
 
-        <div id="filter-buttons-div">
+        
           <form action="/filterby/rating" method="POST">
-              FILTER BY RATING:
-              <!-- <input type="radio" name="equality-symbol" value="equals">
-              <label>=</label>
-              <input type="radio" name="equality-symbol" value="greater">
-              <label>≥</label>
-              <input type="radio" name="equality-symbol" value="less">
-              <label>≤</label> -->
-
-              <label>
-                <input type="radio" name="test" value="small" checked>
-                <i id="icon" class="fas fa-equals"></i>
-              </label>
-              
-              <label>
-                <input type="radio" name="test" value="big">
-                <i id="icon" class="fas fa-greater-than-equal"></i>
-              </label>
-              
-              <label>
-                <input type="radio" name="test" value="big">
-                <i id="icon" class="fas fa-less-than-equal"></i>
-              </label>
+            <div id="filter-buttons-div">
+              <div id="filter-title">
+                FILTER BY RATING:
+              </div>
+              <!-- THIS STILL FILTERS FOR ALL PHOTOS - NOT JUST THOSE IN SEARCH RESULTS -->
+              <div class="filters">
+                <label>
+                  <input type="radio" name="equality-symbol" value="equals">
+                  <i id="icon" class="fas fa-equals"></i>
+                </label>
+                
+                <label>
+                  <input type="radio" name="equality-symbol" value="greater">
+                  <i id="icon" class="fas fa-greater-than-equal"></i>
+                </label>
+                
+                <label>
+                  <input type="radio" name="equality-symbol" value="less">
+                  <i id="icon" class="fas fa-less-than-equal"></i>
+                </label>
+              </div>
 
 
               <div class="form-group" id="review-form">
@@ -65,7 +64,6 @@ Search results
                     <input type="radio" id="option1" name="filter-rating" value="1">
                         <label class="label_star" id="option1_label" for="option1"></label>
                 </span>
-                <!-- <input type="submit"> -->
             </div>
           </form>
         </div>

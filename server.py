@@ -334,15 +334,18 @@ def filter_by_rating():
 
     if equality_symbol == 'equals':
         photos = crud.get_photos_by_exact_rating(rating, user_id)
+        statement = rating
     elif equality_symbol == 'greater':
         photos = crud.get_photos_with_greater_or_equal_rating(rating, user_id)
+        statement = "≥ " + rating
     elif equality_symbol == 'less':
         photos = crud.get_photos_with_less_or_equal_rating(rating, user_id)
+        statement = "≤ " + rating
 
     global current_photo_list
     current_photo_list = photos
 
-    return render_template("filter.html", photos=photos, albums=albums)
+    return render_template("filter.html", photos=photos, albums=albums, statement=statement)
 
 
 @app.route("/search", methods=["POST"])

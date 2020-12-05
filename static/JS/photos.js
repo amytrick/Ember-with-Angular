@@ -92,18 +92,18 @@ $('input[name=filter-rating]').on('change', function() {
 
 
 // FILTER RATING CLICK RADIO BUTTONS //
-$(function(){
-    $('.stars label').click(function() {
-          updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
-    });
-    $('.filters label').click(function() {
-          updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
-    });
-});
+// $(function(){
+//     $('.stars label').click(function() {
+//           updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
+//     });
+//     $('.filters label').click(function() {
+//           updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
+//     });
+// });
 
-function updateSettings(clicked,value){
-    alert('clicked : ' +clicked+' ,Value:- '+value);
-}
+// function updateSettings(clicked,value){
+//     alert('clicked : ' +clicked+' ,Value:- '+value);
+// }
 
 
 // DROPDOWN MENU //
