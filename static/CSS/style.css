@@ -185,10 +185,18 @@ button {
 
 /* ****** ALBUM PAGE ****** */
 
+#album-name-div{
+  margin-top: 15px;
+  text-align: center;
+  color: gray;
+}
+
 #remove-icon {
   position: relative;
-  width: 30px;
-  height: 30px;
+  padding: 0px;
+  text-align: center;
+  width: 21px;
+  height: 21px;
   left:14px;
   top: 40px;
   text-align: center;
@@ -199,6 +207,9 @@ button {
 
 #album-library-img:hover #remove-icon {
   opacity: 1;
+  color: white;
+  background-color:rgba(0,0,0,.15);
+  border-radius: 50%;
 }
 
 
