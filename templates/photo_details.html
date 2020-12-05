@@ -22,7 +22,7 @@ Photo
                 <input type="radio" id="option1" name="star-radios" value="1">
                     <label class="label_star" id="option1_label" for="option1"></label>
             </span>
-            <input type="submit">
+            <!-- <input type="submit"> -->
         </div>
         <script type="text/javascript">
             var preSelectRating = {{photo.rating}};
@@ -36,18 +36,23 @@ Photo
 
 <div id="add-to-album-div">
     <form action="/add-to-album/{{photo.photo_id}}", method="POST">
-        Add to album:
-            <select name="add-to-album">
-                {% for album in albums %}
-                    <option value="{{ album.name }}"> {{ album.name }}</option>
-                {% endfor %}
-            </select>
-        <input type="submit">
+        <!-- Add to album: -->
+            <!-- <div id="add-to-album-dropdown"> -->
+                <select name="add-to-album">
+                    <option value="hide">Add to album</option>
+                    {% for album in albums %}
+                        <option value="{{ album.name }}"> {{ album.name }}</option>
+                    {% endfor %}
+                </select>
+                <!-- <div id="dropdown-icon">
+                <i class="fas fa-sort-down fa-lg" style=color:white></i>
+                </div> -->
+            <!-- </div> -->
+    <input type="submit">
     </form>
 </div>
 
 <div id="tags-div">
-
 
     <div id="existing-tags">
         <span data-toggle="tooltip" data-placement="bottom" title="Open tags">
@@ -110,7 +115,6 @@ Photo
            
             
             <div id="selected-photo-div">
-
                 <div id="previous-column">
                     <div id="previous-button-div">
                         <button type="submit" id="previous" ><i class="fa fa-angle-double-left fa-3x" style="color:white" data-toggle="tooltip" data-placement="bottom" title="Previous photo"></i></button>

@@ -325,6 +325,16 @@ button {
   margin: 10px;
 }
 
+/* #add-to-album-dropdown {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+} */
+
+#dropdown-icon {
+  padding-top: 6px;
+}
+
 #tags-div {
   display: flex;
   flex-direction: column;
@@ -445,4 +455,101 @@ button {
   border-radius: 50%; 
  
   border: 1px solid black;
-} Radio Checked */ */
+} Radio Checked */
+
+
+
+/* RADIO BUTTONS FOR FILTER RATINGS */
+input[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+[type=radio] + #icon{
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + #icon {
+  outline: 1px solid white;
+  border-radius: 50%;
+}
+
+
+
+
+
+.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  color: white;
+  width: 145px;
+  height: 40px;
+}
+.select-styled {
+  position: absolute; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(46, 46, 46);
+  padding: 8px 15px;
+  // @include transition(all 0.2s ease-in);
+  &:after {
+    content:"";
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-color: $select-color transparent transparent transparent;
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
+  &:hover {
+    background-color: darken(rgb(46, 46, 46), 2);
+  }
+  &:active, &.active {
+    background-color: darken(rgb(46, 46, 46), 5);
+    &:after {
+      top: 9px;
+      border-color: transparent transparent white transparent;
+    }
+  }
+}
+
+.select-options {
+  display: none; 
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: darken(rgb(46, 46, 46), 5);
+  li {
+    margin: 0;
+    padding: 12px 0;
+    text-indent: 15px;
+    border-top: 1px solid darken(rgb(46, 46, 46), 10);
+    // @include transition(all 0.15s ease-in);
+    &:hover {
+      color: white;
+      background: rgb(46, 46, 46);
+    }
+    &[rel="hide"] {
+      display: none;
+    }
+  }
+}

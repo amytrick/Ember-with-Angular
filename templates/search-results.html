@@ -28,12 +28,28 @@ Search results
         <div id="filter-buttons-div">
           <form action="/filterby/rating" method="POST">
               FILTER BY RATING:
-              <input type="radio" name="equality-symbol" value="equals">
+              <!-- <input type="radio" name="equality-symbol" value="equals">
               <label>=</label>
               <input type="radio" name="equality-symbol" value="greater">
               <label>≥</label>
               <input type="radio" name="equality-symbol" value="less">
-              <label>≤</label>
+              <label>≤</label> -->
+
+              <label>
+                <input type="radio" name="test" value="small" checked>
+                <i id="icon" class="fas fa-equals"></i>
+              </label>
+              
+              <label>
+                <input type="radio" name="test" value="big">
+                <i id="icon" class="fas fa-greater-than-equal"></i>
+              </label>
+              
+              <label>
+                <input type="radio" name="test" value="big">
+                <i id="icon" class="fas fa-less-than-equal"></i>
+              </label>
+
 
               <div class="form-group" id="review-form">
                 <label id="rating" for="rating"></label>
@@ -49,7 +65,7 @@ Search results
                     <input type="radio" id="option1" name="filter-rating" value="1">
                         <label class="label_star" id="option1_label" for="option1"></label>
                 </span>
-                <input type="submit">
+                <!-- <input type="submit"> -->
             </div>
           </form>
         </div>
