@@ -183,6 +183,26 @@ button {
 }
 
 
+/* ****** ALBUM PAGE ****** */
+
+#remove-icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  left:14px;
+  top: 40px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+  outline: none;
+}
+
+#album-library-img:hover #remove-icon {
+  opacity: 1;
+}
+
+
+
 /* ****** STAR RATINGS ****** */
 
 #review-form .star-rating {
@@ -231,6 +251,25 @@ button {
 #review-form input[type=radio]:checked ~ .label_star::before {
   content: "\f005";
 } /* Radio Checked */
+
+/* RADIO BUTTONS FOR FILTER RATINGS (EQUAL/GREATER/LESS) */
+input[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+[type=radio] + #icon{
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + #icon {
+  outline: 1px solid white;
+  border-radius: 50%;
+}
 
 
 /* ****** SIDEBAR ****** */
@@ -330,12 +369,6 @@ button {
   margin: 10px;
 }
 
-/* #add-to-album-dropdown {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-} */
-
 #dropdown-icon {
   padding-top: 6px;
 }
@@ -405,86 +438,9 @@ button {
 
 
 
-/* #review-form .filter-rating {
-  display: inline-flex;
-  flex-direction: row-reverse;
-}
-
-#review-form input,
-#review-form textarea {
-  background: none repeat scroll 0 0 #333333;
-  border: 0 none;
-  color: #fff;
-  margin: 0;
-  max-width: 100%;
-  padding: 7px 4px;
-}
-
-#review-form .radio {
-  display: inline-block;
-}
-
-#review-form input[type=radio] {
-  display: none;
-} /* renders radio buttons invisible */
-
-/* #review-form input[type=radio] + label {
-  display: block;
-}
-
-#review-form input[type='radio'] + .label_star:before {
-  display: inline-block;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding-right: 8px;
-  width: 23px;
-} */
-
-/* #review-form input[type=radio] + .equals::before {
-  content: "\f52c";
-} /* Radio Unchecked */
-
-/* #review-form input[type=radio] + .greater::before {
-  content: "\f006";
-}
-
-#review-form input[type=radio] + .less::before {
-  content: "\f532";
-} */
-
-/* #review-form input[type=radio]:checked ~ .label_star::before {
-  border-radius: 50%; 
- 
-  border: 1px solid black;
-} Radio Checked */
 
 
-
-/* RADIO BUTTONS FOR FILTER RATINGS */
-input[type=radio] { 
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  display: none;
-}
-
-[type=radio] + #icon{
-  cursor: pointer;
-}
-
-/* CHECKED STYLES */
-[type=radio]:checked + #icon {
-  outline: 1px solid white;
-  border-radius: 50%;
-}
-
-
-
+/* ****** DROPDOWN ****** */
 
 
 .select-hidden {

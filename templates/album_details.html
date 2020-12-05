@@ -23,13 +23,14 @@
 </div>
 
   {% for photo in photoalbum %}
-    <div class="library">
+    <div class="library" id="album-library-img">
       <form action="/delete-photo-from-album/{{album.album_id}}/{{photo.photo_id}}">
+        <button id="remove-icon"><i class="fa far fa-times-circle fa-lg" style="background:transparent"></i></button>
+      </form>
       <a href="/photodetails/{{photo.photo_id}}">
         <img class="library-img" id="library-id" src= {{ photo.path }}>
       </a>
-      <button><i class="fa far fa-times-circle fa-lg" style="background:transparent"></i>  </button>
-        
+      
     </div>
   {% endfor %}
 
