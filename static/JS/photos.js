@@ -98,13 +98,7 @@ $('input[name=filter-rating]').on('change', function() {
 
 
 $('input[name=add-to-album]').on('change', function() {
-    console.log("clicked");
-
-    
     $(this).closest("form").delay(300).submit();
-    console.log("inside timer");
-    
-    console.log("after timer");
 });
 
 

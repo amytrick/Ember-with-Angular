@@ -27,6 +27,10 @@ button {
   outline:none;
 }
 
+button:focus {
+   outline: none; 
+  }
+
 
 /* ****** LOGIN PAGE ****** */
 
@@ -85,6 +89,7 @@ button {
 #filter-results-title {
   color: gray;
   padding-left: 500px;
+  padding-top: 20px;
 }
 
 
@@ -481,80 +486,58 @@ input[type=text], input[type=search] {
 
 
 
-/* ****** DROPDOWN ****** */
+/* ****** DELETE TAG ****** */
 
 
-.select-hidden {
-  display: none;
-  visibility: hidden;
-  padding-right: 10px;
+#delete-tag-button {
+  background-color: #333;
+  border: none;
 }
-.select {
-  cursor: pointer;
+
+#individual-tag-div {
+  padding-top: 1em;
+}
+
+
+#individual-tag-div li {
   display: inline-block;
+  padding: 0 20px;
+}
+
+#individual-tag-div span {
   position: relative;
-  font-size: 16px;
+  display: block;
+  cursor: pointer;
   color: white;
-  width: 145px;
-  height: 40px;
-}
-.select-styled {
-  position: absolute; 
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgb(46, 46, 46);
-  padding: 8px 15px;
-  // @include transition(all 0.2s ease-in);
-  &:after {
-    content:"";
-    width: 0;
-    height: 0;
-    border: 7px solid transparent;
-    border-color: $select-color transparent transparent transparent;
-    position: absolute;
-    top: 16px;
-    right: 10px;
-  }
-  &:hover {
-    background-color: darken(rgb(46, 46, 46), 2);
-  }
-  &:active, &.active {
-    background-color: darken(rgb(46, 46, 46), 5);
-    &:after {
-      top: 9px;
-      border-color: transparent transparent white transparent;
-    }
-  }
 }
 
-.select-options {
-  display: none; 
+#individual-tag-div span:before, span:after {
+  content: '';
   position: absolute;
-  top: 100%;
-  right: 0;
-  left: 0;
-  z-index: 999;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background-color: darken(rgb(46, 46, 46), 5);
-  li {
-    margin: 0;
-    padding: 12px 0;
-    text-indent: 15px;
-    border-top: 1px solid darken(rgb(46, 46, 46), 10);
-    // @include transition(all 0.15s ease-in);
-    &:hover {
-      color: white;
-      background: rgb(46, 46, 46);
-    }
-    &[rel="hide"] {
-      display: none;
-    }
-  }
+  width: 0%;
+  height: 1px;
+  top: 50%;
+  margin-top: -0.5px;
+  background: #fff;
 }
 
+#individual-tag-div span:before {
+  left: -2.5px;
+}
+#individual-tag-div span:after {
+  right: 2.5px;
+  background: #fff;
+  transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
 
-#add-to-album-radios
+#individual-tag-div span:hover:before {
+  background: #fff;
+  width: 100%;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+#individual-tag-div span:hover:after {
+  background: transparent;
+  width: 100%;
+  transition: 0s;
+}

@@ -60,23 +60,6 @@ Photo
             </div>
         </div>
     </div>
-
-
-    <!-- <form action="/add-to-album/{{photo.photo_id}}", method="POST"> -->
-        <!-- Add to album: -->
-            <!-- <div id="add-to-album-dropdown"> -->
-                <!-- <select name="add-to-album">
-                    <option value="hide">Add to album</option>
-                    {% for album in albums %}
-                        <option value="{{ album.name }}"> {{ album.name }}</option>
-                    {% endfor %}
-                </select> -->
-                <!-- <div id="dropdown-icon">
-                <i class="fas fa-sort-down fa-lg" style=color:white></i>
-                </div> -->
-            <!-- </div> -->
-    <!-- <input type="submit">
-    </form> -->
 </div>
 
 <div id="tags-div">
@@ -115,14 +98,12 @@ Photo
                     <form action="/delete-tag/{{photo.photo_id}}/{{tag.tag_id}}">
                         <p> 
                             <button >
-                                <div class="fa-lg">
-                                    <span class="fa-layers fa-fw" style="background:transparent" data-toggle="tooltip" data-placement="bottom" title="Remove tag">
-                                        <i class="fas fa-circle" style="color:rgb(255, 255, 255)"></i>
-                                        <i class="fa fas fa-times" style="color: rgb(46, 46, 46)" data-fa-transform="shrink-6"></i>
-                                    </span>
+                                <div>
+                                    <li><span style="background:transparent" data-toggle="tooltip" data-placement="right" title="Remove tag">
+                                    {{tag.tagword}}
+                                    </span></li>
                                 </div>
                             </button>
-                            {{tag.tagword}}
                         </p>
                     </form>  
                     {% endfor %} 
