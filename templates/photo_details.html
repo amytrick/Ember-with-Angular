@@ -10,7 +10,7 @@ Photo
     <form action="/rating/{{photo.photo_id}}" method="POST">
         <div class="form-group" id="star-radios">
             <label id="rating" for="rating"></label>
-            <span class="star-rating star-5">
+            <span class="star-rating star-5" id="sidebar-star-span">
                 <input type="radio" id="option5" name="star-radios" value="5">
                     <label class="label_star" id="option5_label" for="option5"></label>
                 <input type="radio" id="option4" name="star-radios" value="4">
@@ -65,13 +65,13 @@ Photo
 <div id="tags-div">
 
     <div id="existing-tags">
-        <span data-toggle="tooltip" data-placement="bottom" title="Open tags">
+        <!-- <span data-toggle="tooltip" data-placement="bottom" title="Open tags">
             <button type="button" data-toggle="collapse" data-target="#collapse-tags" aria-expanded="false" aria-controls="collapse-tags">
-                <i class="fa fa-tag fa-2x" style=color:white></i>
+                <i class="fa fa-tag fa-lg" style=color:white></i>
             </button>
         </span>
         <div class="collapse" id="collapse-tags">
-            <div class="card card-body">
+            <div class="card card-body"> -->
                 <div id="add-tag-div">
                     <span id="tags-plus">
                         TAGS
@@ -110,8 +110,7 @@ Photo
                 </div> 
             </div>
         </div>
-    </div>
-</div>
+ 
 
 {% endblock %}
 

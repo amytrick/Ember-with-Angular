@@ -85,7 +85,7 @@ input[type=text], input[type=search] {
   flex-direction: row;
 }
 
-#filter-title, #filter-radios, #star-radios {
+#filter-title, #filter-radios {
   padding-right: 20px;
 }
 
@@ -432,11 +432,15 @@ input[type=text], input[type=search] {
 
 #rating-div {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 20px;
+  /* padding: 20px; */
   border: 1px solid gray;
   margin: 10px;
+}
+
+#sidebar-star-span {
+  margin-top: 25px;
 }
 
 #add-to-album-div {
@@ -457,7 +461,7 @@ input[type=text], input[type=search] {
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-  /* border: 1px solid gray; */
+  border: 1px solid gray;
   margin: 10px;
 }
 
@@ -465,6 +469,7 @@ input[type=text], input[type=search] {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color: gray;
   }
 
 .card {
