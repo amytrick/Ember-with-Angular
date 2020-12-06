@@ -8,7 +8,7 @@ Photo
 {% block sidebar %}
 <div id="rating-div">
     <form action="/rating/{{photo.photo_id}}" method="POST">
-        <div class="form-group" id="review-form">
+        <div class="form-group" id="star-radios">
             <label id="rating" for="rating"></label>
             <span class="star-rating star-5">
                 <input type="radio" id="option5" name="star-radios" value="5">
@@ -34,21 +34,50 @@ Photo
 
 
 <div id="add-to-album-div">
-    <form action="/add-to-album/{{photo.photo_id}}", method="POST">
+    <div id="collapse-albums-div">
+        <span id="album-plus">
+            <div id="add-to-album-title">
+                ADD TO ALBUM
+            </div>
+            <span data-toggle="tooltip" data-placement="bottom" title="Add to album">
+                <button type="button" class="plus-button" data-toggle="collapse" data-target="#collapse-add-to-album" aria-expanded="false" aria-controls="collapse-add-to-album">
+                    <i class="fa fas fa-plus fa-sm" style="color: white"></i>
+                </button>
+            </span>
+        </span>
+        <div class="collapse" id="collapse-add-to-album">
+            <div class="card card-body">
+                <div id="add-to-album-radios">
+                    <form action="/add-to-album/{{photo.photo_id}}", method="POST">
+                        {% for album in albums %}
+                            <p>
+                                <input type="radio" id="{{ album.name }}" name="add-to-album" value="{{ album.name }}">
+                                <label for="{{ album.name }}">{{ album.name }}</label>
+                            </p>
+                        {% endfor %}
+                    <!-- <input type="submit"> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <form action="/add-to-album/{{photo.photo_id}}", method="POST"> -->
         <!-- Add to album: -->
             <!-- <div id="add-to-album-dropdown"> -->
-                <select name="add-to-album">
+                <!-- <select name="add-to-album">
                     <option value="hide">Add to album</option>
                     {% for album in albums %}
                         <option value="{{ album.name }}"> {{ album.name }}</option>
                     {% endfor %}
-                </select>
+                </select> -->
                 <!-- <div id="dropdown-icon">
                 <i class="fas fa-sort-down fa-lg" style=color:white></i>
                 </div> -->
             <!-- </div> -->
-    <input type="submit">
-    </form>
+    <!-- <input type="submit">
+    </form> -->
 </div>
 
 <div id="tags-div">

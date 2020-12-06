@@ -7,19 +7,17 @@
 
 {% block sidebar %}
 
-  <div id="rename-album-div">
-    <form action="/rename-album/{{ album.album_id }}" method="POST">
-      <input type="text" placeholder="RENAME ALBUM" name="rename-album">
-      <button></button>
-    </form>
-  </div>
-
 {% endblock %}
 
 
 {% block body %}
 <div id="album-name-div">
-  <h1><em>{{ album.name }}</em></h1>
+  <h1 id="album-title"><em>{{ album.name }}</em></h1>
+  <div id="rename-album-div" class="hidden">
+    <form action="/rename-album/{{ album.album_id }}" method="POST">
+      <input type="text" id="rename-album-textbox" placeholder="Rename album" name="rename-album">
+    </form>
+  </div>
 </div>
 
   {% for photo in photoalbum %}

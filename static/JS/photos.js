@@ -82,28 +82,28 @@ document.getElementById("photo-upload-button").onchange = function() {
     document.getElementById("upload-photo-form").submit();
 }
 
+// SUBMIT STAR RATING UPON CLICK
 $('input[name=star-radios]').on('change', function() {
     $(this).closest("form").submit();
 });
 
+// SUBMIT RATING FILTER UPON CLICK ON STAR PORTION
 $('input[name=filter-rating]').on('change', function() {
     $(this).closest("form").submit();
 });
 
+$('input[name=add-to-album]').on('change', function() {
+    $(this).closest("form").submit();
+});
 
-// FILTER RATING CLICK RADIO BUTTONS //
-// $(function(){
-//     $('.stars label').click(function() {
-//           updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
-//     });
-//     $('.filters label').click(function() {
-//           updateSettings($(this).attr('for'), $('#'+$(this).attr('for')).val());
-//     });
-// });
+//OPEN RENAME ALBUM TEXTBOX
+$(".hidden").hide();
 
-// function updateSettings(clicked,value){
-//     alert('clicked : ' +clicked+' ,Value:- '+value);
-// }
+
+$("#album-title").click(function() {
+    $(this).next().toggle();
+});
+   
 
 
 // DROPDOWN MENU //

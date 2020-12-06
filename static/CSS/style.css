@@ -73,8 +73,8 @@ button {
   flex-direction: row;
 }
 
-#filter-title, #filters, #review-form {
-  padding: 0px 20px;
+#filter-title, #filter-radios, #star-radios {
+  padding-right: 20px;
 }
 
 #search-results-title {
@@ -182,6 +182,36 @@ button {
   background-color:rgba(0,0,0,.15);
 }
 
+#album-plus {
+  display: flex;
+  justify-content: space-between;
+}
+
+#add-to-album-title {
+  color: grey;
+}
+
+#add-to-album-radios label {
+  display: flex;
+  height: 3em;
+  align-items: center;
+  border-radius: 2px;
+  padding: 0em 1em;
+}
+
+#add-to-album-radios input[type="radio"] {
+  display: none;
+}
+
+#add-to-album-radios input[type="radio"] + label:hover {
+  background-color: rgb(66, 66, 66);
+}
+
+#add-to-album-radios input[type="radio"]:checked + label {
+  background-color: grey;
+  color: black;
+}
+
 
 /* ****** ALBUM PAGE ****** */
 
@@ -212,17 +242,25 @@ button {
   border-radius: 50%;
 }
 
+input[type=text], input[type=search] {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  border: none;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
+
 
 
 /* ****** STAR RATINGS ****** */
 
-#review-form .star-rating {
+#star-radios .star-rating {
   display: inline-flex;
   flex-direction: row-reverse;
 }
 
-#review-form input,
-#review-form textarea {
+#star-radios input,
+#star-radios textarea {
   background: none repeat scroll 0 0 #333333;
   border: 0 none;
   color: #fff;
@@ -231,19 +269,19 @@ button {
   padding: 7px 4px;
 }
 
-#review-form .radio {
+#star-radios .radio {
   display: inline-block;
 }
 
-#review-form input[type=radio] {
+#star-radios input[type=radio] {
   display: none;
 } /* renders radio buttons invisible */
 
-#review-form input[type=radio] + label {
+#star-radios input[type=radio] + label {
   display: block;
 }
 
-#review-form input[type='radio'] + .label_star:before {
+#star-radios input[type='radio'] + .label_star:before {
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -255,16 +293,16 @@ button {
   width: 23px;
 }
 
-#review-form input[type=radio] + .label_star::before {
+#star-radios input[type=radio] + .label_star::before {
   content: "\f006";
 } /* Radio Unchecked */
 
-#review-form input[type=radio]:checked ~ .label_star::before {
+#star-radios input[type=radio]:checked ~ .label_star::before {
   content: "\f005";
 } /* Radio Checked */
 
 /* RADIO BUTTONS FOR FILTER RATINGS (EQUAL/GREATER/LESS) */
-input[type=radio] { 
+#filter-radios input[type=radio] { 
   position: absolute;
   opacity: 0;
   width: 0;
@@ -272,12 +310,12 @@ input[type=radio] {
   display: none;
 }
 
-[type=radio] + #icon{
+#filter-radios [type=radio] + #icon{
   cursor: pointer;
 }
 
 /* CHECKED STYLES */
-[type=radio]:checked + #icon {
+#filter-radios [type=radio]:checked + #icon {
   outline: 1px solid white;
   border-radius: 50%;
 }
@@ -403,14 +441,6 @@ input[type=radio] {
   background-color: rgb(46, 46, 46);
 }
 
-#rename-album-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-  border: 1px solid gray;
-  margin: 10px;
-}
 
 
 /* ****** MODALS ****** */
@@ -525,3 +555,6 @@ input[type=radio] {
     }
   }
 }
+
+
+#add-to-album-radios
