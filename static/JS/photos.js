@@ -92,6 +92,7 @@ document.getElementById("photo-upload-button").onchange = function() {
 }
 
 
+
 // SUBMIT STAR RATING UPON CLICK
 $('input[name=star-radios]').on('change', function() {
     $(this).closest("form").submit();

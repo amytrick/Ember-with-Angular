@@ -28,8 +28,16 @@
         max-width: 100%;
         max-height: auto;
       }
+
       h1 {
         color: black
+      }
+
+      #login-page input[type=text], input[type=password] {
+        background-color: white;
+        color: black;
+        border: none;
+        text-align: center;
       }
 
 
@@ -69,10 +77,10 @@
             <div class="modal-body">
               <!-- New account form -->
               <form action="/user" method="POST">
-                <p><input type="text" name="fname" id="fname-field"><br>First name</p>
-                <p><input type="text" name="lname" id="lname-field"><br>Last name</p>
-                <p><input type="text" name="email" id="email-field"><br>Email</p>
-                <p><input type="password" name="password" id="password-field"><br>Password</p>
+                <p><input type="text" name="fname" id="fname-field"placeholder="First name"></p>
+                <p><input type="text" name="lname" id="lname-field"placeholder="Last name"></p>
+                <p><input type="text" name="email" id="email-field" placeholder="Email"></p>
+                <p><input type="password" name="password" id="password-field" placeholder="Password"></p>
                 <p><input type="submit"></p>
               </form>
             </div>
@@ -102,8 +110,8 @@
             <div class="modal-body">
               <!-- Login form -->
               <form action="/login">
-                <p><input type="text" name="login_email" id="login-email-field"><br>Email</p>
-                <p><input type="password" name="login_password" id="login-password-field"><br>Password</p>
+                <p><input type="text" name="login_email" id="login-email-field" placeholder="Email"></p>
+                <p><input type="password" name="login_password" id="login-password-field" placeholder="Password"></p>
                 <p><input type="submit"></p>
               </form>
             </div>
