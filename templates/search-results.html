@@ -9,67 +9,50 @@ Search results
 
   
 
-  <div id="filter-rating-div">
-    <div>
-      <span data-toggle="tooltip" data-placement="bottom" title="Filter" id="filter-search-rating-div">
-        <button type="button" id="filter-icon" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
-          <i class="fas fa-filter fa-2x" style=color:white></i>
-        </button>
-        <div id="search-results-title"><h3><em>Search results for: {{tagword}}</em></h3></div>
-      </span>
-    </div>
+<div id="filter-rating-div">
+  <div id="rating-filter-div" class="hidden">
 
-
-  <div class="collapse" id="collapse-filter">
-    <div class="card card-body">
-        <div id="rating-filter-div">
-
-
-        
-          <form action="/filterby/rating" method="POST">
-            <div id="filter-buttons-div">
-              <div id="filter-title">
-                FILTER BY RATING:
-              </div>
-              <!-- THIS STILL FILTERS FOR ALL PHOTOS - NOT JUST THOSE IN SEARCH RESULTS -->
-              <div class="filters" id="filter-radios">
-                <label>
-                  <input type="radio" name="equality-symbol" value="equals">
-                  <i id="icon" class="fas fa-equals"></i>
-                </label>
-                
-                <label>
-                  <input type="radio" name="equality-symbol" value="greater">
-                  <i id="icon" class="fas fa-greater-than-equal"></i>
-                </label>
-                
-                <label>
-                  <input type="radio" name="equality-symbol" value="less">
-                  <i id="icon" class="fas fa-less-than-equal"></i>
-                </label>
-              </div>
-
-
-              <div class="form-group" id="star-radios">
-                <label id="rating" for="rating"></label>
-                <span class="star-rating star-5">
-                    <input type="radio" id="option5" name="filter-rating" value="5">
-                        <label class="label_star" id="option5_label" for="option5"></label>
-                    <input type="radio" id="option4" name="filter-rating" value="4">
-                        <label class="label_star" id="option4_label" for="option4"></label>
-                    <input type="radio" id="option3" name="filter-rating" value="3">
-                        <label class="label_star" id="option3_label" for="option3"></label>
-                    <input type="radio" id="option2" name="filter-rating" value="2">
-                        <label class="label_star" id="option2_label" for="option2"></label>
-                    <input type="radio" id="option1" name="filter-rating" value="1">
-                        <label class="label_star" id="option1_label" for="option1"></label>
-                </span>
-            </div>
-          </form>
+    <form action="/filterby/rating" method="POST">
+      <div id="filter-buttons-div">
+        <div id="filter-title">
+          FILTER BY RATING:
+<!-- FILTERS FOR ENTIRE COLLECTION OF A USER'S PHOTOS -->
         </div>
 
+        <div class="filters" id="filter-radios">
+          <label>
+            <input type="radio" name="equality-symbol" value="equals">
+            <i id="icon" class="fas fa-equals"></i>
+          </label>
+          
+          <label>
+            <input type="radio" name="equality-symbol" value="greater">
+            <i id="icon" class="fas fa-greater-than-equal"></i>
+          </label>
+          
+          <label>
+            <input type="radio" name="equality-symbol" value="less">
+            <i id="icon" class="fas fa-less-than-equal"></i>
+          </label>
+        </div>
+
+        <div class="filter-ratings-form" id="star-radios">
+          <label id="rating" for="rating"></label>
+          <span class="star-rating star-5">
+              <input type="radio" id="option5" name="filter-rating" value="5">
+                  <label class="label_star" id="option5_label" for="option5"></label>
+              <input type="radio" id="option4" name="filter-rating" value="4">
+                  <label class="label_star" id="option4_label" for="option4"></label>
+              <input type="radio" id="option3" name="filter-rating" value="3">
+                  <label class="label_star" id="option3_label" for="option3"></label>
+              <input type="radio" id="option2" name="filter-rating" value="2">
+                  <label class="label_star" id="option2_label" for="option2"></label>
+              <input type="radio" id="option1" name="filter-rating" value="1">
+                  <label class="label_star" id="option1_label" for="option1"></label>
+          </span>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 

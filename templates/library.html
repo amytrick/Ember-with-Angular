@@ -12,18 +12,8 @@ Library
 {% block body %}
             
 <div id="filter-rating-div">
-  <span data-toggle="tooltip" data-placement="bottom" title="Filter">
-    <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
-      <i class="fas fa-filter fa-2x" style=color:white></i>
-    </button>
-  </span>
+        <div id="rating-filter-div" class="hidden">
 
-  <div class="collapse" id="collapse-filter">
-    <div class="card card-body">
-        <div id="rating-filter-div">
-
-
-        
           <form action="/filterby/rating" method="POST">
             <div id="filter-buttons-div">
               <div id="filter-title">
@@ -61,15 +51,11 @@ Library
                     <input type="radio" id="option1" name="filter-rating" value="1">
                         <label class="label_star" id="option1_label" for="option1"></label>
                 </span>
-                <!-- <input type="submit"> -->
               </div>
             </div>
           </form>
         </div>
-
-      </div>
-    </div>
-  </div>
+</div>
 
   {% for photo in photos %}
     <div class="library">

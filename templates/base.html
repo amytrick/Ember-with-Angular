@@ -42,9 +42,14 @@
           
           <div id="search-div">
             <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
-              <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search">
               <button class="btn my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="bottom" title="Search by keyword"><i class="fas fa-search fa-lg"  style="color:rgb(255, 255, 255)"></i></button>
+              <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search">
             </form>
+            <span id="filter-button" data-toggle="tooltip" data-placement="bottom" title="Filter">
+              <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false" aria-controls="collapse-filter">
+                <i class="fas fa-filter fa-lg" style=color:white></i>
+              </button>
+            </span>
           </div>
 
           <div class="logout-div">

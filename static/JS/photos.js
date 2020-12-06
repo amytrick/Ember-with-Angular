@@ -58,6 +58,9 @@
 // calling a pop up modal
 
 
+
+
+// DISPLAY PREVIOUS PHOTO
 $('#previous').on('click', () => {
    $.get('/previous.json', function(data){
         console.log("click")
@@ -66,6 +69,8 @@ $('#previous').on('click', () => {
     });
 });
 
+
+// DISPLAY NEXT PHOTO
 $('#next').on('click', () => {
    $.get('/next.json', function(data){
         console.log("click")
@@ -74,18 +79,24 @@ $('#next').on('click', () => {
     });
 });
 
+
+// ALL TOOLTIPS
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
 
+
+// AUTOMATICALLY UPLOAD PHOTO FROM FILE SELECTOR
 document.getElementById("photo-upload-button").onchange = function() {
     document.getElementById("upload-photo-form").submit();
 }
+
 
 // SUBMIT STAR RATING UPON CLICK
 $('input[name=star-radios]').on('change', function() {
     $(this).closest("form").submit();
 });
+
 
 // SUBMIT RATING FILTER UPON CLICK ON STAR PORTION
 $('input[name=filter-rating]').on('change', function() {
@@ -93,71 +104,22 @@ $('input[name=filter-rating]').on('change', function() {
 });
 
 
-
-
-
+// SUBMIT ADD TO ALBUM WITH DELAY
 
 $('input[name=add-to-album]').on('change', function() {
     $(this).closest("form").delay(300).submit();
 });
 
 
-
-
-
-//OPEN RENAME ALBUM TEXTBOX
+// HIDE ALL HIDDEN DIVS
 $(".hidden").hide();
 
-
+// OPEN RENAME ALBUM TEXTBOX
 $("#album-title").click(function() {
-    $(this).next().toggle();
+    $("#rename-album-div").toggle();
 });
    
 
-
-// DROPDOWN MENU //
-$('select').each(function(){
-    var $this = $(this), numberOfOptions = $(this).children('option').length;
-  
-    $this.addClass('select-hidden'); 
-    $this.wrap('<div class="select"></div>');
-    $this.after('<div class="select-styled"></div>');
-
-    var $styledSelect = $this.next('div.select-styled');
-    $styledSelect.text($this.children('option').eq(0).text());
-  
-    var $list = $('<ul />', {
-        'class': 'select-options'
-    }).insertAfter($styledSelect);
-  
-    for (var i = 0; i < numberOfOptions; i++) {
-        $('<li />', {
-            text: $this.children('option').eq(i).text(),
-            rel: $this.children('option').eq(i).val()
-        }).appendTo($list);
-    }
-  
-    var $listItems = $list.children('li');
-  
-    $styledSelect.click(function(e) {
-        e.stopPropagation();
-        $('div.select-styled.active').not(this).each(function(){
-            $(this).removeClass('active').next('ul.select-options').hide();
-        });
-        $(this).toggleClass('active').next('ul.select-options').toggle();
-    });
-  
-    $listItems.click(function(e) {
-        e.stopPropagation();
-        $styledSelect.text($(this).text()).removeClass('active');
-        $this.val($(this).attr('rel'));
-        $list.hide();
-        //console.log($this.val());
-    });
-  
-    $(document).click(function() {
-        $styledSelect.removeClass('active');
-        $list.hide();
-    });
-
+$("#filter-button").click(function() {
+    $("#rating-filter-div").toggle();
 });

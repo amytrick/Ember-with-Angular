@@ -29,7 +29,15 @@ button {
 
 button:focus {
    outline: none; 
-  }
+}
+
+input[type=text], input[type=search] {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  border: none;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
 
 
 /* ****** LOGIN PAGE ****** */
@@ -104,6 +112,15 @@ button:focus {
 #logo {
   font-family: 'League Script', cursive;
   font-size: 40pt;
+}
+
+#search-div {
+  display: flex;
+  justify-content: row;
+}
+
+#filter-button {
+  padding-top: 5px;
 }
 
 
@@ -196,12 +213,17 @@ button:focus {
   color: grey;
 }
 
+#album-title {
+  cursor: pointer;
+}
+
 #add-to-album-radios label {
   display: flex;
   height: 3em;
   align-items: center;
   border-radius: 2px;
   padding: 0em 1em;
+  margin: 0px;
 }
 
 #add-to-album-radios input[type="radio"] {
@@ -245,14 +267,6 @@ button:focus {
   color: white;
   background-color:rgba(0,0,0,.15);
   border-radius: 50%;
-}
-
-input[type=text], input[type=search] {
-  background-color: rgb(46, 46, 46);
-  color: white;
-  border: none;
-  border-bottom: 1px solid gray;
-  text-align: center;
 }
 
 
@@ -405,6 +419,17 @@ input[type=text], input[type=search] {
     color: gray;
   }
 
+  .individual-album-div {
+    display: flex;
+    height: 3em;
+    align-items: center;
+    border-radius: 2px;
+    padding: 0em 1em;
+  }
+  .individual-album-div:hover {
+    background-color: rgb(66, 66, 66);
+  }
+
 #rating-div {
   display: flex;
   flex-direction: column;
@@ -480,10 +505,6 @@ input[type=text], input[type=search] {
 .loginpage-modal {
   background-color: rgba(255, 255, 255, 0.192);
 }
-
-
-
-
 
 
 /* ****** DELETE TAG ****** */
