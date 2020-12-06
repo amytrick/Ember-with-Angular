@@ -92,9 +92,24 @@ $('input[name=filter-rating]').on('change', function() {
     $(this).closest("form").submit();
 });
 
+
+
+
+
+
 $('input[name=add-to-album]').on('change', function() {
-    $(this).closest("form").submit();
+    console.log("clicked");
+
+    
+    $(this).closest("form").delay(300).submit();
+    console.log("inside timer");
+    
+    console.log("after timer");
 });
+
+
+
+
 
 //OPEN RENAME ALBUM TEXTBOX
 $(".hidden").hide();
