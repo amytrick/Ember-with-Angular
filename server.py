@@ -94,8 +94,6 @@ def confirm_credentials():
             session['email'] = user.email
             session['fname'] = user.fname
             session['lname'] = user.lname
-            flash('Login successful!')
-            # current_user_id = session.get('current_user')
             return redirect("/library")
             # return json.dumps({'status':'OK','email':email,'pass':password});
 
