@@ -48,7 +48,7 @@ Photo
         <div class="collapse" id="collapse-add-to-album">
             <div class="card card-body">
                 <div id="add-to-album-radios">
-                    <form action="/add-to-album/{{photo.photo_id}}", method="POST">
+                    <form id='add-to-album-form' action="/add-to-album/{{photo.photo_id}}", method="POST">
                         {% for album in albums %}
                             <p>
                                 <input type="radio" id="{{ album.name }}" name="add-to-album" value="{{ album.name }}">
@@ -84,7 +84,7 @@ Photo
                     <div class="collapse" id="collapse-add-tag">
                         <div class="card card-body">
                             <div id="add-tag-div">
-                                <form action="/tag/{{photo.photo_id}}", method="POST">
+                                <form id="add-tag-form" action="/tag/{{photo.photo_id}}", method="POST">
                                     <input type="text" placeholder="ADD TAG" name="tag-text">
                                     <button id='add-tag'></button>
                                 </form>

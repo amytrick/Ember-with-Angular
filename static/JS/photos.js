@@ -66,6 +66,12 @@ $('#previous').on('click', () => {
         console.log("click")
         $('#large-photo').attr("src",data.photo_path);
         $('input[name=star-radios][value=' + data.photo_rating + ']').prop('checked',true);
+        $('#add-to-album-form').attr('action','/add-to-album/'+ data.photo_id);
+        $('#add-tag-form').attr('action','/tag/'+ data.photo_id);
+        $('#individual-tag-div').html('');
+        for (var i = 0; i < data.tags.length; i++) {
+            $('#individual-tag-div').append("<form action='/delete-tag/"+data.photo_id+"/"+data.tag_ids[i]+"'><p><button><div><li><span style='background:transparent' data-toggle='tooltip' data-placement='right' title='Remove tag'>"+data.tags[i]+"</span></li></div></button></p></form>");
+        }
     });
 });
 
@@ -76,8 +82,15 @@ $('#next').on('click', () => {
         console.log("click")
         $('#large-photo').attr("src",data.photo_path)
         $('input[name=star-radios][value=' + data.photo_rating + ']').prop('checked',true);
+        $('#add-to-album-form').attr('action','/add-to-album/'+ data.photo_id);
+        $('#add-tag-form').attr('action','/tag/'+ data.photo_id);
+        $('#individual-tag-div').html('');
+        for (var i = 0; i < data.tags.length; i++) {
+            $('#individual-tag-div').append("<form action='/delete-tag/"+data.photo_id+"/"+data.tag_ids[i]+"'><p><button><div><li><span style='background:transparent' data-toggle='tooltip' data-placement='right' title='Remove tag'>"+data.tags[i]+"</span></li></div></button></p></form>");
+        }
     });
 });
+
 
 
 // ALL TOOLTIPS

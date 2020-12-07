@@ -254,6 +254,7 @@ def delete_tag(photo_id, tag_id):
     return display_photo(photo_id)
 
 
+
 @app.route("/next.json")
 def next_photo():
     global current_index_clicked
@@ -263,7 +264,10 @@ def next_photo():
     if current_index_clicked == len(current_photo_list):
         current_index_clicked = 0
     next_photo = current_photo_list[current_index_clicked]
-    return jsonify(photo_path=next_photo.path, photo_rating=next_photo.rating)
+    tags = set(crud.display_tags_by_photo_id(next_photo.photo_id))
+    tag_ids = [tag.tag_id for tag in tags]
+    tags = [tag.tagword for tag in tags]
+    return jsonify(photo_path=next_photo.path, photo_rating=next_photo.rating, photo_id=next_photo.photo_id, tags=list(tags), tag_ids=tag_ids)
     # return redirect(f"/photodetails/{next_photo.photo_id}")
 
 
@@ -274,7 +278,10 @@ def previous_photo():
     prev_photo = current_photo_list[current_index_clicked]
     if current_index_clicked == 0:
         current_index_clicked = len(current_photo_list)
-    return jsonify(photo_path=prev_photo.path, photo_rating=prev_photo.rating)
+    tags = set(crud.display_tags_by_photo_id(prev_photo.photo_id))
+    tag_ids = [tag.tag_id for tag in tags]
+    tags = [tag.tagword for tag in tags]
+    return jsonify(photo_path=prev_photo.path, photo_rating=prev_photo.rating, photo_id=prev_photo.photo_id, tags=list(tags), tag_ids=tag_ids)
     # return redirect(f"/photodetails/{prev_photo.photo_id}")
 
 
