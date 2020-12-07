@@ -90,6 +90,7 @@ input[type=text], input[type=search] {
 }
 
 #search-results-title {
+  padding-top: 10px;
   padding-left: 500px;
   color: gray;
 }
@@ -245,6 +246,7 @@ input[type=text], input[type=search] {
 #album-name-div{
   margin-top: 15px;
   text-align: center;
+  padding-right: 300px;
   color: gray;
 }
 
