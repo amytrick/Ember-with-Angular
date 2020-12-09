@@ -10,7 +10,7 @@ Ember is a photo management webapp which allows users to upload, sort, rate, and
 
 ## Uploading a photo
 
-![](static/readme/SOMETHING GOES HERE)
+![](static/readme/add-photo.gif)
 
 ## Create and rename an album
 
