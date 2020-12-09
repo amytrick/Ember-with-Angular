@@ -22,7 +22,7 @@ Ember is a photo management webapp which allows users to upload, sort, rate, and
 
 ## Adding and deleting tags
 
-![](static/readme/add-delete-tags.gif)
+![](static/readme/delete-add-tags.gif)
 
 ## Search by tag
 ![](static/readme/tag-search.gif)
