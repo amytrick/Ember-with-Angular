@@ -146,8 +146,8 @@ def upload_new_photo():
     """User selects new photo to upload"""
     image = request.files['photo-upload']
     # result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "google_tagging", auto_tagging = 0.6)
-    # result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "aws_rek_tagging", auto_tagging = 0.7)
-    result = cloudinary.uploader.upload(image, image_metadata=True)
+    result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "aws_rek_tagging", auto_tagging = 0.7)
+    # result = cloudinary.uploader.upload(image, image_metadata=True)
     #result["tags"] = ['forest','adventure']
     user_id = session['user_id']
     date_uploaded = datetime.now()
