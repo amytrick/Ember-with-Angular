@@ -1,11 +1,12 @@
 """Models for photo management app"""
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy_serializer import SerializerMixin
 
 
 db = SQLAlchemy()
 
 
-class User(db.Model):
+class User(db.Model, SerializerMixin):
     """A user"""
 
     __tablename__ = "users"
@@ -97,7 +98,7 @@ class Photoalbum(db.Model):
         return f"<Photoalbum photoalbum_id = {self.photoalbum_id}>"
 
 
-class Album(db.Model):
+class Album(db.Model, SerializerMixin):
     """An album"""
 
     __tablename__ = "albums"
@@ -110,6 +111,8 @@ class Album(db.Model):
 
     photos = db.relationship('Photo', secondary='photoalbums')
     users = db.relationship('User')
+
+    serialize_rules = ('-users','-photos')
 
     def repr(self):
         return f"<Album album_id = {self.album_id} name = {self.name}>"

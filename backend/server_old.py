@@ -12,12 +12,9 @@ import cloudinary.uploader
 import cloudinary.api
 
 
-from jinja2 import StrictUndefined
-
 app = Flask(__name__)
 app.secret_key = "HKBuLa3wTL"
 # app.secret_key = os.environ.get('FLASK_SECRET_KEY')
-app.jinja_env.undefined = StrictUndefined
 
 os.system('pwd')
 os.system('source secrets.sh')
