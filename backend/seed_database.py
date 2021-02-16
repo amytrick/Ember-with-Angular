@@ -34,13 +34,11 @@ with open("data/fake_photos.json") as f:
     photo_data = json.loads(f.read())
 
 ## iterate through json data and add each photo as a new photo
-photos_in_db = []
 for photo in photo_data:
     user_id = photo["user_id"]
     date_uploaded = datetime.now()
     date_taken = datetime.strptime(photo["date_taken"], "%Y-%m-%d %H:%M")
     album_id = photo["album_id"]
     path = photo["path"]
-
     db_photo = crud.create_photo(user_id, date_uploaded, date_taken, album_id, path)
-    photos_in_db.append(db_photo)
+    crud.add_to_photoalbum(db_photo.photo_id,album_id)

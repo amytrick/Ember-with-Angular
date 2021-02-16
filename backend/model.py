@@ -24,7 +24,7 @@ class User(db.Model, SerializerMixin):
         return f"<User user_id = {self.user_id} email = {self.email}>"
 
 
-class Photo(db.Model):
+class Photo(db.Model, SerializerMixin):
     """A photo image"""
 
     __tablename__ = "photos"
@@ -47,6 +47,9 @@ class Photo(db.Model):
     user = db.relationship('User')
     albums = db.relationship('Album', secondary='photoalbums')
     tags = db.relationship('Tag', secondary='phototags')
+
+    serialize_rules = ('-user','-albums', '-tags')
+
 
     def __repr__(self):
         return f"<Photo photo_id = {self.photo_id}>"

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AlbumService } from '../album.service';
-import {Album} from '../album';
+import { Album } from '../album';
 
 @Component({
   selector: 'app-albums',
@@ -19,7 +19,7 @@ export class AlbumsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAlbums(1);
+    this.getAlbums(1/*userId*/);
   }
 
 }
