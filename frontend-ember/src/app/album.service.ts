@@ -27,5 +27,10 @@ export class AlbumService {
     return this.http.get<Album>(url);
   }
 
+  getPhoto(photo_id: number): Observable<Photo> {
+    const url = `${API_URL}/get-photo/${photo_id}`
+    return this.http.get<Photo>(url);
+  }
+
   constructor(private http: HttpClient) { }
 }

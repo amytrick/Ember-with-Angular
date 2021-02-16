@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
+import { PhotoDetailsComponent } from './photo-details/photo-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumsComponent,
-    AlbumDetailsComponent
+    AlbumDetailsComponent,
+    PhotoDetailsComponent
   ],
   imports: [
     HttpClientModule,

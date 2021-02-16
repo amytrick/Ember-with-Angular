@@ -22,6 +22,10 @@ def get_album_by_album_id(album_id):
     album = crud.get_album_by_id(album_id)
     return jsonify(album.to_dict())
 
+@app.route("/api/get-photo/<int:photo_id>", methods = ['GET'])
+def get_photo_by_photo_id(photo_id):
+    photo = crud.get_photo_by_id(photo_id)
+    return jsonify(photo.to_dict())
 
 
 if __name__ == "__main__":
