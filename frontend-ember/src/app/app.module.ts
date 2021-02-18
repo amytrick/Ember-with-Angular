@@ -8,6 +8,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { PhotoDetailsComponent } from './photo-details/photo-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LibraryComponent } from './library/library.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AlbumsComponent,
     AlbumDetailsComponent,
     PhotoDetailsComponent,
-    NavbarComponent
+    NavbarComponent,
+    LibraryComponent
   ],
   imports: [
     HttpClientModule,

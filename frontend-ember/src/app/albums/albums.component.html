@@ -1,8 +1,7 @@
 <div>
-    <!-- <a *ngFor="let album of albums" routerLink="/album/{{album.album_id}}"> -->
-    <a *ngFor="let album of albums" [routerLink]="['/album', album.album_id]">{{ album.name }}
+    <a *ngFor="let album of albums" routerLink="/album/{{album.album_id}}">
         <div>
-            <!-- <h4>{{album.name}}</h4> -->
+            {{ album.name }}
         </div>
     </a>
 </div>

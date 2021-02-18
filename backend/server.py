@@ -27,6 +27,11 @@ def get_photo_by_photo_id(photo_id):
     photo = crud.get_photo_by_id(photo_id)
     return jsonify(photo.to_dict())
 
+@app.route("/api/library/<int:user_id>", methods = ['GET'])
+def get_photos_by_user_id(user_id):
+    photos = crud.get_photos_by_user_id(user_id)
+    return jsonify([photo.to_dict() for photo in photos])
+
 
 if __name__ == "__main__":
     connect_to_db(app, echo=False)

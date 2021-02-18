@@ -32,5 +32,10 @@ export class AlbumService {
     return this.http.get<Photo>(url);
   }
 
+  fillLibrary(user_id: number): Observable<Photo[]> {
+    const url = `${API_URL}/library/${user_id}`
+    return this.http.get<Photo[]>(url);
+  }
+
   constructor(private http: HttpClient) { }
 }

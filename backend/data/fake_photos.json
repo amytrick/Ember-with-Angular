@@ -6,7 +6,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co1.jpg",
+        "path": "/assets/img/co1.jpg",
         "size": null,
         "rating": null
     },
@@ -17,7 +17,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co2.jpg",
+        "path": "/assets/img/co2.jpg",
         "size": null,
         "rating": null
     },
@@ -28,7 +28,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co3.jpg",
+        "path": "/assets/img/co3.jpg",
         "size": null,
         "rating": null
     },
@@ -39,7 +39,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co4.jpg",
+        "path": "/assets/img/co4.jpg",
         "size": null,
         "rating": null
     },
@@ -50,7 +50,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co5.jpg",
+        "path": "/assets/img/co5.jpg",
         "size": null,
         "rating": null
     },
@@ -61,7 +61,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co6.jpg",
+        "path": "/assets/img/co6.jpg",
         "size": null,
         "rating": null
     },
@@ -72,7 +72,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co7.jpg",
+        "path": "/assets/img/co7.jpg",
         "size": null,
         "rating": null
     },
@@ -83,7 +83,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co8.jpg",
+        "path": "/assets/img/co8.jpg",
         "size": null,
         "rating": null
     },
@@ -94,7 +94,7 @@
         "date_edited": null,
         "album_id": 2,
         "tags": null,
-        "path": "/static/img/co9.jpg",
+        "path": "/assets/img/co9.jpg",
         "size": null,
         "rating": null
     },
@@ -105,7 +105,7 @@
         "date_edited": null,
         "album_id": 2,
         "tags": null,
-        "path": "/static/img/co10.jpg",
+        "path": "/assets/img/co10.jpg",
         "size": null,
         "rating": null
     },
@@ -116,7 +116,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co11.jpg",
+        "path": "/assets/img/co11.jpg",
         "size": null,
         "rating": null
     },
@@ -127,7 +127,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co12.jpg",
+        "path": "/assets/img/co12.jpg",
         "size": null,
         "rating": null
     },
@@ -138,7 +138,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co13.jpg",
+        "path": "/assets/img/co13.jpg",
         "size": null,
         "rating": null
     },
@@ -149,7 +149,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co14.jpg",
+        "path": "/assets/img/co14.jpg",
         "size": null,
         "rating": null
     },
@@ -160,7 +160,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co15.jpg",
+        "path": "/assets/img/co15.jpg",
         "size": null,
         "rating": null
     },
@@ -171,7 +171,7 @@
         "date_edited": null,
         "album_id": 1,
         "tags": null,
-        "path": "/static/img/co16.jpg",
+        "path": "/assets/img/co16.jpg",
         "size": null,
         "rating": null
     }
