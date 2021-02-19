@@ -25,17 +25,6 @@ export class AlbumDetailsComponent implements OnInit {
     this.albumService.getPhotos(album_id).subscribe(photos => this.photos = photos);
   }
 
-  // getPhotos(): void {
-  //   const album_id = +this.route.snapshot.paramMap.get('album_id');
-  //   this.albumService.getPhotos(album_id)
-  //     .subscribe(photos => this.photos = photos);
-  // }
-
-  // getAlbum(album_id: number): void {
-  //   const album_id = +this.route.snapshot.paramMap.get('album_id');
-  //   this.albumService.getAlbum(album_id).subscribe(album => this.album = album);
-  // }
-
   getAlbum(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.albumService.getAlbum(id)

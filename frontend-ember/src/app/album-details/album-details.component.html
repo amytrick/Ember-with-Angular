@@ -1,22 +1,10 @@
-<p>This is the album detail page</p>
-
-<!-- <div *ngIf album>
-    <h1>{{album.name}}</h1>
-    <div>
-        <div *ngFor="let photo of photos">
-            {{photo.photo_id}}</div>
-    </div>
-</div> -->
-
 <div>
     <h1>{{album.name}}</h1>
-    <p>this is the album name</p>
     <div>
         <a *ngFor="let photo of photos">
             <!-- routerLink="/photo/{{photo.photo_id}}" -->
             <div>
-                <p>this is for each photo</p>
-                <img src="{{ photo.path }}">
+                <img class="library-img" id="library-id" src="{{ photo.path }}">
             </div>
         </a>
     </div>

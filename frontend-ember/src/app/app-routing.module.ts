@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: AlbumsComponent },
   { path: 'library', component: LibraryComponent },
   { path: 'album/:id', component: AlbumDetailsComponent },
-  { path: 'photo/:id', component: PhotoDetailsComponent }
+  { path: 'photo/:id', component: PhotoDetailsComponent },
 
   // search/rating
   // search/tag

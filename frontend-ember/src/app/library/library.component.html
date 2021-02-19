@@ -12,8 +12,9 @@
 {% endfor %} -->
 
 <div>
-    <div *ngFor="let photo of photos">
-        <p>This is photo #{{ photo.photo_id }}</p>
-        <img class="library-img" id="library-id" src="{{ photo.path }}">
-    </div>
+  <div *ngFor="let photo of photos">
+    <a href="/photo/{{ photo.photo_id }}">
+      <img class="library-img" id="library-id" src="{{ photo.path }}">
+    </a>
+  </div>
 </div>

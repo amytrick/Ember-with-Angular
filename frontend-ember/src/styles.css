@@ -1,1 +1,572 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: rgb(46, 46, 46);
+    color: white;
+    font-family: 'Comfortaa', cursive;
+  }
+  
+  h1 {
+    color: rgb(255, 255, 255);
+    text-align: auto;
+  }
+  
+  a {
+  color: inherit;
+  text-decoration: none;
+  }
+  
+  a:hover {
+  color: white;
+  }
+  
+  button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
+  
+  button:focus {
+     outline: none; 
+  }
+  
+  input[type=text], input[type=search] {
+    background-color: rgb(46, 46, 46);
+    color: white;
+    border: none;
+    border-bottom: 1px solid gray;
+    text-align: center;
+  }
+  
+  
+  /* ****** LOGIN PAGE ****** */
+  
+  
+  #logo-cover {
+    position: relative;
+    font-family: 'League Script', cursive;
+    font-size: 80pt;
+    margin: 0px;
+    /* top: 40px; */
+  }
+  
+  #login-page {
+    position: relative;
+    text-align: center;
+    top: 100px;
+  }
+  
+  
+  /* ****** LIBRARY PAGE ****** */
+  
+  .library-img {
+      height: 250px;
+      width: auto;
+  }
+  
+  .library {
+      display: inline-block;
+  }
+  
+  
+  /* ****** FILTER/SEARCH ****** */
+  
+  #filtered-library {
+    margin: 5px 3px;
+  }
+  
+  #filter-rating-div {
+    padding: 20px 0px;
+  }
+  
+  #filter-search-rating-div, #filter-buttons-div, #filter-buttons-div {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #filter-title, #filter-radios {
+    padding-right: 20px;
+  }
+  
+  #search-results-title {
+    padding-top: 10px;
+    padding-left: 500px;
+    color: gray;
+  }
+  
+  #filter-results-title {
+    color: gray;
+    padding-left: 500px;
+    padding-top: 20px;
+  }
+  
+  
+  /* ****** NAV BAR ****** */
+  
+  .navbar {
+      background-color: rgb(46, 46, 46);
+      padding: 0rem 2rem;
+      border-bottom: 1px solid gray;
+  }
+  
+  #logo {
+    font-family: 'League Script', cursive;
+    font-size: 40pt;
+  }
+  
+  #search-div {
+    display: flex;
+    justify-content: row;
+  }
+  
+  #filter-button {
+    padding-top: 5px;
+  }
+  
+  
+  /* ****** PHOTO DETAIL PAGE ****** */
+  
+  #photo-column {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #selected-photo-div {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    background-color: honeydew;
+  }
+  
+  #selected-photo-div:hover #delete {
+    opacity: 1;
+  }
+  
+  #delete {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left:30px;
+    top: 30px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  
+  #large-photo {
+    max-height: 1100px;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  #previous-column {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100px;
+    height: 100%;
+    left:14px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  
+  #photo-column:hover #previous-column {
+    opacity: 1;
+    background-color:rgba(0,0,0,.15);
+  }
+  
+  #previous-button-div, #next-button-div {
+    display: flex;
+    align-self: center;
+  }
+  
+  #previous, #next {
+    outline: none;
+  }
+  
+  #next-column {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100px;
+    height: 100%;
+    left:93%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  
+  #photo-column:hover #next-column {
+    opacity: 1;
+    background-color:rgba(0,0,0,.15);
+  }
+  
+  #album-plus {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #add-to-album-title {
+    color: grey;
+  }
+  
+  #album-title {
+    cursor: pointer;
+  }
+  
+  #add-to-album-radios label {
+    display: flex;
+    height: 3em;
+    align-items: center;
+    border-radius: 2px;
+    padding: 0em 1em;
+    margin: 0px;
+  }
+  
+  #add-to-album-radios input[type="radio"] {
+    display: none;
+  }
+  
+  #add-to-album-radios input[type="radio"] + label:hover {
+    background-color: rgb(66, 66, 66);
+  }
+  
+  #add-to-album-radios input[type="radio"]:checked + label {
+    background-color: grey;
+    color: black;
+  }
+  
+  
+  /* ****** ALBUM PAGE ****** */
+  
+  #album-name-div{
+    margin-top: 15px;
+    text-align: center;
+    padding-right: 300px;
+    color: gray;
+  }
+  
+  #remove-icon {
+    position: relative;
+    padding: 0px;
+    text-align: center;
+    width: 21px;
+    height: 21px;
+    left:14px;
+    top: 40px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+    outline: none;
+  }
+  
+  #album-library-img:hover #remove-icon {
+    opacity: 1;
+    color: white;
+    background-color:rgba(0,0,0,.15);
+    border-radius: 50%;
+  }
+  
+  
+  
+  /* ****** STAR RATINGS ****** */
+  
+  #star-radios .star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+  }
+  
+  #star-radios input,
+  #star-radios textarea {
+    background: none repeat scroll 0 0 #333333;
+    border: 0 none;
+    color: #fff;
+    margin: 0;
+    max-width: 100%;
+    padding: 7px 4px;
+  }
+  
+  #star-radios .radio {
+    display: inline-block;
+  }
+  
+  #star-radios input[type=radio] {
+    display: none;
+  } /* renders radio buttons invisible */
+  
+  #star-radios input[type=radio] + label {
+    display: block;
+  }
+  
+  #star-radios input[type='radio'] + .label_star:before {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right: 8px;
+    width: 23px;
+  }
+  
+  #star-radios input[type=radio] + .label_star::before {
+    content: "\f006";
+  } /* Radio Unchecked */
+  
+  #star-radios input[type=radio]:checked ~ .label_star::before {
+    content: "\f005";
+  } /* Radio Checked */
+  
+  /* RADIO BUTTONS FOR FILTER RATINGS (EQUAL/GREATER/LESS) */
+  #filter-radios input[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  
+  #filter-radios [type=radio] + #icon{
+    cursor: pointer;
+  }
+  
+  /* CHECKED STYLES */
+  #filter-radios [type=radio]:checked + #icon {
+    outline: 1px solid white;
+    border-radius: 50%;
+  }
+  
+  
+  /* ****** SIDEBAR ****** */
+  
+  #side-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+  /* NOT WORKING */
+  
+  .flex-container-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .flex-container-sidebar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #add-photo-div {
+    padding: 20px;
+    border: 1px solid gray;
+    color: gray;
+    margin: 10px;
+  }
+  
+  
+    #upload-photo-button-div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .plus-button:hover {
+      border: 1px solid white;
+      outline: 1px solid white;
+      border-radius: 2px;
+    }
+  
+      #photo-upload-button{
+        position: absolute;
+        font-size: 50px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+      }
+  
+        #upload-button {
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+        }
+  
+    #add-photo-button {
+      color: white;
+      border: 1px solid white;
+      margin: 2em 0em 0em 0em;
+    }
+  
+  #album-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid gray;
+    margin: 10px;
+    font-size: 15px;
+  }
+  
+    #add-album-div {
+      display: flex;
+      padding-bottom: 10px;
+      flex-direction: row;
+      justify-content: space-between;
+      color: gray;
+    }
+  
+    .individual-album-div {
+      display: flex;
+      height: 3em;
+      align-items: center;
+      border-radius: 2px;
+      padding: 0em 1em;
+    }
+    .individual-album-div:hover {
+      background-color: rgb(66, 66, 66);
+    }
+  
+  #rating-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 20px; */
+    border: 1px solid gray;
+    margin: 10px;
+  }
+  
+  #sidebar-star-span {
+    margin-top: 25px;
+  }
+  
+  #add-to-album-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid gray;
+    margin: 10px;
+  }
+  
+  #dropdown-icon {
+    padding-top: 6px;
+  }
+  
+  #tags-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid gray;
+    margin: 10px;
+  }
+  
+    #tags-plus {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      color: gray;
+    }
+  
+  .card {
+    background-color: rgb(46, 46, 46);
+  }
+  
+  
+  
+  /* ****** MODALS ****** */
+  
+  .modal-header {
+    background-color: rgba(255, 255, 255, 0.192);
+    text-align: center;
+  }
+  
+  #modal-header-library {
+    background-color: rgb(46, 46, 46);
+  }
+  
+  .modal-body {
+    background-color: rgba(255, 255, 255, 0.192);
+    text-align: center;
+  }
+  
+  #modal-body-library {
+    background-color:  rgb(46, 46, 46);
+  }
+  
+   .modal-fade{
+    z-index: 100;
+  }
+  
+  .modal .title {
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .loginpage-modal {
+    background-color: rgba(255, 255, 255, 0.192);
+  }
+  
+  
+  /* ****** DELETE TAG ****** */
+  
+  
+  #delete-tag-button {
+    background-color: #333;
+    border: none;
+  }
+  
+  #individual-tag-div {
+    padding-top: 1em;
+  }
+  
+  
+  #individual-tag-div li {
+    display: inline-block;
+    padding: 0 20px;
+  }
+  
+  #individual-tag-div span {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    color: white;
+  }
+  
+  #individual-tag-div span:before, span:after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    top: 50%;
+    margin-top: -0.5px;
+    background: #fff;
+  }
+  
+  #individual-tag-div span:before {
+    left: -2.5px;
+  }
+  #individual-tag-div span:after {
+    right: 2.5px;
+    background: #fff;
+    transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  
+  #individual-tag-div span:hover:before {
+    background: #fff;
+    width: 100%;
+    transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  
+  #individual-tag-div span:hover:after {
+    background: transparent;
+    width: 100%;
+    transition: 0s;
+  }
