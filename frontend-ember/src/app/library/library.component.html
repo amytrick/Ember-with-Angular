@@ -1,16 +1,3 @@
-<p>library works!</p>
-
-<!-- will display a div for each photo with it's date -->
-
-<!-- {% for photo in photos %}
-<div class="library">
-  <div id="date">{{photo.print_date}}</div>
-    <a id="album-link" href="/photodetails/{{photo.photo_id}}">
-      <img class="library-img" id="library-id" src= {{ photo.path }}>
-    </a>
-</div>
-{% endfor %} -->
-
 <div>
   <div *ngFor="let photo of photos">
     <a href="/photo/{{ photo.photo_id }}">

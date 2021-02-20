@@ -4,7 +4,9 @@
         <a *ngFor="let photo of photos">
             <!-- routerLink="/photo/{{photo.photo_id}}" -->
             <div>
-                <img class="library-img" id="library-id" src="{{ photo.path }}">
+                <a href="/photo/{{ photo.photo_id }}">
+                    <img class="library-img" id="library-id" src="{{ photo.path }}">
+                </a>
             </div>
         </a>
     </div>
