@@ -1,11 +1,17 @@
-<p><a routerLink="library">Library</a></p>
+<div class="flex-container-sidebar">
+    <p><a routerLink="library">Library</a></p>
+    <div id="side-nav">
+        <div id="add-photo-div">
+            <div id="upload-photo-button-div">
+                UPLOAD PHOTO
+                <button class="plus-button">+</button>
+            </div>
+            
+        </div>
 
-<div>
-    <p>UPLOAD PHOTO</p>
-    <button>+</button>
+        <app-albums></app-albums>
 
-<app-albums></app-albums>
-
+    </div>
 </div>
 <!-- <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
     <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">

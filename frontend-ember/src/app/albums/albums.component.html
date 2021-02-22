@@ -1,4 +1,8 @@
-<div>
+<div id="album-div">
+    <div id="add-album-div">
+        ALBUMS
+        <button class="plus-button">+</button>
+    </div>
     <a *ngFor="let album of albums" routerLink="/album/{{album.album_id}}">
         <div>
             {{ album.name }}
