@@ -10,7 +10,7 @@ import { Album } from '../album';
 })
 export class AlbumsComponent implements OnInit {
 
-  albums?: Album[];
+  albums: Album[] = [];
 
   constructor(private albumService: AlbumService) { }
 

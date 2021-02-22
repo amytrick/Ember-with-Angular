@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Album } from "../album";
 import { Photo } from "../photo";
 import { AlbumService } from '../album.service';
-
+import { SharedPhotosService } from '../shared-photos.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-album-details',
@@ -13,27 +14,43 @@ import { AlbumService } from '../album.service';
 
 export class AlbumDetailsComponent implements OnInit {
 
-  album?: Album;
-  photos?: Photo[];
+  album: Album = <Album>{};
+  photos: Photo[] = [];
+  subscription: Subscription;
+  message: string;
 
   constructor(
     private albumService: AlbumService,
-    private route: ActivatedRoute,
+    private sharedPhotosService: SharedPhotosService,
+    private route: ActivatedRoute
   ) { }
 
-  getPhotos(album_id: number): void {
-    this.albumService.getPhotos(album_id).subscribe(photos => this.photos = photos);
+  next(): void {
+    this.sharedPhotosService.nextMessage("Second Message");
   }
 
-  getAlbum(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+  getPhotos(album_id: number): void {
+    this.albumService.getPhotos(album_id).subscribe(photos => {
+      this.sharedPhotosService.updatePhotos(photos);
+    });
+  }
+
+  getAlbum(id: number): void {
     this.albumService.getAlbum(id)
       .subscribe(album => this.album = album);
   }
 
   ngOnInit(): void {
-    this.getAlbum()
-    // (1/*albumId*/);
-    this.getPhotos(1/*albumId*/);
+
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.getAlbum(id)
+    this.getPhotos(id);
+
+    this.sharedPhotosService.sharedMessage.subscribe(message => this.message = message);
+    this.subscription = this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
