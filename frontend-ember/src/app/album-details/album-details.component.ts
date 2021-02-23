@@ -4,7 +4,6 @@ import { Album } from "../album";
 import { Photo } from "../photo";
 import { AlbumService } from '../album.service';
 import { SharedPhotosService } from '../shared-photos.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-album-details',
@@ -16,18 +15,12 @@ export class AlbumDetailsComponent implements OnInit {
 
   album: Album = <Album>{};
   photos: Photo[] = [];
-  subscription: Subscription;
-  message: string;
 
   constructor(
     private albumService: AlbumService,
     private sharedPhotosService: SharedPhotosService,
     private route: ActivatedRoute
   ) { }
-
-  next(): void {
-    this.sharedPhotosService.nextMessage("Second Message");
-  }
 
   getPhotos(album_id: number): void {
     this.albumService.getPhotos(album_id).subscribe(photos => {
@@ -45,12 +38,7 @@ export class AlbumDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.getAlbum(id)
     this.getPhotos(id);
-
-    this.sharedPhotosService.sharedMessage.subscribe(message => this.message = message);
-    this.subscription = this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
+    this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }
