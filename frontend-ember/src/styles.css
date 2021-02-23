@@ -139,7 +139,6 @@ input[type="search"] {
   display: flex;
   justify-content: center;
   margin: 0px;
-  background-color: honeydew;
 }
 
 #selected-photo-div:hover #delete {

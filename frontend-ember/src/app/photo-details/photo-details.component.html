@@ -1,14 +1,25 @@
-<h1>Message from Service : {{message}}</h1>
-<div *ngFor="let photoa of photos">
-    <p>{{photoa.photo_id}}</p>
-</div>
-<div>
-    <button (click)="previous()">previous</button>
-    <button (click)="next()">next </button>
-    <p>{{currentDisplayedIdx}}</p>
-    <div>
-        <img class=" large-photo" src="{{ photo.path }}">
+ <h1>Message from Service : {{message}}</h1>
+        <div *ngFor="let photo of photos">
+            <p>{{photo.photo_id}}</p>
+            <p>{{currentDisplayedIdx}}</p>
+<div id="photo-column">
+    <div id="selected-photo-div">
+        
+        <div id="previous-column">
+            <div id="previous-button-div">
+                <button (click)="previous()" id="previous"><</button>
+            </div>
+        </div>
+        <div>
+            <img class=" large-photo" src="{{ photo.path }}">
+        </div>
+        <div id="next-column">
+            <div id="next-button-div">
+                <button (click)="next()" id="next">></button>
+            </div>
+        </div>
+        <form action="/delete_photo/{{photo.photo_id}}", method="POST">
+            <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white" data-toggle="tooltip" data-placement="bottom" title="Delete"></i></button>
+        </form>
     </div>
-
-
 </div>
