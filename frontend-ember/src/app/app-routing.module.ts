@@ -7,7 +7,7 @@ import { LibraryComponent } from './library/library.component';
 const routes: Routes = [
   { path: 'library', component: LibraryComponent },
   { path: 'album/:id', component: AlbumDetailsComponent },
-  { path: 'photo/:id', component: PhotoDetailsComponent },
+  { path: 'photo', component: PhotoDetailsComponent },
 
   // search/rating
   // search/tag

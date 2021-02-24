@@ -20,9 +20,9 @@ export class AlbumsComponent implements OnInit {
     this.albumService.getAlbums(user_id).subscribe(albums => this.albums = albums);
   }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
-  }
+  // openVerticallyCentered(content) {
+  //   this.modalService.open(content, { centered: true });
+  // }
 
   ngOnInit(): void {
     this.getAlbums(1/*userId*/);

@@ -25,27 +25,24 @@ export class PhotoDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  getPhoto(id: number): void {
-    this.albumService.getPhoto(id)
-      .subscribe(photo => this.photo = photo);
-  }
+  // getPhoto(id: number): void {
+  //   this.albumService.getPhoto(id)
+  //     .subscribe(photo => this.photo = photo);
+  // }
 
   previous(): void {
-    this.currentDisplayedIdx -= 1;
-    this.photo = this.photos[this.currentDisplayedIdx];
+    this.sharedPhotosService.previousPhoto();
   }
 
   next(): void {
-    this.currentDisplayedIdx += 1;
-    this.photo = this.photos[this.currentDisplayedIdx];
+    this.sharedPhotosService.nextPhoto();
   }
 
   ngOnInit(): void {
-    this.currentDisplayedIdx = +this.route.snapshot.paramMap.get('id');
-
-    this.getPhoto(this.currentDisplayedIdx);
-
+    // this.currentDisplayedIdx = +this.route.snapshot.paramMap.get('id');
+    // this.getPhoto(this.currentDisplayedIdx);
     this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
+    this.sharedPhotosService.currentPhoto.subscribe(photo => this.photo = photo);
   }
 
 

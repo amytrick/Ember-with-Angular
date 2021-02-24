@@ -4,6 +4,8 @@ import { Album } from "../album";
 import { Photo } from "../photo";
 import { AlbumService } from '../album.service';
 import { SharedPhotosService } from '../shared-photos.service';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-album-details',
@@ -20,7 +22,8 @@ export class AlbumDetailsComponent implements OnInit {
     private albumService: AlbumService,
     private sharedPhotosService: SharedPhotosService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   getPhotos(album_id: number): void {
     this.albumService.getPhotos(album_id).subscribe(photos => {
@@ -33,11 +36,18 @@ export class AlbumDetailsComponent implements OnInit {
       .subscribe(album => this.album = album);
   }
 
-  ngOnInit(): void {
+  setPhoto(id: number) {
+    this.sharedPhotosService.setPhoto(id);
+  }
 
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.getAlbum(id)
-    this.getPhotos(id);
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      this.getAlbum(Number(id))
+      this.getPhotos(Number(id));
+    })
+
+    //const id = +this.route.snapshot.paramMap.get('id');
     this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
   }
 
