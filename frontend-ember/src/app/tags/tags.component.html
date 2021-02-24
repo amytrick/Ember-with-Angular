@@ -1,13 +1,21 @@
 <div id="tags-div">
     <div id="tags-plus">
         TAGS
-        <button class="plus-button">+</button>
+        <button type="button" class="plus-button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample">
+            +
+        </button>
     </div>
-
-    <form id="add-tag-form">
-        <input type="text" placeholder="ADD TAG" name="tag-text">
-        <button id='add-tag'></button>
-    </form>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="card">
+            <div class="card-body">
+                <form id="add-tag-form">
+                    <input type="text" placeholder="ADD TAG" name="tag-text">
+                    <button id='add-tag'></button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div *ngFor="let tag of tags" id="individual-tag-div">
         <div>

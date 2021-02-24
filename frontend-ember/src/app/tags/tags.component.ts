@@ -14,6 +14,8 @@ import { Tag } from '../tag';
 export class TagsComponent implements OnInit {
 
   tags: Tag[] = []
+  public isCollapsed = true;
+
 
   constructor(private albumService: AlbumService) { }
 

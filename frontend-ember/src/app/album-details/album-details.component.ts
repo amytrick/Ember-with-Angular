@@ -36,10 +36,6 @@ export class AlbumDetailsComponent implements OnInit {
       .subscribe(album => this.album = album);
   }
 
-  // setPhoto(id: number) {
-  //   this.sharedPhotosService.setPhoto(id);
-  // }
-
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
@@ -47,7 +43,6 @@ export class AlbumDetailsComponent implements OnInit {
       this.getPhotos(Number(id));
     })
 
-    //const id = +this.route.snapshot.paramMap.get('id');
     this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
   }
 
