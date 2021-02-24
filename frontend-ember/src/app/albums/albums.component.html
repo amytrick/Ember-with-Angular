@@ -1,5 +1,5 @@
 <div id="album-div">
-    <div id="add-album-div">
+    <div id="add-album-div" data-toggle="tooltip" data-placement="bottom" title="Add new album">
         ALBUMS
         <button type="button" class="plus-button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
             aria-controls="collapseExample">
@@ -10,9 +10,7 @@
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
         <div class="card">
             <div class="card-body">
-                <form>
-                    <p><input type="text" name="new_album_name" placeholder="NEW ALBUM NAME" id="add-album-button"></p>
-                </form>
+                <p><input type="text" name="new_album_name" placeholder="NEW ALBUM NAME" id="add-album-button"></p>
             </div>
         </div>
     </div>

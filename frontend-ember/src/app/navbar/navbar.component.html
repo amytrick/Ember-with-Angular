@@ -1,5 +1,24 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark flex-container-navbar">
         <p><a class="navbar-brand" id="logo" routerLink="">ember</a></p>
+
+        <div id="search-div">
+            <button class="btn my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="bottom"
+                title="Search by keyword">
+                <fa-icon [icon]="faSearch" class="fa-lg"></fa-icon>
+            </button>
+            <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search">
+            <span id="filter-button" data-toggle="tooltip" data-placement="bottom" title="Filter">
+                <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false"
+                    aria-controls="collapse-filter">
+                    <fa-icon [icon]="faFilter" class="fa-lg"></fa-icon>
+
+                </button>
+            </span>
+        </div>
+        <div class="logout-div">
+            <button class="btn btn-outline-light my-2 my-sm-0">LOGOUT</button>
+        </div>
+
     </nav>
 </div>

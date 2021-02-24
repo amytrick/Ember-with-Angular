@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -8,6 +9,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  faFilter = faFilter;
+  faSearch = faSearch;
 
   constructor(private route: ActivatedRoute,) { }
 

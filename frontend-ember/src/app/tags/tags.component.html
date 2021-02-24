@@ -2,7 +2,7 @@
     <div id="tags-plus">
         TAGS
         <button type="button" class="plus-button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
-            aria-controls="collapseExample">
+            aria-controls="collapseExample" data-toggle="tooltip" data-placement="bottom" title="Add new tag">
             +
         </button>
     </div>
