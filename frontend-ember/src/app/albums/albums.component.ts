@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AlbumsComponent implements OnInit {
   // faPlus = faPlus;
   albums: Album[] = [];
+  public isCollapsed = true;
 
   constructor(private albumService: AlbumService) { }
 
