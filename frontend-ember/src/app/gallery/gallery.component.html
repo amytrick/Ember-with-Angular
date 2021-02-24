@@ -1,0 +1,9 @@
+<div>
+    <a *ngFor="let photo of photos">
+        <div>
+            <a routerLink="/photo" (click)="setPhoto(photo.photo_id)">
+                <img class="library-img" id="library-id" src="{{ photo.path }}">
+            </a>
+        </div>
+    </a>
+</div>

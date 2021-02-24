@@ -14,6 +14,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DragDropDirective } from './drag-drop.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagsComponent } from './tags/tags.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TagsComponent } from './tags/tags.component';
     LibraryComponent,
     SidebarComponent,
     DragDropDirective,
-    TagsComponent
+    TagsComponent,
+    GalleryComponent
   ],
   imports: [
     HttpClientModule,

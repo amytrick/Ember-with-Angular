@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
-import { Photo } from "../photo";
+import { SharedPhotosService } from '../shared-photos.service';
 
 @Component({
   selector: 'app-library',
@@ -9,12 +9,15 @@ import { Photo } from "../photo";
 })
 export class LibraryComponent implements OnInit {
 
-  photos?: Photo[];
-
-  constructor(private albumService: AlbumService) { }
+  constructor(
+    private albumService: AlbumService,
+    private sharedPhotosService: SharedPhotosService,
+  ) { }
 
   fillLibrary(user_id: number): void {
-    this.albumService.fillLibrary(user_id).subscribe(photos => this.photos = photos);
+    this.albumService.fillLibrary(user_id).subscribe(photos => {
+      this.sharedPhotosService.updatePhotos(photos);
+    });
   }
 
   ngOnInit(): void {
