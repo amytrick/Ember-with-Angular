@@ -4,8 +4,8 @@ import { AlbumService } from '../album.service';
 import { Photo } from "../photo";
 import { SharedPhotosService } from '../shared-photos.service';
 
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-// <fa-icon [icon]="faCoffee"></fa-icon>
+import { faTrashAlt, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -18,17 +18,15 @@ export class PhotoDetailsComponent implements OnInit {
   photo: Photo = <Photo>{};
   photos: Photo[] = [];
   currentDisplayedIdx: number;
+  faTrashAlt = faTrashAlt;
+  faChevronRight = faChevronRight;
+  faChevronLeft = faChevronLeft;
 
   constructor(
     private albumService: AlbumService,
     private sharedPhotosService: SharedPhotosService,
     private route: ActivatedRoute
   ) { }
-
-  // getPhoto(id: number): void {
-  //   this.albumService.getPhoto(id)
-  //     .subscribe(photo => this.photo = photo);
-  // }
 
   previous(): void {
     this.sharedPhotosService.previousPhoto();
@@ -39,8 +37,6 @@ export class PhotoDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.currentDisplayedIdx = +this.route.snapshot.paramMap.get('id');
-    // this.getPhoto(this.currentDisplayedIdx);
     this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
     this.sharedPhotosService.currentPhoto.subscribe(photo => this.photo = photo);
   }

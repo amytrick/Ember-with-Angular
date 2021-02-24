@@ -3,18 +3,22 @@
         <img class="large-photo" src="{{ photo.path }}">
         <div id="previous-column">
             <div id="previous-button-div">
-                <button (click)="previous()" id="previous"> previous
+                <button (click)="previous()" id="previous">
+                    <fa-icon [icon]="faChevronLeft" class="fa-3x"></fa-icon>
                 </button>
             </div>
         </div>
         <div id="next-column">
             <div id="next-button-div">
-                <button (click)="next()" id="next">next</button>
+                <button (click)="next()" id="next">
+                    <fa-icon [icon]="faChevronRight" class="fa-3x"></fa-icon>
+                </button>
             </div>
         </div>
-        <!-- <form action="/delete_photo/{{photo.photo_id}}" , method="POST">
-            <button id="delete"><i class="far fa-trash-alt fa-2x" style="color:white" data-toggle="tooltip"
-                    data-placement="bottom" title="Delete"></i></button>
-        </form> -->
+
+        <button id="delete">
+            <fa-icon [icon]="faTrashAlt" class="fa-2x"></fa-icon>
+        </button>
+
     </div>
 </div>
