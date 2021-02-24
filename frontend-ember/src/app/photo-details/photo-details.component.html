@@ -3,15 +3,12 @@
 </div>
 <div id="photo-column">
     <div id="selected-photo-div">
-
+        <img class="large-photo" src="{{ photo.path }}">
         <div id="previous-column">
             <div id="previous-button-div">
                 <button (click)="previous()" id="previous"> previous
                 </button>
             </div>
-        </div>
-        <div>
-            <img class=" large-photo" src="{{ photo.path }}">
         </div>
         <div id="next-column">
             <div id="next-button-div">

@@ -34,6 +34,11 @@ def get_photos_by_user_id(user_id):
     photos = crud.get_photos_by_user_id(user_id)
     return jsonify([photo.to_dict() for photo in photos])
 
+@app.route("/api/get-tags/<int:photo_id>", methods = ["GET"])
+def get_tags_by_photo_id(photo_id):
+    tags = crud.display_tags_by_photo_id(photo_id)
+    return jsonify([tags.to_dict() for tag in tags])
+
 
 if __name__ == "__main__":
     connect_to_db(app, echo=False)

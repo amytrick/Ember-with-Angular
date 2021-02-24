@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { LibraryComponent } from './library/library.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DragDropDirective } from './drag-drop.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent,
     LibraryComponent,
     SidebarComponent,
-    DragDropDirective
+    DragDropDirective,
+    TagsComponent
   ],
   imports: [
     HttpClientModule,

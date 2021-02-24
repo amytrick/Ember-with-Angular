@@ -1,0 +1,17 @@
+<div id="tags-div">
+    <div id="tags-plus">
+        TAGS
+        <button class="plus-button">+</button>
+    </div>
+
+    <form id="add-tag-form">
+        <input type="text" placeholder="ADD TAG" name="tag-text">
+        <button id='add-tag'></button>
+    </form>
+
+    <div *ngFor="let tag of tags" id="individual-tag-div">
+        <div>
+            {{ tag.tagword }}
+        </div>
+    </div>
+</div>

@@ -36,7 +36,7 @@ class Photo(db.Model, SerializerMixin):
     date_edited = db.Column(db.DateTime)
     album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"))
         #currently not used
-    tags = db.Column(db.Boolean)
+    tags = db.Column(db.String)
         #currently not used
     path = db.Column(db.String)
     size = db.Column(db.Integer)
@@ -71,7 +71,7 @@ class Phototag(db.Model):
         return f"<Phototag phototag_id = {self.phototag_id}>"
 
 
-class Tag(db.Model):
+class Tag(db.Model, SerializerMixin):
     """A keyword to describe a photo"""
 
     __tablename__ = "tags"
@@ -80,6 +80,8 @@ class Tag(db.Model):
     tagword = db.Column(db.String(20), unique=True)
 
     photos = db.relationship('Photo', secondary='phototags')
+
+    serialize_rules = ('-photos')
 
     def repr(self):
         return f"<Tag tag_id = {self.tag_id} tagword = {self.tagword}>"

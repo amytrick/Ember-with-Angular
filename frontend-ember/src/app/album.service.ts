@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { Album } from './album';
 import { Photo } from './photo';
+import { Tag } from './tag';
 import { API_URL } from './env';
 
 @Injectable({
@@ -35,6 +36,11 @@ export class AlbumService {
   fillLibrary(user_id: number): Observable<Photo[]> {
     const url = `${API_URL}/library/${user_id}`
     return this.http.get<Photo[]>(url);
+  }
+
+  getTags(photo_id: number): Observable<Tag[]> {
+    const url = `${API_URL}/get-tags/${photo_id}`
+    return this.http.get<Tag[]>(url);
   }
 
   constructor(private http: HttpClient) { }

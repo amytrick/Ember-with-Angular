@@ -4,6 +4,10 @@ import { AlbumService } from '../album.service';
 import { Photo } from "../photo";
 import { SharedPhotosService } from '../shared-photos.service';
 
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+// <fa-icon [icon]="faCoffee"></fa-icon>
+
+
 @Component({
   selector: 'app-photo-details',
   templateUrl: './photo-details.component.html',
