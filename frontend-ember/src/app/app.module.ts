@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagsComponent } from './tags/tags.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { RatingsComponent } from './ratings/ratings.component';
+import { AddToAlbumComponent } from './add-to-album/add-to-album.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RatingsComponent } from './ratings/ratings.component';
     DragDropDirective,
     TagsComponent,
     GalleryComponent,
-    RatingsComponent
+    RatingsComponent,
+    AddToAlbumComponent
   ],
   imports: [
     HttpClientModule,

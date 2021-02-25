@@ -7,18 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  // FOR FILE UPLOADER
+  // files?: any = [];
 
-  files?: any = [];
-
-  uploadFile(event: any) {
-    for (let index = 0; index < event.length; index++) {
-      const element = event[index];
-      this.files.push(element.name)
-    }
-  }
-  deleteAttachment(index: any) {
-    this.files.splice(index, 1)
-  }
+  // uploadFile(event: any) {
+  //   for (let index = 0; index < event.length; index++) {
+  //     const element = event[index];
+  //     this.files.push(element.name)
+  //   }
+  // }
+  // deleteAttachment(index: any) {
+  //   this.files.splice(index, 1)
+  // }
 
   constructor() { }
 

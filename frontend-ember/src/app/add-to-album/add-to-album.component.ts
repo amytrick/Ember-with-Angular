@@ -3,13 +3,14 @@ import { AlbumService } from '../album.service';
 import { Album } from '../album';
 
 @Component({
-  selector: 'app-albums',
-  templateUrl: './albums.component.html',
-  styleUrls: ['./albums.component.css']
+  selector: 'app-add-to-album',
+  templateUrl: './add-to-album.component.html',
+  styleUrls: ['./add-to-album.component.css']
 })
-export class AlbumsComponent implements OnInit {
+export class AddToAlbumComponent implements OnInit {
+
   albums: Album[] = [];
-  public isCollapsed = true;
+  public isCollapsed = false;
 
   constructor(private albumService: AlbumService) { }
 

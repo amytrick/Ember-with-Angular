@@ -1,0 +1,30 @@
+<div id="add-to-album-div">
+    <div id="collapse-albums-div">
+        <span id="album-plus">
+            <div id="add-to-album-title">
+                ADD TO ALBUM
+            </div>
+            <span data-toggle="tooltip" data-placement="bottom" title="Add to album">
+                <button type="button" class="plus-button" (click)="collapse.toggle()"
+                    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" data-toggle="tooltip"
+                    data-placement="bottom" title="Add to album">
+                    +
+                </button>
+            </span>
+        </span>
+
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <div class="card">
+                <div class="card-body">
+                    <div id="add-to-album-radios">
+                        <!-- <form id='add-to-album-form' action="/add-to-album/{{photo.photo_id}}", method="POST"> -->
+                        <div *ngFor="let album of albums">
+                            <input type="radio" id="{{ album.name }}" name="add-to-album" value="{{ album.name }}">
+                            <label for="{{ album.name }}">{{ album.name }}</label>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
