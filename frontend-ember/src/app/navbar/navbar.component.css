@@ -1,0 +1,8 @@
+.card-body {
+    display: flex;
+    justify-content: center;
+}
+
+#equality-icons {
+    padding-right: 2em;
+}

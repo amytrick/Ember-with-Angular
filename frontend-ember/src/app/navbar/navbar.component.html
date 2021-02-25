@@ -8,17 +8,30 @@
                 <fa-icon [icon]="faSearch" class="fa-lg" style="color: white"></fa-icon>
             </button>
             <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search">
-            <span id="filter-button" data-toggle="tooltip" data-placement="bottom" title="Filter">
-                <button type="button" data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false"
-                    aria-controls="collapse-filter">
-                    <fa-icon [icon]="faFilter" class="fa-lg"></fa-icon>
 
+            <span id="filter-button" data-toggle="tooltip" data-placement="bottom" title="Filter">
+                <button type="button" class="plus-button" (click)="collapse.toggle()"
+                    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" data-toggle="tooltip"
+                    data-placement="bottom" title="Filter">
+                    <fa-icon [icon]="faFilter" class="fa-lg"></fa-icon>
                 </button>
             </span>
         </div>
         <div class="logout-div">
             <button class="btn btn-outline-light my-2 my-sm-0">LOGOUT</button>
         </div>
-
     </nav>
+</div>
+
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card">
+        <div class="card-body">
+            <div id="equality-icons">
+                <fa-icon [icon]="equals" class="fa-sm"></fa-icon>
+                <fa-icon [icon]="greater" class="fa-sm"></fa-icon>
+                <fa-icon [icon]="less" class="fa-sm"></fa-icon>
+            </div>
+            <app-rating></app-rating>
+        </div>
+    </div>
 </div>

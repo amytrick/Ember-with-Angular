@@ -280,6 +280,10 @@ input[type="search"] {
 
 /* ****** STAR RATINGS ****** */
 
+.rating-stars {
+  font-size: 1.5em;
+}
+
 #star-radios .star-rating {
   display: inline-flex;
   flex-direction: row-reverse;
@@ -443,7 +447,7 @@ input[type="search"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 20px; */
+  padding: 20px;
   border: 1px solid gray;
   margin: 10px;
 }

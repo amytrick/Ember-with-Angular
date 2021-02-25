@@ -1,25 +1,3 @@
-<div id="rating-div">
-    <form>
-        <div class="form-group" id="star-radios">
-            <label id="rating" for="rating"></label>
-            <span class="star-rating star-5" id="sidebar-star-span">
-                <input type="radio" id="option5" name="star-radios" value="5">
-                <label class="label_star" id="option5_label" for="option5"></label>
-                <input type="radio" id="option4" name="star-radios" value="4">
-                <label class="label_star" id="option4_label" for="option4"></label>
-                <input type="radio" id="option3" name="star-radios" value="3">
-                <label class="label_star" id="option3_label" for="option3"></label>
-                <input type="radio" id="option2" name="star-radios" value="2">
-                <label class="label_star" id="option2_label" for="option2"></label>
-                <input type="radio" id="option1" name="star-radios" value="1">
-                <label class="label_star" id="option1_label" for="option1"></label>
-            </span>
-        </div>
-        <!-- <script type="text/javascript">
-            var preSelectRating = {{photo.rating}};
-            $(function(){
-                $('input[name=star-radios][value=' + preSelectRating + ']').prop('checked',true)
-            });
-         </script> -->
-    </form>
+<div id="rating-div" class="rating-stars">
+    <ngb-rating [(rate)]="currentRate" [max]=5 (rateChange)=updateRating($event)></ngb-rating>
 </div>

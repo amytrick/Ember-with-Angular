@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faSearch, faEquals, faGreaterThanEqual, faLessThanEqual } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -12,6 +12,11 @@ export class NavbarComponent implements OnInit {
 
   faFilter = faFilter;
   faSearch = faSearch;
+  equals = faEquals;
+  greater = faGreaterThanEqual;
+  less = faLessThanEqual;
+  public isCollapsed = true;
+
 
   constructor(private route: ActivatedRoute,) { }
 

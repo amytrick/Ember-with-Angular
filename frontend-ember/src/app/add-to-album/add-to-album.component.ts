@@ -10,7 +10,7 @@ import { Album } from '../album';
 export class AddToAlbumComponent implements OnInit {
 
   albums: Album[] = [];
-  public isCollapsed = false;
+  public isCollapsed = true;
 
   constructor(private albumService: AlbumService) { }
 
