@@ -17,6 +17,7 @@ import { TagsComponent } from './tags/tags.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { AddToAlbumComponent } from './add-to-album/add-to-album.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AddToAlbumComponent } from './add-to-album/add-to-album.component';
     TagsComponent,
     GalleryComponent,
     RatingsComponent,
-    AddToAlbumComponent
+    AddToAlbumComponent,
+    RatingComponent
   ],
   imports: [
     HttpClientModule,

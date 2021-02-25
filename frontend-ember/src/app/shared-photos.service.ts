@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { Photo } from './photo';
+import { API_URL } from './env';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,12 @@ export class SharedPhotosService {
 
   currentIdx: any = 0
 
-  constructor() {
+  constructor(private http: HttpClient) {
+  }
+
+  updateCurrentRating(newRating: number) {
+    this.photo.value.rating = newRating;
+    this.http.post<Number>(`${API_URL}/update-rating`, { photo_id: this.photo.value.photo_id, rating: newRating }).subscribe(data => { });
   }
 
   nextPhoto() {

@@ -39,7 +39,14 @@ def get_tags_by_photo_id(photo_id):
     tags = crud.display_tags_by_photo_id(photo_id)
     return jsonify([tags.to_dict() for tag in tags])
 
-
+@app.route("/api/update-rating", methods = ["POST"])
+def update_rating():
+    print("Update rating")
+    if not request.json:
+        # todo return right codes
+        return jsonify({'status': 'error'}), 201
+    crud.give_rating(request.json['photo_id'],request.json['rating'])
+    return jsonify({'status': 'rating updated'}), 201
 if __name__ == "__main__":
     connect_to_db(app, echo=False)
     app.run(host="0.0.0.0", debug=True)
