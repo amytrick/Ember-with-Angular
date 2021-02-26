@@ -10,11 +10,17 @@ import { Album } from '../album';
 export class AlbumsComponent implements OnInit {
   albums: Album[] = [];
   public isCollapsed = true;
-
+  newAlbumName: string = "NEW ALBUM NAME";
   constructor(private albumService: AlbumService) { }
 
   getAlbums(user_id: number): void {
     this.albumService.getAlbums(user_id).subscribe(albums => this.albums = albums);
+  }
+
+  addAlbum() {
+    this.albumService.addAlbum(this.newAlbumName, 1 /*userid*/).subscribe(album => this.albums.push(album));
+    this.isCollapsed = true;
+    this.newAlbumName = "NEW ALBUM NAME";
   }
 
   ngOnInit(): void {

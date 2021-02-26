@@ -18,6 +18,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { AddToAlbumComponent } from './add-to-album/add-to-album.component';
 import { RatingComponent } from './rating/rating.component';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RatingComponent } from './rating/rating.component';
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

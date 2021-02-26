@@ -20,9 +20,9 @@ export class SharedPhotosService {
   constructor(private http: HttpClient) {
   }
 
-  updateCurrentRating(newRating: number) {
+  updateCurrentRating(newRating: number): void {
     this.photo.value.rating = newRating;
-    this.http.post<Number>(`${API_URL}/update-rating`, { photo_id: this.photo.value.photo_id, rating: newRating }).subscribe(data => { });
+    this.http.post(`${API_URL}/update-rating`, { photo_id: this.photo.value.photo_id, rating: newRating });
   }
 
   nextPhoto() {

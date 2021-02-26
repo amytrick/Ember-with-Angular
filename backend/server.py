@@ -4,6 +4,8 @@ from flask import Flask, jsonify, request
 import crud
 from model import connect_to_db
 from flask_cors import CORS
+from datetime import datetime
+
 
 app = Flask(__name__)
 CORS(app)
@@ -47,6 +49,39 @@ def update_rating():
         return jsonify({'status': 'error'}), 201
     crud.give_rating(request.json['photo_id'],request.json['rating'])
     return jsonify({'status': 'rating updated'}), 201
+
+@app.route("/api/add-album", methods = ["POST"])
+def add_album():
+    print(request.json)
+    print()
+    print()
+    print(datetime.utcfromtimestamp(request.json['datetime']/1000).strftime('%Y-%m-%d %H:%M:%S'))
+    user_id = request.json['user_id']
+    album_name = request.json['name']
+    date_created = datetime.utcfromtimestamp(request.json['datetime']/1000)
+    album = crud.create_album(album_name, date_created, user_id)
+    
+    return jsonify(album.to_dict())
+
+# CRUD FUNCTION
+# def create_album(name, date_created, user_id):
+#     """Create new album to be added to db"""
+#     album = Album(name=name, date_created=date_created, user_id=user_id)
+#     db.session.add(album)
+#     db.session.commit()
+#     return album
+
+# OLD SERVER ROUTE
+# @app.route("/add_album")
+# def create_new_album():
+#     """Add new album, named by user"""
+
+#     name = request.args.get("new_album_name")
+#     date_created = datetime.now()
+#     user_id = session.get('user_id')
+
+#     album = crud.create_album(name, date_created, user_id)
+
 if __name__ == "__main__":
     connect_to_db(app, echo=False)
     app.run(host="0.0.0.0", debug=True)
