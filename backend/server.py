@@ -52,10 +52,6 @@ def update_rating():
 
 @app.route("/api/add-album", methods = ["POST"])
 def add_album():
-    print(request.json)
-    print()
-    print()
-    print(datetime.utcfromtimestamp(request.json['datetime']/1000).strftime('%Y-%m-%d %H:%M:%S'))
     user_id = request.json['user_id']
     album_name = request.json['name']
     date_created = datetime.utcfromtimestamp(request.json['datetime']/1000)
@@ -63,24 +59,14 @@ def add_album():
     
     return jsonify(album.to_dict())
 
-# CRUD FUNCTION
-# def create_album(name, date_created, user_id):
-#     """Create new album to be added to db"""
-#     album = Album(name=name, date_created=date_created, user_id=user_id)
-#     db.session.add(album)
-#     db.session.commit()
-#     return album
+@app.route("/api/add-to-album", methods = ["POST"])
+def add_to_album():
+    photo_id = request.json['photo_id']
+    album_id = request.json['album_id']
+    crud.add_to_photoalbum(photo_id, album_id)
 
-# OLD SERVER ROUTE
-# @app.route("/add_album")
-# def create_new_album():
-#     """Add new album, named by user"""
-
-#     name = request.args.get("new_album_name")
-#     date_created = datetime.now()
-#     user_id = session.get('user_id')
-
-#     album = crud.create_album(name, date_created, user_id)
+    return jsonify({})
+    
 
 if __name__ == "__main__":
     connect_to_db(app, echo=False)

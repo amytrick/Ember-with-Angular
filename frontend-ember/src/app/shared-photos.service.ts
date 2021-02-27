@@ -22,7 +22,7 @@ export class SharedPhotosService {
 
   updateCurrentRating(newRating: number): void {
     this.photo.value.rating = newRating;
-    this.http.post(`${API_URL}/update-rating`, { photo_id: this.photo.value.photo_id, rating: newRating });
+    this.http.post(`${API_URL}/update-rating`, { photo_id: this.photo.value.photo_id, rating: newRating }).subscribe(data => { });
   }
 
   nextPhoto() {
@@ -42,5 +42,11 @@ export class SharedPhotosService {
 
   updatePhotos(photos: Photo[]) {
     this.photos.next(photos);
+  }
+
+  addToAlbum(album_id: number) {
+    console.log(`shared ${album_id}, not yet made the API call `);
+    this.http.post(`${API_URL}/add-to-album`, { photo_id: this.photo.value.photo_id, album_id: album_id }).subscribe(data => { });
+
   }
 }

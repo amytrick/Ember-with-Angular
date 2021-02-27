@@ -19,8 +19,10 @@
                     <div id="add-to-album-radios">
                         <!-- <form id='add-to-album-form' action="/add-to-album/{{photo.photo_id}}", method="POST"> -->
                         <div *ngFor="let album of albums">
-                            <input type="radio" id="{{ album.name }}" name="add-to-album" value="{{ album.name }}">
-                            <label for="{{ album.name }}">{{ album.name }}</label>
+                            <!-- <input type="radio" (click)="addToAlbum(album.album_id)" id="add-to-album-radios"
+                                name="add-to-album" value="{{ album.name }}">
+                            <label for="{{ album.name }}">{{ album.name }}</label> -->
+                            <div (click)="addToAlbum(album.album_id)">{{ album.name }}</div>
                         </div>
                         <!-- </form> -->
                     </div>
