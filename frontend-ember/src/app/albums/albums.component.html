@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <a *ngFor="let album of albums" routerLink="/album/{{album.album_id}}">
+    <a *ngFor="let album of albums" routerLink="/album/{{album.album_id}}" class="add-to-album-selection">
         <div>
             {{ album.name }}
         </div>

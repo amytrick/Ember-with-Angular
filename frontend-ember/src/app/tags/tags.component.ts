@@ -26,6 +26,7 @@ export class TagsComponent implements OnInit {
 
   assignTag() {
     this.sharedPhotosService.assignTag(this.newTagword);
+    this.isCollapsed = true;
     console.log("Assign tag");
   }
 

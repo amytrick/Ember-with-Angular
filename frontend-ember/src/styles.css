@@ -226,7 +226,8 @@ input[type="search"] {
   cursor: pointer;
 }
 
-#add-to-album-radios label {
+
+.add-to-album-selection {
   display: flex;
   height: 3em;
   align-items: center;
@@ -235,17 +236,16 @@ input[type="search"] {
   margin: 0px;
 }
 
-#add-to-album-radios input[type="radio"] {
-  display: none;
-}
 
-#add-to-album-radios input[type="radio"] + label:hover {
+.add-to-album-selection:hover {
   background-color: rgb(66, 66, 66);
+  cursor: pointer;
+  text-decoration: none;
 }
 
-#add-to-album-radios input[type="radio"]:checked + label {
-  background-color: grey;
-  color: black;
+
+.card {
+  border: none;
 }
 
 /* ****** ALBUM PAGE ****** */
