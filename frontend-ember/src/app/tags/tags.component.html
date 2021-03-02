@@ -9,10 +9,12 @@
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
         <div class="card">
             <div class="card-body">
-                <form id="add-tag-form">
+                <!-- <form id="add-tag-form">
                     <input type="text" placeholder="ADD TAG" name="tag-text">
                     <button id='add-tag'></button>
-                </form>
+                </form> -->
+                <p><input [(ngModel)]="newTagword" type="text" name="new_tagword" id="add-tag-button"
+                        (keyup.enter)="assignTag()"></p>
             </div>
         </div>
     </div>

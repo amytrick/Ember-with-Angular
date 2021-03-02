@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
+import { SharedPhotosService } from '../shared-photos.service';
 import { Tag } from '../tag';
 
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -13,18 +14,23 @@ import { Tag } from '../tag';
 })
 export class TagsComponent implements OnInit {
 
-  tags: Tag[] = []
+  tags: Tag[] = [];
+  newTagword: string = "";
   public isCollapsed = true;
 
 
-  constructor(private albumService: AlbumService) { }
+  constructor(
+    private albumService: AlbumService,
+    private sharedPhotosService: SharedPhotosService
+  ) { }
 
-  getTags(photo_id: number): void {
-    this.albumService.getTags(photo_id).subscribe(tags => this.tags = tags);
+  assignTag() {
+    this.sharedPhotosService.assignTag(this.newTagword);
+    console.log("Assign tag");
   }
 
   ngOnInit(): void {
-    this.getTags(1);
+    this.sharedPhotosService.currentTags.subscribe(tags => this.tags = tags);
   }
 
 }

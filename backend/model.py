@@ -81,7 +81,7 @@ class Tag(db.Model, SerializerMixin):
 
     photos = db.relationship('Photo', secondary='phototags')
 
-    serialize_rules = ('-photos')
+    serialize_rules = ('-photos','-phototags')
 
     def repr(self):
         return f"<Tag tag_id = {self.tag_id} tagword = {self.tagword}>"

@@ -39,7 +39,16 @@ def get_photos_by_user_id(user_id):
 @app.route("/api/get-tags/<int:photo_id>", methods = ["GET"])
 def get_tags_by_photo_id(photo_id):
     tags = crud.display_tags_by_photo_id(photo_id)
-    return jsonify([tags.to_dict() for tag in tags])
+    print(tags)
+    for tag in tags:
+        print(tag.tag_id, tag.tagword)
+        print(tag.to_dict())
+    return jsonify([tag.to_dict() for tag in tags])
+
+@app.route("/api/assign-tag", methods = ["POST"])
+def assign_tag_to_photo():
+    crud.add_tag_to_photo(request.json['photo_id'], request.json['tagword'])
+    return jsonify({})
 
 @app.route("/api/update-rating", methods = ["POST"])
 def update_rating():
