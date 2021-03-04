@@ -7,6 +7,9 @@ import { Photo } from './photo';
 import { Tag } from './tag';
 import { API_URL } from './env';
 
+import { Cloudinary } from '@cloudinary/angular-5.x';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,7 +50,13 @@ export class AlbumService {
     return this.http.post<Album>(`${API_URL}/add-album`, { name: name, user_id: user_id, datetime: Date.now() });
   }
 
+  uploadPhoto(photo_path: string): void {
+    console.log("Trying to make post request to upload photo");
+    this.http.post(`${API_URL}/upload-photo`, { photo_path: photo_path }).subscribe();
+  }
 
-
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private cloudinary: Cloudinary
+  ) { }
 }

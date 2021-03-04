@@ -364,6 +364,17 @@ def searchpage():
     else:
         photos = []
 
+
+@app.route("/search/filterby", methods=["POST"])
+def search_and_filter():
+    """Returns photos that match both a keyword search and filtered by rating"""
+
+    # tagword = (request.form.get("search")).capitalize()
+
+
+
+
+
     global current_photo_list
     current_photo_list = photos
     return render_template("search-results.html", photos=photos, albums=albums, tagword=tagword)

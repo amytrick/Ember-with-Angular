@@ -1,0 +1,3 @@
+secrets.sh
+backend/__pycache__/**
+frontend-ember/package-lock.json

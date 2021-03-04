@@ -7,6 +7,7 @@ import { Photo } from './photo';
 import { Tag } from './tag';
 import { API_URL } from './env';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,4 +72,5 @@ export class SharedPhotosService {
       this.http.post(`${API_URL}/assign-tag`, { photo_id: this.photo.value.photo_id, tagword: tagword }).subscribe();
     }
   }
+
 }

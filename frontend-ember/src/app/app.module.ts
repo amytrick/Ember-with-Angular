@@ -11,14 +11,18 @@ import { PhotoDetailsComponent } from './photo-details/photo-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LibraryComponent } from './library/library.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DragDropDirective } from './drag-drop.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagsComponent } from './tags/tags.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { AddToAlbumComponent } from './add-to-album/add-to-album.component';
 import { RatingComponent } from './rating/rating.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 
 @NgModule({
   declarations: [
@@ -29,12 +33,12 @@ import { FormsModule } from '@angular/forms'
     NavbarComponent,
     LibraryComponent,
     SidebarComponent,
-    DragDropDirective,
     TagsComponent,
     GalleryComponent,
     RatingsComponent,
     AddToAlbumComponent,
-    RatingComponent
+    RatingComponent,
+    UploadPhotoComponent
   ],
   imports: [
     HttpClientModule,
@@ -42,7 +46,9 @@ import { FormsModule } from '@angular/forms'
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'dv77rliti' })
   ],
   providers: [],
   bootstrap: [AppComponent]

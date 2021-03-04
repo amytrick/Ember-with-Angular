@@ -1,0 +1,16 @@
+<div id="add-photo-div">
+    <div id="upload-photo-button-div" data-toggle="tooltip" data-placement="bottom" title="Choose file"
+        enctype="multipart/form-data">
+        UPLOAD PHOTO
+        <div>
+            <!-- <button class="plus-button">+
+                <input type="file" id="photo-upload-button" name="photo-upload" accept=".jpg, .jpeg, .png">
+            </button> -->
+            <input [(ngModel)]="photo" type="file" name="photo-upload" accept=".jpg, .jpeg, .png">
+            <button (click)="uploadPhoto()">UPLOAD HERE</button>
+
+        </div>
+    </div>
+</div>
+
+<!--  (click)=upload() -->

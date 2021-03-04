@@ -222,6 +222,18 @@ def get_photos_with_less_or_equal_rating(rating, user_id):
 
     return photos
 
+def search_and_filter(rating, keyword, user_id):
+    """Return photos that are filtered by rating and match a specific keyword"""
+
+    tag = get_tag_by_tagword(tagword)
+    photos = get_tag_by_tagword(tagword)
+
+        # function to be run on list of photo objects
+        # get tag id by tagword (get_tag_by_tagword)
+        #         get photos with tag (get_photos_by_tag)
+        #             filter by rating (Photo.rating <, >, =, <=, >=)
+        #                 take filtered list
+                
 
 #################################
 ##            TAGS             ##

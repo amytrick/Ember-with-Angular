@@ -27,11 +27,25 @@
     <div class="card">
         <div class="card-body">
             <div id="equality-icons">
+                <input type="radio" [(ngModel)]="equality" value="equals" name="equality" (ngModelChange)=setFilter()>
                 <fa-icon [icon]="equals" class="fa-sm"></fa-icon>
+                <input type="radio" [(ngModel)]="equality" value="greater" name="equality" (ngModelChange)=setFilter()>
                 <fa-icon [icon]="greater" class="fa-sm"></fa-icon>
+                <input type="radio" [(ngModel)]="equality" value="less" name="equality" (ngModelChange)=setFilter()>
                 <fa-icon [icon]="less" class="fa-sm"></fa-icon>
+                <!-- <form [formGroup]="testForm" (click)=display()>
+                    <input type="radio" value="equals" name="equality" formControlName="equality">
+                    <fa-icon [icon]="equals" class="fa-sm"></fa-icon>
+                    <input type="radio" value="greater" name="equality" formControlName="equality">
+                    <fa-icon [icon]="greater" class="fa-sm"></fa-icon>
+                    <input type="radio" value="less" name="equality" formControlName="equality">
+                    <fa-icon [icon]="less" class="fa-sm"></fa-icon>
+                </form> -->
+                <!-- <button (click)=display()>CLick meeeee</button> -->
             </div>
-            <app-rating></app-rating>
+            <div class="rating-stars">
+                <ngb-rating [(rate)]="currentRating" [max]=5 (rateChange)=setFilter()></ngb-rating>
+            </div>
         </div>
     </div>
 </div>
