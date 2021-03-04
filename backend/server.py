@@ -87,6 +87,15 @@ def update_rating():
     crud.give_rating(request.json['photo_id'],request.json['rating'])
     return jsonify({'status': 'rating updated'}), 201
 
+@app.route("/api/filter", methods = ["POST"])
+def setFilter():
+    rating = request.json['rating']
+    equality_symbol = request.json['equality']
+    user_id = request.json['user_id']
+    photos = crud.filter_photos_by_rating(rating, equality_symbol, user_id)
+
+    return jsonify([photo.to_dict() for photo in photos])
+
 @app.route("/api/add-album", methods = ["POST"])
 def add_album():
     user_id = request.json['user_id']

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { faFilter, faSearch, faEquals, faGreaterThanEqual, faLessThanEqual } from '@fortawesome/free-solid-svg-icons';
+import { AlbumService } from '../album.service';
+import { SharedPhotosService } from '../shared-photos.service';
+
+
 
 
 @Component({
@@ -26,7 +30,12 @@ export class NavbarComponent implements OnInit {
   });
 
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private albumService: AlbumService,
+    private sharedPhotosService: SharedPhotosService
+  ) {
   }
 
   display() {
@@ -36,6 +45,7 @@ export class NavbarComponent implements OnInit {
   setFilter() {
     console.log(this.currentRating);
     console.log(this.equality);
+    this.albumService.setFilter(this.currentRating, this.equality).subscribe(photos => this.sharedPhotosService.updatePhotos(photos));
   }
 
   ngOnInit(): void {

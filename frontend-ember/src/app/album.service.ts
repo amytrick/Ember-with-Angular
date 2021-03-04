@@ -55,6 +55,11 @@ export class AlbumService {
     this.http.post(`${API_URL}/upload-photo`, { photo_path: photo_path }).subscribe();
   }
 
+  setFilter(currentRating: Number, equality: string): Observable<Photo[]> {
+    console.log("Post request of filtered rating")
+    return this.http.post<Photo[]>(`${API_URL}/filter`, { equality: equality, rating: currentRating, user_id: 1 });
+  }
+
   constructor(
     private http: HttpClient,
     private cloudinary: Cloudinary
