@@ -196,43 +196,56 @@ def give_rating(photo_id, rating):
     db.session.commit()
 
 
-def filter_photos_by_rating(rating, equality_symbol, user_id):
+def filter_photos_by_rating(rating, equality_symbol, album_id, user_id):
     """Return photos that fit the rating filter criteria as input on frontend"""
 
     if equality_symbol == 'equals':
-        photos = get_photos_by_exact_rating(rating, user_id)
+        photos = get_photos_by_exact_rating(rating, album_id, user_id)
         # statement = rating
     elif equality_symbol == 'greater':
-        photos = get_photos_with_greater_or_equal_rating(rating, user_id)
+        photos = get_photos_with_greater_or_equal_rating(rating, album_id, user_id)
         # statement = "≥ " + rating
     elif equality_symbol == 'less':
-        photos = get_photos_with_less_or_equal_rating(rating, user_id)
+        photos = get_photos_with_less_or_equal_rating(rating, album_id, user_id)
         # statement = "≤ " + rating
 
     return photos
 
 
-def get_photos_by_exact_rating(rating, user_id):
+def get_photos_by_exact_rating(rating, album_id, user_id):
     """Return photos that have a specified rating"""
 
-    photos = Photo.query.filter(Photo.rating == rating,
-                                Photo.user_id == user_id).all()
+    if album_id != 0:
+        photos = Photo.query.filter(Photo.rating == rating,
+                                    Photo.user_id == user_id,
+                                    Photo.album_id == album_id).all()
+    else:
+        photos = Photo.query.filter(Photo.rating == rating,
+                                    Photo.user_id == user_id).all()
 
     return photos
 
 
-def get_photos_with_greater_or_equal_rating(rating, user_id):
+def get_photos_with_greater_or_equal_rating(rating, album_id, user_id):
     """Return photos that have a rating greater to or equal to specified rating"""
-
+    
+    if album_id != 0:
+        photos = Photo.query.filter(Photo.rating >= rating,
+                                    Photo.user_id == user_id,
+                                    Photo.album_id == album_id).all()
     photos = Photo.query.filter(Photo.rating >= rating,
                                 Photo.user_id == user_id).all()
 
     return photos
 
 
-def get_photos_with_less_or_equal_rating(rating, user_id):
+def get_photos_with_less_or_equal_rating(rating, album_id, user_id):
     """Return photos that have a rating less to or equal to specified rating"""
 
+    if album_id != 0:
+        photos = Photo.query.filter(Photo.rating <= rating,
+                                    Photo.user_id == user_id,
+                                    Photo.album_id == album_id).all()
     photos = Photo.query.filter(Photo.rating <= rating,
                                 Photo.user_id == user_id).all()
 

@@ -18,11 +18,15 @@ export class SharedPhotosService {
   private photo = new BehaviorSubject<Photo>(<Photo>{});
   currentPhoto = this.photo.asObservable();
 
+  private albumId = new BehaviorSubject<number>(0);
+  currentAlbumId = this.albumId.asObservable();
+
   private tags = new BehaviorSubject<Tag[]>([]);
   currentTags = this.tags.asObservable();
 
   private currentIdx: any = 0
   private has_current_photo: boolean = false;
+
   constructor(private http: HttpClient, private albumService: AlbumService) {
   }
 
@@ -71,6 +75,10 @@ export class SharedPhotosService {
     if (this.has_current_photo) {
       this.http.post(`${API_URL}/assign-tag`, { photo_id: this.photo.value.photo_id, tagword: tagword }).subscribe();
     }
+  }
+
+  setCurrentAlbumId(id: number): void {
+    this.albumId.next(id);
   }
 
 }

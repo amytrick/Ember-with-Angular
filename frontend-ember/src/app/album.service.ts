@@ -55,9 +55,14 @@ export class AlbumService {
     this.http.post(`${API_URL}/upload-photo`, { photo_path: photo_path }).subscribe();
   }
 
-  setFilter(currentRating: Number, equality: string): Observable<Photo[]> {
+  setFilter(currentRating: Number, equality: string, album_id: number): Observable<Photo[]> {
     console.log("Post request of filtered rating")
-    return this.http.post<Photo[]>(`${API_URL}/filter`, { equality: equality, rating: currentRating, user_id: 1 });
+    return this.http.post<Photo[]>(`${API_URL}/filter`, { equality: equality, rating: currentRating, user_id: 1, album_id: album_id });
+  }
+
+  search(searchword: string): Observable<Photo[]> {
+    console.log("Post request of searchword")
+    return this.http.post<Photo[]>(`${API_URL}/search`, { searchword: searchword, user_id: 1 });
   }
 
   constructor(

@@ -91,8 +91,24 @@ def update_rating():
 def setFilter():
     rating = request.json['rating']
     equality_symbol = request.json['equality']
+    album_id = request.json['album_id']
     user_id = request.json['user_id']
-    photos = crud.filter_photos_by_rating(rating, equality_symbol, user_id)
+    photos = crud.filter_photos_by_rating(rating, equality_symbol, album_id, user_id)
+
+    return jsonify([photo.to_dict() for photo in photos])
+
+@app.route("/api/search", methods=["POST"])
+def searchpage():
+    """Returns photos that match keyword search"""
+    # filtered by user id
+
+    tagword = (request.json['searchword']).capitalize()
+    user_id = request.json['user_id']
+    tag = crud.get_tag_by_tagword(tagword)
+    if tag:
+        photos = crud.get_photos_by_tag(tag, user_id)
+    else:
+        photos = []
 
     return jsonify([photo.to_dict() for photo in photos])
 

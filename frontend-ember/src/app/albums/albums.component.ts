@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
 import { Album } from '../album';
+import { SharedPhotosService } from '../shared-photos.service';
 
 @Component({
   selector: 'app-albums',
@@ -11,7 +12,10 @@ export class AlbumsComponent implements OnInit {
   albums: Album[] = [];
   public isCollapsed = true;
   newAlbumName: string = "NEW ALBUM NAME";
-  constructor(private albumService: AlbumService) { }
+  constructor(
+    private albumService: AlbumService,
+    private sharedPhotosService: SharedPhotosService
+  ) { }
 
   getAlbums(user_id: number): void {
     this.albumService.getAlbums(user_id).subscribe(albums => this.albums = albums);

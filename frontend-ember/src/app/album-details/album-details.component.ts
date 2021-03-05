@@ -34,6 +34,8 @@ export class AlbumDetailsComponent implements OnInit {
   getAlbum(id: number): void {
     this.albumService.getAlbum(id)
       .subscribe(album => this.album = album);
+    this.sharedPhotosService.setCurrentAlbumId(id);
+
   }
 
   ngOnInit(): void {

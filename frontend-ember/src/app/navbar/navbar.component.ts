@@ -22,12 +22,15 @@ export class NavbarComponent implements OnInit {
   less = faLessThanEqual;
 
   currentRating: number = 0;
+  currentAlbumId: number = 0;
 
   public isCollapsed = true;
   equality: string = "";
   testForm = this.fb.group({
     equality: ['', Validators.required]
   });
+
+  searchword: string = "";
 
 
   constructor(
@@ -45,10 +48,16 @@ export class NavbarComponent implements OnInit {
   setFilter() {
     console.log(this.currentRating);
     console.log(this.equality);
-    this.albumService.setFilter(this.currentRating, this.equality).subscribe(photos => this.sharedPhotosService.updatePhotos(photos));
+    this.albumService.setFilter(this.currentRating, this.equality, this.currentAlbumId).subscribe(photos => this.sharedPhotosService.updatePhotos(photos));
+  }
+
+  search() {
+    console.log(this.searchword);
+    this.albumService.search(this.searchword).subscribe(photos => this.sharedPhotosService.updatePhotos(photos));
   }
 
   ngOnInit(): void {
+    this.sharedPhotosService.currentAlbumId.subscribe(albumId => this.currentAlbumId = albumId);
   }
 
 }

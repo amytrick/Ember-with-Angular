@@ -3,11 +3,6 @@
         <p><a class="navbar-brand" id="logo" routerLink="">ember</a></p>
 
         <div id="search-div">
-            <button class="btn my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="bottom"
-                title="Search by keyword">
-                <fa-icon [icon]="faSearch" class="fa-lg" style="color: white"></fa-icon>
-            </button>
-            <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search">
 
             <span id="filter-button" data-toggle="tooltip" data-placement="bottom" title="Filter">
                 <button type="button" class="plus-button" (click)="collapse.toggle()"
@@ -16,6 +11,22 @@
                     <fa-icon [icon]="faFilter" class="fa-lg"></fa-icon>
                 </button>
             </span>
+
+            <form>
+                <div class="md-form my-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="SEARCH" [(ngModel)]="searchword"
+                        name="search" (keyup.enter)="search()">
+                </div>
+            </form>
+
+            <button class="btn my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="bottom"
+                title="Search by keyword" (click)=search()>
+                <fa-icon [icon]="faSearch" class="fa-lg" style="color: white"></fa-icon>
+            </button>
+
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="SEARCH" aria-label="Search" name="search"> -->
+
+
         </div>
         <div class="logout-div">
             <button class="btn btn-outline-light my-2 my-sm-0">LOGOUT</button>
