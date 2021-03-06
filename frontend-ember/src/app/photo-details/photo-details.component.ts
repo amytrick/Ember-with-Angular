@@ -36,6 +36,10 @@ export class PhotoDetailsComponent implements OnInit {
     this.sharedPhotosService.nextPhoto();
   }
 
+  deletePhoto(): void {
+    this.sharedPhotosService.deletePhoto();
+  }
+
   ngOnInit(): void {
     this.sharedPhotosService.sharedPhotos.subscribe(photos => this.photos = photos);
     this.sharedPhotosService.currentPhoto.subscribe(photo => this.photo = photo);

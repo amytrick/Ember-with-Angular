@@ -128,6 +128,19 @@ def add_to_album():
     crud.add_to_photoalbum(photo_id, album_id)
 
     return jsonify({})
+
+@app.route("/api/delete/photo", methods = ["POST"])
+def delete_photo():
+    photo_id = request.json['photo_id']
+    photo = crud.get_photo_by_id(photo_id)
+
+    # if photo.public_id != "":
+    #     destroy_result = cloudinary.uploader.destroy(photo.public_id)
+
+    print("photo has been deleted with crud function")
+    
+    return jsonify({})
+    # return redirect("/library")
     
 
 if __name__ == "__main__":

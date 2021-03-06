@@ -77,6 +77,10 @@ export class SharedPhotosService {
     }
   }
 
+  deletePhoto(): void {
+    this.http.post(`${API_URL}/delete/photo`, { photo_id: this.photo.value.photo_id }).subscribe();
+  }
+
   setCurrentAlbumId(id: number): void {
     this.albumId.next(id);
   }
