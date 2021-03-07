@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlbumService } from '../album.service';
 import { Photo } from "../photo";
 import { SharedPhotosService } from '../shared-photos.service';
@@ -25,7 +25,8 @@ export class PhotoDetailsComponent implements OnInit {
   constructor(
     private albumService: AlbumService,
     private sharedPhotosService: SharedPhotosService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _router: Router
   ) { }
 
   previous(): void {
@@ -38,6 +39,7 @@ export class PhotoDetailsComponent implements OnInit {
 
   deletePhoto(): void {
     this.sharedPhotosService.deletePhoto();
+    this._router.navigate(['library'])
   }
 
   ngOnInit(): void {
