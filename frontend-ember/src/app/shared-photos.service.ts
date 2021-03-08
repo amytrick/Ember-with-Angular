@@ -85,4 +85,8 @@ export class SharedPhotosService {
     this.albumId.next(id);
   }
 
+  renameAlbum(new_name: string) {
+    this.http.post(`${API_URL}/rename/album`, { album_id: this.albumId.value, new_name: new_name }).subscribe();
+  }
+
 }

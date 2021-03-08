@@ -140,7 +140,21 @@ def delete_photo():
     print("photo has been deleted with crud function")
     
     return jsonify({})
-    # return redirect("/library")
+
+@app.route("/api/rename/album", methods=["POST"])
+def rename_album():
+    """Rename existing album"""
+
+    new_name = request.json['new_name']
+    album_id = request.json['album_id']
+
+    crud.rename_album(album_id, new_name)
+
+    # return display_album(album_id)
+    print("new name assigned")
+    return jsonify({})
+
+
     
 
 if __name__ == "__main__":

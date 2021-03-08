@@ -1,4 +1,10 @@
+<div id="album-name-div">
+    <h1 id="album-title"><em>{{ album_name }}</em></h1>
+    <div id="rename-album-div" class="hidden">
+        <input type="text" id="rename-album-textbox" placeholder="RENAME ALBUM" name="rename-album"
+            [(ngModel)]="new_name" (keyup.enter)="renameAlbum()">
+    </div>
+</div>
 <div>
-    <h1>{{album.name}}</h1>
     <app-gallery></app-gallery>
 </div>

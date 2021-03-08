@@ -17,6 +17,8 @@ export class AlbumDetailsComponent implements OnInit {
 
   album: Album = <Album>{};
   photos: Photo[] = [];
+  new_name: string = "";
+  album_name: string = "";
 
   constructor(
     private albumService: AlbumService,
@@ -33,15 +35,23 @@ export class AlbumDetailsComponent implements OnInit {
 
   getAlbum(id: number): void {
     this.albumService.getAlbum(id)
-      .subscribe(album => this.album = album);
+      .subscribe(album => {
+        this.album = album;
+        this.album_name = album.name;
+      });
     this.sharedPhotosService.setCurrentAlbumId(id);
+  }
 
+  renameAlbum(): void {
+    console.log(this.new_name)
+    this.sharedPhotosService.renameAlbum(this.new_name);
+    this.album_name = this.new_name;
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      this.getAlbum(Number(id))
+      this.getAlbum(Number(id));
       this.getPhotos(Number(id));
     })
 
