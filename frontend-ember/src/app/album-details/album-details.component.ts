@@ -47,6 +47,8 @@ export class AlbumDetailsComponent implements OnInit {
     console.log(this.new_name)
     this.sharedPhotosService.renameAlbum(this.new_name);
     this.album_name = this.new_name;
+    this.hidden = true
+
   }
 
   renameToggle() {
@@ -54,7 +56,6 @@ export class AlbumDetailsComponent implements OnInit {
       this.hidden = false;
     else
       (this.hidden = true)
-    console.log(this.hidden)
   }
 
   ngOnInit(): void {

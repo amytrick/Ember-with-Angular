@@ -11,7 +11,7 @@ import { SharedPhotosService } from '../shared-photos.service';
 export class AlbumsComponent implements OnInit {
   albums: Album[] = [];
   public isCollapsed = true;
-  newAlbumName: string = "NEW ALBUM NAME";
+  newAlbumName: string = "";
   constructor(
     private albumService: AlbumService,
     private sharedPhotosService: SharedPhotosService
@@ -24,7 +24,7 @@ export class AlbumsComponent implements OnInit {
   addAlbum() {
     this.albumService.addAlbum(this.newAlbumName, 1 /*userid*/).subscribe(album => this.albums.push(album));
     this.isCollapsed = true;
-    this.newAlbumName = "NEW ALBUM NAME";
+    this.newAlbumName = "";
   }
 
   ngOnInit(): void {

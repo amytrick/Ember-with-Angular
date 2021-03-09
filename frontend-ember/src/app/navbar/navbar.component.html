@@ -14,8 +14,8 @@
 
             <form>
                 <div class="md-form my-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="SEARCH" [(ngModel)]="searchword"
-                        name="search" (keyup.enter)="search()">
+                    <input class="form-control mr-sm-2" id="search-box" type="text" placeholder="SEARCH"
+                        [(ngModel)]="searchword" name="search" onfocus="value=''" (keyup.enter)="search()">
                 </div>
             </form>
 

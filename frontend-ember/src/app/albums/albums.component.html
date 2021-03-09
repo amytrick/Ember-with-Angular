@@ -11,7 +11,7 @@
         <div class="card">
             <div class="card-body">
                 <p><input [(ngModel)]="newAlbumName" type="text" name="new_album_name" id="add-album-button"
-                        (keyup.enter)="addAlbum()"></p>
+                        placeholder="ADD NEW ALBUM" onfocus="value=''" (keyup.enter)="addAlbum()"></p>
             </div>
         </div>
     </div>

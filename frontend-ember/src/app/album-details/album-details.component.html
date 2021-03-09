@@ -1,7 +1,7 @@
 <div id="album-name-div">
     <h1 id="album-title" (click)="renameToggle()"><em>{{ album_name }}</em></h1>
     <div id="rename-album-div" *ngIf=!hidden>
-        <input type="text" id="rename-album-textbox" placeholder="RENAME ALBUM" name="rename-album"
+        <input type="text" id="rename-album-textbox" placeholder="RENAME ALBUM" name="rename-album" onfocus="value=''"
             [(ngModel)]="new_name" (keyup.enter)="renameAlbum()">
     </div>
 </div>

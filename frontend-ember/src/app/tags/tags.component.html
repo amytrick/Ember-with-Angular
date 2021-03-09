@@ -13,8 +13,8 @@
                     <input type="text" placeholder="ADD TAG" name="tag-text">
                     <button id='add-tag'></button>
                 </form> -->
-                <p><input [(ngModel)]="newTagword" type="text" name="new_tagword" id="add-tag-button"
-                        (keyup.enter)="assignTag()"></p>
+                <p><input [(ngModel)]="newTagword" type="text" placeholder="ADD TAG" name="new_tagword"
+                        id="add-tag-button" onfocus="value=''" (keyup.enter)="assignTag()"></p>
             </div>
         </div>
     </div>
