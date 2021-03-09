@@ -19,6 +19,7 @@ export class AlbumDetailsComponent implements OnInit {
   photos: Photo[] = [];
   new_name: string = "";
   album_name: string = "";
+  hidden = true;
 
   constructor(
     private albumService: AlbumService,
@@ -46,6 +47,14 @@ export class AlbumDetailsComponent implements OnInit {
     console.log(this.new_name)
     this.sharedPhotosService.renameAlbum(this.new_name);
     this.album_name = this.new_name;
+  }
+
+  renameToggle() {
+    if (this.hidden == true)
+      this.hidden = false;
+    else
+      (this.hidden = true)
+    console.log(this.hidden)
   }
 
   ngOnInit(): void {
