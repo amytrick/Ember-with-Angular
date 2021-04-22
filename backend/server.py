@@ -16,26 +16,26 @@ cloudinary.config(
                   api_key=os.environ.get('API_KEY'),
                   api_secret=os.environ.get('API_SECRET')
                   )
-
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/api/upload-photo', methods = ['POST'])
 def upload_photo():
     #image = request.files['photo-upload']
-    photo_path = request.json['photo_path']
+    photo_base64 = request.json['photo_base64']
     # result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "google_tagging", auto_tagging = 0.6)
     # result = cloudinary.uploader.upload(image, image_metadata=True, categorization = "aws_rek_tagging", auto_tagging = 0.7)
-    result = cloudinary.uploader.upload(photo_path, image_metadata=True)
+    result = cloudinary.uploader.upload(photo_base64)
     # result["tags"] = ['forest','adventure']
     print(result)
-    # user_id = 1
-    # date_uploaded = datetime.now()
-    # date_taken = datetime.strptime(result['image_metadata']['DateTimeOriginal'], "%Y:%m:%d %H:%M:%S")
-    # album_id = None
-    # path = result['url']
-    # public_id = result['public_id']
-    # photo = crud.create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id)
+    user_id = 1
+    date_uploaded = datetime.now()
+    date_taken = date_uploaded
+    #date_taken = datetime.strptime(result['image_metadata']['DateTimeOriginal'], "%Y:%m:%d %H:%M:%S")
+    album_id = None
+    path = result['url']
+    public_id = result['public_id']
+    photo = crud.create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id)
     return jsonify({})
 
 @app.route('/api/get-albums/<int:user_id>', methods = ['GET'])
