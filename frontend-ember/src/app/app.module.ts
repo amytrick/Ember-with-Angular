@@ -24,6 +24,10 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +52,8 @@ import * as  Cloudinary from 'cloudinary-core';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'dv77rliti' })
   ],
   providers: [],
