@@ -50,9 +50,9 @@ export class AlbumService {
     return this.http.post<Album>(`${API_URL}/add-album`, { name: name, user_id: user_id, datetime: Date.now() });
   }
 
-  uploadPhoto(photo_base64: string): void {
+  uploadPhoto(photo_base64: string): Observable<any> {
     console.log("Trying to make post request to upload photo");
-    this.http.post(`${API_URL}/upload-photo`, { photo_base64: photo_base64 }).subscribe();
+    return this.http.post(`${API_URL}/upload-photo`, { photo_base64: photo_base64 });
   }
 
   setFilter(currentRating: Number, equality: string, album_id: number): Observable<Photo[]> {

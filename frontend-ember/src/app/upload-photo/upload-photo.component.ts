@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
 import * as _ from 'lodash';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-upload-photo',
@@ -12,7 +14,8 @@ export class UploadPhotoComponent implements OnInit {
   cardImageBase64: any;
   isImageSaved: any;
 
-  constructor(private albumService: AlbumService) { }
+  constructor(private albumService: AlbumService,
+    private toasterService: ToastrService) { }
 
   fileChangeEvent(fileInput: any) {
     console.log('Second upload button pressed');
@@ -26,14 +29,19 @@ export class UploadPhotoComponent implements OnInit {
         console.log(e.target);
         this.cardImageBase64 = imgBase64Path;
         this.isImageSaved = true;
+        this.uploadPhoto();
       };
     };
     reader.readAsDataURL(fileInput.target.files[0]);
   }
 
   uploadPhoto() {
-    console.log(this.cardImageBase64);
-    this.albumService.uploadPhoto(this.cardImageBase64);
+    this.toasterService.info('...uploading');
+
+    this.albumService.uploadPhoto(this.cardImageBase64).subscribe((response) => {
+      console.log(response);
+      this.toasterService.success('Success', 'Photo uploaded');
+    });
   }
 
   ngOnInit(): void {

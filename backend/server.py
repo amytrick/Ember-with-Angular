@@ -9,6 +9,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import os
+from flask import Response
 
 # set Cloudinary API configurations
 cloudinary.config(
@@ -36,7 +37,7 @@ def upload_photo():
     path = result['url']
     public_id = result['public_id']
     photo = crud.create_photo(user_id, date_uploaded, date_taken, album_id, path, public_id)
-    return jsonify({})
+    return jsonify(), 201
 
 @app.route('/api/get-albums/<int:user_id>', methods = ['GET'])
 def get_albums_by_user_id(user_id):

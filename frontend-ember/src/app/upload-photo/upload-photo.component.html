@@ -8,7 +8,6 @@
             </button> -->
             <!-- <input [(ngModel)]="photo" type="file" name="photo-upload" accept=".jpg, .jpeg, .png"> -->
             <input type="file" name="testphoto" (change)=fileChangeEvent($event)>
-            <button (click)="uploadPhoto()">UPLOAD HERE</button>
             <div *ngIf="photo">
                 <img src="photo">
             </div>
