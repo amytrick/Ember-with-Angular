@@ -38,8 +38,10 @@ export class PhotoDetailsComponent implements OnInit {
   }
 
   deletePhoto(): void {
-    this.sharedPhotosService.deletePhoto();
-    this._router.navigate(['library'])
+    this.sharedPhotosService.deletePhoto().subscribe(() => {
+      this._router.navigate(['library']);
+    }
+    );
   }
 
   ngOnInit(): void {

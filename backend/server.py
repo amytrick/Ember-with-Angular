@@ -135,10 +135,10 @@ def delete_photo():
     photo_id = request.json['photo_id']
     photo = crud.get_photo_by_id(photo_id)
 
-    # if photo.public_id != "":
-    #     destroy_result = cloudinary.uploader.destroy(photo.public_id)
+    if photo.public_id != "":
+        destroy_result = cloudinary.uploader.destroy(photo.public_id)
 
-    print("photo has been deleted with crud function")
+    crud.delete_photo_by_id(photo_id)
     
     return jsonify({})
 

@@ -22,6 +22,7 @@ export class LibraryComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillLibrary(1);
+    console.log('Library init');
   }
 
 }
