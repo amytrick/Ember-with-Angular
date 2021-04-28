@@ -1,0 +1,25 @@
+body {
+    background-image: url("../../assets/img/background.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgb(46, 46, 46);
+    color: black;
+    height: 100%;
+    width: auto;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: auto;
+  }
+
+  h1 {
+    color: black
+  }
+
+  #login-page input[type=text], input[type=password] {
+    background-color: white;
+    color: black;
+    border: none;
+    text-align: center;
+  }

@@ -26,6 +26,7 @@ import * as  Cloudinary from 'cloudinary-core';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RatingsComponent,
     AddToAlbumComponent,
     RatingComponent,
-    UploadPhotoComponent
+    UploadPhotoComponent,
+    LoginPageComponent
   ],
   imports: [
     HttpClientModule,
