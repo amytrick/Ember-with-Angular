@@ -407,10 +407,7 @@ input[type="search"] {
 }
 
 #photo-upload-button {
-  position: absolute;
   font-size: 5px;
-  left: 250px;
-  top: 30px;
   opacity: 0;
   height: 20px;
   width: 20px;

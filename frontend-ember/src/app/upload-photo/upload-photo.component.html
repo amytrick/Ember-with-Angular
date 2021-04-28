@@ -2,17 +2,15 @@
     <div id="upload-photo-button-div" data-toggle="tooltip" data-placement="bottom" title="Choose file"
         enctype="multipart/form-data">
         UPLOAD PHOTO
-        <div>
-            <!-- <button class="plus-button">+
-                <input type="file" id="photo-upload-button" name="photo-upload" accept=".jpg, .jpeg, .png">
-            </button> -->
-            <!-- <input [(ngModel)]="photo" type="file" name="photo-upload" accept=".jpg, .jpeg, .png"> -->
-            <input type="file" name="testphoto" (change)=fileChangeEvent($event)>
+        <div class="fileinput">
+            <input type="file" class="file" id="photo-upload-button" name="photo" (change)=fileChangeEvent($event)>
+            <div class="fakefile">
+                <button class="plus-button">+</button>
+            </div>
+
             <div *ngIf="photo">
                 <img src="photo">
             </div>
         </div>
     </div>
 </div>
-
-<!--  (click)=upload() -->
